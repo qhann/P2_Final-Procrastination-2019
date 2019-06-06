@@ -9,13 +9,15 @@ class StatusBar extends Component {
     let styles = {
       width: width + "px",
       height: height + "px",
-      backgroundPositionX: (width/100) * value + "px"
+      backgroundPositionX: (width / 100) * value + "px"
     }
-   
+
     return (
-      <div onClick={onClick} className={"status-bar"} style={styles}>
-        <p className={"status-label"} style={{color: "black"}}>{label}</p>
-        <p className={"status-label"} style={{color: "white"}}>{label}</p>
+      <div className={"status-bar-frame"} style={{background: "white"}}>
+        <div className={"status-bar"} style={styles}>
+          <p className={"status-label"} style={{ color: "black" }}>{label}</p>
+          {/* <p className={"status-label"} style={{color: "white"}}>{label}</p> */}
+        </div>
       </div>
     );
   }

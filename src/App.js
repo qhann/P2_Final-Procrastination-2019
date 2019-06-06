@@ -1,9 +1,12 @@
 import React from "react";
-import logo from "./logo.svg";
 import room from "./room.jpg";
-import StatusBar from "./components/statusBar";
 import "./App.css";
 import update from "immutability-helper";
+
+import StatusBar from "./components/StatusBar";
+import Artwork from "./components/Artwork";
+import MentorTip from "./components/MentorTip";
+import Clock from "./components/Clock";
 
 class App extends React.Component {
   state = {
@@ -11,7 +14,8 @@ class App extends React.Component {
     vitalStats: {
       health: 100,
       exhaustion: 0
-    }
+    },
+    text: "Du solltest schlafen."
   };
 
   componentDidMount() {
@@ -25,6 +29,7 @@ class App extends React.Component {
         "exhaustion",
         prevState.vitalStats.exhaustion
       );
+      
       //console.log(prevState);
       
       return update(prevState, {
@@ -36,7 +41,8 @@ class App extends React.Component {
           exhaustion: {
             $set: newExhaustion
           }
-        }
+        },
+        text: {$set: prevState.text + "."}
       });
     });
   }
@@ -63,10 +69,13 @@ class App extends React.Component {
     let vitalStats = this.state.vitalStats;
     return (
       <div className="App">
-        <img src={room} className="room" alt="logo" />
+        <img src={room} className="room" alt="room" />
 
         <StatusBar label={"health"} value={vitalStats.health} />
         <StatusBar label={"exhaustion"} value={vitalStats.exhaustion} />
+        <Artwork />
+        <Clock time={this.state.time} />
+        <MentorTip text={this.state.text}/>
       </div>
     );
   }
