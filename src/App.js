@@ -8,6 +8,7 @@ import Artwork from "./components/Artwork";
 import MentorTip from "./components/MentorTip";
 import Clock from "./components/Clock";
 import Cat from "./components/Cat";
+import LunarLander from "./components/LunarLander";
 
 class App extends React.Component {
   state = {
@@ -60,7 +61,7 @@ class App extends React.Component {
 
   moveCat(prevPos) {
     let dx = prevPos.x < 1000 ? 5 : -5
-    
+
     let newPos = update(prevPos, {
       x: {$set: prevPos.x + dx},
       y: {$set: prevPos.y}
@@ -116,7 +117,7 @@ class App extends React.Component {
         <Clock time={this.state.time} />
         <MentorTip text={this.state.text} />
         <Cat position={this.state.catPosition} />
-
+        <LunarLander />
         {/* <Desk player={false} />
         <Bed player={true} /> */}
       </div>

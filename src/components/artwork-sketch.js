@@ -66,8 +66,9 @@ export default function artworkSketch(s) {
       //pos.mult(1, ~~(32*(Math.random() * 0.2 + 0.9))/32); 
       // pos.mult(2, ~~(32*(Math.random() * 0.2 + 0.9))/32) 
 
+      let coarseness = 0.1
       for (var i = 0; i < joints; i++) {
-        var a = ((angle * s.pow(speedRelation, i)) / 1) * 1 ; //~~
+        var a = ~~((angle * s.pow(speedRelation, i)) * (1/coarseness)) / (1/coarseness) ; //~~
         if (i % 2 == 1) a = -a;
         var nextPos = p5.Vector.fromAngle(s.radians(a));
         nextPos.setMag(((joints - i) / joints) * lineLength);
@@ -79,6 +80,7 @@ export default function artworkSketch(s) {
           s.fill(255, 10);
           //s.ellipse(pos.x, pos.y, 4, 4);
           s.noFill();
+          s.strokeWeight(0.4)
           s.stroke(255, 10);
           s.line(pos.x, pos.y, nextPos.x, nextPos.y);
         }
@@ -99,8 +101,9 @@ export default function artworkSketch(s) {
         var path = pendulumPath[i];
 
         s.beginShape();
-        // var hue = 360/joints*i/3;
-        //s.stroke(hue[i], 80, 60, 50);
+        var hue = 360/joints*i/3;
+        s.stroke(hue[i], 80, 60, 50);
+        s.strokeWeight(0.01)
         for (var j = 0; j < path.length; j++) {
           //s.vertex(path[j].x, path[j].y);
         }
