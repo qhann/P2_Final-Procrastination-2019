@@ -5,9 +5,11 @@ import artworkSketch from "./artwork-sketch.js";
 class Artwork extends Component {
 
     render() {
-        
+        const {working, onClick} = this.props        
         return (
-            <P5Wrapper sketch={artworkSketch} />
+            <div className={"artwork"} onClick={onClick}>
+                <P5Wrapper playing={working} sketch={artworkSketch} />
+            </div>
         );
     }
 }

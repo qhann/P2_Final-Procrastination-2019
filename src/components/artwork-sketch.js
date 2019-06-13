@@ -1,6 +1,8 @@
 import p5 from "p5";
 
 export default function artworkSketch(s) {
+  let playing = 1
+
   let shape;
   let joints = 6;
   let lineLength = 90;
@@ -25,6 +27,10 @@ export default function artworkSketch(s) {
     pendulumPath.push([]);
   }
 
+  s.myCustomRedrawAccordingToNewPropsHandler = function (props) {
+      playing = props.playing ? 1 : 0 ;
+  };
+
   s.setup = () => {
     s.createCanvas(width, height);
     s.colorMode(s.HSB, 360, 100, 100, 100);
@@ -48,8 +54,7 @@ export default function artworkSketch(s) {
 
   s.draw = () => {
     // s.background(240, 240, 240);
-
-    angle += speed ;
+    angle += speed * playing ;
 
     // each frame, create new positions for each joint
 
@@ -62,17 +67,17 @@ export default function artworkSketch(s) {
       // pos.mult(2, ~~(32*(Math.random() * 0.2 + 0.9))/32) 
 
       for (var i = 0; i < joints; i++) {
-        var a = ~~((angle * s.pow(speedRelation, i)) / 1) * 1 ;
+        var a = ((angle * s.pow(speedRelation, i)) / 1) * 1 ; //~~
         if (i % 2 == 1) a = -a;
         var nextPos = p5.Vector.fromAngle(s.radians(a));
         nextPos.setMag(((joints - i) / joints) * lineLength);
         nextPos.add(pos);
 
-        if (showPendulum && i == level) {
+        if (showPendulum && i == level && playing) {
           //&& level == 2 && level <= 3
           s.noStroke();
           s.fill(255, 10);
-          s.ellipse(pos.x, pos.y, 4, 4);
+          //s.ellipse(pos.x, pos.y, 4, 4);
           s.noFill();
           s.stroke(255, 10);
           s.line(pos.x, pos.y, nextPos.x, nextPos.y);

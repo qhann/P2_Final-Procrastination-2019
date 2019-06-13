@@ -13,42 +13,49 @@ class Cat extends Component {
     this.setState({ dropDownVisible: true });
   }
 
-  pet() {
-    console.log("an action: pet");
-  }
-
-  feed() {
-    console.log("an action: feed");
-  }
-
-  play() {
-    console.log("an action: play");
+  userInteraction(type) {
+    switch (type) {
+      case "pet":
+        console.log("pet");
+        break;
+      case "feed":
+        console.log("feed");
+        break;
+      case "play":
+        console.log("play");
+        break;
+    }
+    this.setState({ dropDownVisible: false })
   }
 
   render() {
+    const {position} = this.props
     let dropDownOptions = [
       {
         caption: "streicheln",
         action: () => {
-          this.pet();
+          this.userInteraction("pet");
         }
       },
       {
         caption: "füttern",
         action: () => {
-          this.feed();
+          this.userInteraction("feed");
         }
       },
       {
         caption: "spielen",
         action: () => {
-          this.play();
+          this.userInteraction("play");
         }
       }
     ];
-
+    let styles = {
+      top: position.y,
+      left: position.x
+    }
     return (
-      <div className={"cat"}>
+      <div className={"cat"} style={styles}>
         <DropDown
           options={dropDownOptions}
           visible={this.state.dropDownVisible}

@@ -16,7 +16,13 @@ class App extends React.Component {
       health: 100,
       exhaustion: 0
     },
-    text: "Du solltest schafen."
+    text: "Du solltest schafen.",
+    playerAction: "work",
+    catPosition: {
+      x: 600,
+      y: 800,
+      direction: true
+    }
   };
 
   componentDidMount() {
@@ -30,6 +36,7 @@ class App extends React.Component {
         "exhaustion",
         prevState.vitalStats.exhaustion
       );
+      let newCatPostion = this.moveCat(prevState.catPosition)
 
       //console.log(prevState);
 
@@ -43,9 +50,23 @@ class App extends React.Component {
             $set: newExhaustion
           }
         },
-        text: { $set: prevState.text + "." }
+        text: { $set: prevState.text + "." },
+        catPosition: {
+          $set: newCatPostion          
+        }
       });
     });
+  }
+
+  moveCat(prevPos) {
+    let dx = prevPos.x < 1000 ? 5 : -5
+    
+    let newPos = update(prevPos, {
+      x: {$set: prevPos.x + dx},
+      y: {$set: prevPos.y}
+    })
+
+    return newPos
   }
 
   updateVital(attribute, prevStat) {
@@ -66,8 +87,21 @@ class App extends React.Component {
     return prevStat;
   }
 
+  toggleWorking() {
+    console.log("toggle");
+
+    let newAction;
+    if (this.state.playerAction === "work") {
+      newAction = null;
+    } else {
+      newAction = "work";
+    }
+    this.setState({ playerAction: newAction });
+  }
+
   render() {
     let vitalStats = this.state.vitalStats;
+    // console.log(this.state.playerAction);
 
     return (
       <div className="App">
@@ -75,10 +109,13 @@ class App extends React.Component {
 
         <StatusBar label={"health"} value={vitalStats.health} />
         <StatusBar label={"exhaustion"} value={vitalStats.exhaustion} />
-        <Artwork />
+        <Artwork
+          onClick={() => this.toggleWorking()}
+          working={this.state.playerAction === "work"}
+        />
         <Clock time={this.state.time} />
         <MentorTip text={this.state.text} />
-        <Cat />
+        <Cat position={this.state.catPosition} />
 
         {/* <Desk player={false} />
         <Bed player={true} /> */}
