@@ -9,6 +9,7 @@ import MentorTip from "./components/MentorTip";
 import Clock from "./components/Clock";
 import Cat from "./components/Cat";
 import GamingStation from "./components/GamingStation";
+import LunarLander from "./components/LunarLander";
 
 class App extends React.Component {
   state = {
@@ -118,6 +119,7 @@ class App extends React.Component {
         <MentorTip text={this.state.text} />
         <Cat position={this.state.catPosition} />
         <GamingStation />
+        <LunarLander />
 
         {/* <Desk player={false} />
         <Bed player={true} /> */}

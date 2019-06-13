@@ -7,7 +7,7 @@ class LunarLander extends Component {
     render() {
         const {onClick} = this.props        
         return (
-            <div className={"artwork"} onClick={onClick}>
+            <div className={"lunar-lander"} onClick={onClick}>
                 <P5Wrapper sketch={lunarLanderSketch} />
             </div>
         );
