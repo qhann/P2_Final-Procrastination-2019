@@ -24,12 +24,14 @@ class Cat extends Component {
       case "play":
         console.log("play");
         break;
+      default:
+        console.log("unkown action");
     }
-    this.setState({ dropDownVisible: false })
+    this.setState({ dropDownVisible: false });
   }
 
   render() {
-    const {position} = this.props
+    const { position } = this.props;
     let dropDownOptions = [
       {
         caption: "streicheln",
@@ -53,7 +55,7 @@ class Cat extends Component {
     let styles = {
       top: position.y,
       left: position.x
-    }
+    };
     return (
       <div className={"cat"} style={styles}>
         <DropDown
