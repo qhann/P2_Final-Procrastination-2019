@@ -30,9 +30,9 @@ class App extends React.Component {
         "exhaustion",
         prevState.vitalStats.exhaustion
       );
-      
+
       //console.log(prevState);
-      
+
       return update(prevState, {
         time: { $set: prevState.time + 1 },
         vitalStats: {
@@ -43,7 +43,7 @@ class App extends React.Component {
             $set: newExhaustion
           }
         },
-        text: {$set: prevState.text + "."}
+        text: { $set: prevState.text + "." }
       });
     });
   }
@@ -77,8 +77,9 @@ class App extends React.Component {
         <StatusBar label={"exhaustion"} value={vitalStats.exhaustion} />
         <Artwork />
         <Clock time={this.state.time} />
-        <MentorTip text={this.state.text}/>
+        <MentorTip text={this.state.text} />
         <Cat />
+
         {/* <Desk player={false} />
         <Bed player={true} /> */}
       </div>

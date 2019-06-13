@@ -71,5 +71,18 @@ body {
 
 .cat {
   position: absolute;
+  top: 500px;
+  left: 400px;
+  background: white;
+}
+
+.cat-image {
+  width: 100px;
+  height: 100px;
+}
+
+.drop-down {
+  position: absolute;
+  top: -40px;
 }
 /*# sourceMappingURL=index.css.map */
