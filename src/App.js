@@ -1,5 +1,5 @@
 import React from "react";
-import room from "./room.jpg";
+import room from "./roomcolor.png";
 import "./App.css";
 import update from "immutability-helper";
 
@@ -7,6 +7,7 @@ import StatusBar from "./components/StatusBar";
 import Artwork from "./components/Artwork";
 import MentorTip from "./components/MentorTip";
 import Clock from "./components/Clock";
+import Cat from "./components/Cat";
 
 class App extends React.Component {
   state = {
@@ -15,7 +16,7 @@ class App extends React.Component {
       health: 100,
       exhaustion: 0
     },
-    text: "Du solltest schlafen."
+    text: "Du solltest schafen."
   };
 
   componentDidMount() {
@@ -48,7 +49,7 @@ class App extends React.Component {
   }
 
   updateVital(attribute, prevStat) {
-    console.log(attribute, prevStat);
+    //console.log(attribute, prevStat);
 
     let step, newStat;
     switch (attribute) {
@@ -67,6 +68,7 @@ class App extends React.Component {
 
   render() {
     let vitalStats = this.state.vitalStats;
+
     return (
       <div className="App">
         <img src={room} className="room" alt="room" />
@@ -76,6 +78,9 @@ class App extends React.Component {
         <Artwork />
         <Clock time={this.state.time} />
         <MentorTip text={this.state.text}/>
+        <Cat />
+        {/* <Desk player={false} />
+        <Bed player={true} /> */}
       </div>
     );
   }
