@@ -8,6 +8,7 @@ import Artwork from "./components/Artwork";
 import MentorTip from "./components/MentorTip";
 import Clock from "./components/Clock";
 import Cat from "./components/Cat";
+import GamingStation from "./components/GamingStation";
 
 class App extends React.Component {
   state = {
@@ -20,7 +21,7 @@ class App extends React.Component {
     playerAction: "work",
     catPosition: {
       x: 600,
-      y: 800,
+      y: 600,
       direction: true
     }
   };
@@ -36,7 +37,7 @@ class App extends React.Component {
         "exhaustion",
         prevState.vitalStats.exhaustion
       );
-      let newCatPostion = this.moveCat(prevState.catPosition)
+      let newCatPostion = this.moveCat(prevState.catPosition);
 
       //console.log(prevState);
 
@@ -52,21 +53,21 @@ class App extends React.Component {
         },
         text: { $set: prevState.text + "." },
         catPosition: {
-          $set: newCatPostion          
+          $set: newCatPostion
         }
       });
     });
   }
 
   moveCat(prevPos) {
-    let dx = prevPos.x < 1000 ? 5 : -5
-    
-    let newPos = update(prevPos, {
-      x: {$set: prevPos.x + dx},
-      y: {$set: prevPos.y}
-    })
+    let dx = prevPos.x < 1000 ? 5 : -5;
 
-    return newPos
+    let newPos = update(prevPos, {
+      x: { $set: prevPos.x + dx },
+      y: { $set: prevPos.y }
+    });
+
+    return newPos;
   }
 
   updateVital(attribute, prevStat) {
@@ -116,6 +117,7 @@ class App extends React.Component {
         <Clock time={this.state.time} />
         <MentorTip text={this.state.text} />
         <Cat position={this.state.catPosition} />
+        <GamingStation />
 
         {/* <Desk player={false} />
         <Bed player={true} /> */}

@@ -83,4 +83,22 @@ body {
   position: absolute;
   top: -40px;
 }
+
+.gaming-station {
+  background-color: black;
+  position: absolute;
+  width: 170px;
+  height: 55px;
+  left: 640px;
+  top: 350px;
+}
+
+.fullscreen {
+  top: 80px;
+  left: 30px;
+  bottom: 30px;
+  right: 30px;
+  width: auto;
+  height: auto;
+}
 /*# sourceMappingURL=index.css.map */
