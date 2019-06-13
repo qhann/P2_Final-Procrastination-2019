@@ -119,7 +119,6 @@ class App extends React.Component {
         <MentorTip text={this.state.text} />
         <Cat position={this.state.catPosition} />
         <GamingStation />
-        <LunarLander />
 
         {/* <Desk player={false} />
         <Bed player={true} /> */}
