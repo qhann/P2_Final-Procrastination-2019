@@ -4,6 +4,7 @@
     
 body
     background: black
+    overflow: hidden
 
 .room
     position: absolute
@@ -11,16 +12,24 @@ body
     height: 100%
     left: 0
     z-index: -5
-    opacity: 0.4
+    // opacity: 0.4
 
 .status-bar-frame
-    position: relative
-    width: 200px
-    height: 30px
-    border: 10px solid grey
-    left: calc(100vw - 240px)
-
+    position: absolute
+    top: 3vh
+    width: 11%
+    height: 2.3%
+    border: 0.2vw solid grey
+    border-radius: 2px
+    left: 86vw
+    overflow: hidden
+    &.exhaustion 
+        top: 3.15%
+    &.health
+        top: 7.15%
+    
 .status-bar
+    position: absolute
     background: linear-gradient(#000, #000) no-repeat 
 
 .status-label
@@ -31,60 +40,99 @@ body
     position: absolute
     left: 0
     text-align: left
-
-    top: 30%
+    top: 40%
+    left: 5%
 
 .mentor-tip
     position: absolute
-    height: 50px
-    width: 300px
-    top: 50px
-    left: 450px
+    height: 4vh
+    width: 22%
+    top: 4%
+    left: 33%
     background: white
     overflow: hidden
 
 .clock
     position: absolute
-    top: 40px
-    left: 180px
-    width: 100px
-    height: 50px
+    top: 3%
+    left: 13%
+    width: 7%
+    height: 5%
     border: 3px solid white
-    font-size: 2em
+    font-size: 3vh
     background: black
     color: white
+    border-radius: 3px
     p
         position: absolute
-        top: 0px
-        left: 20px
+        top: 10%
+        left: 10%
     
 .cat
     position: absolute
-    background: white
+    // background: white
 
 .cat-image
-    width: 100px
-    height: 100px
+    width: 10vh
+    height: 10vh
 
 .drop-down
     position: absolute
     top: -40px
 
 .artwork
+    transform: rotate(-90deg)
+
+.bed 
+    position: absolute
+    top: 69%
+    left: 85%
+    transform: rotateY(180deg) rotate(-6deg) scale(4)
+    opacity: 0.1
+    &:hover
+        opacity: 0.5
+        svg
+            filter: url(#shadow)
+                
+        
+
+.lunar-lander
+    position: relative
+    width: 50vw
+    height: 50vh
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%) scale(0.1, 0.1)
+    transition: transform 0.7s
 
 .gaming-station
     background-color: black
     position: absolute
-    width: 170px
-    height: 55px
-    left: 640px
-    top: 350px
+    // width: 12%
+    // height: 10%
+    left: 42%
+    right: 46%
+    top: 46%
+    bottom: 46%
+    opacity: 0.4
+    transform: scale(1,1) //translate(42vw, 38vh)
+    transition: top 0.7s, right 0.7s, bottom 0.7s, left 0.7s, opacity 0.7s
+    &:hover
+        border: 2px solid rgba(2550,0,0,0.5)
+        box-shadow: 0 0 10px red
 
-.fullscreen
-    top: 80px
-    left: 30px
-    bottom: 30px
-    right: 30px
-    width: auto
-    height: auto
- 
+    &.fullscreen
+        top: 80px
+        left: 30px
+        bottom: 30px
+        right: 30px
+        width: auto
+        height: auto
+        opacity: 1
+        z-index: 20
+        &:hover
+            border: none
+            box-shadow: none
+
+        .lunar-lander
+            transform: translate(-50%, -50%) scale(1,1)

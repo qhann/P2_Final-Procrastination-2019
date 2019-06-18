@@ -5,7 +5,7 @@ export default function artworkSketch(s) {
 
   let shape;
   let joints = 6;
-  let lineLength = 90;
+  let lineLength = window.innerHeight * 0.05;
   let speedRelation = ~~(1 * s.random(2, 8)) / 1;
   let center;
   let pendulumPath;
@@ -17,8 +17,8 @@ export default function artworkSketch(s) {
 
   let showPendulum = true;
   let showPendulumPath = true;
-  let width = 600;
-  let height = 600;
+  let width = window.innerHeight * 0.3;
+  let height = window.innerHeight * 0.3;
 
   pendulumPath = [];
 

@@ -6,11 +6,12 @@ import jet2 from "./assets/jet2.png"
 
 
 export default function artworkSketch(s) {
-  let width = 1000;
-  let height = 600;
+  let width = window.innerWidth * 0.5;
+  let height = window.innerHeight * 0.5;
 
   s.setup = () => {
     s.createCanvas(width, height);
+    s.frameRate(30)
   };
 
     var mapImage = s.loadImage(mapImageFile);
@@ -76,8 +77,8 @@ export default function artworkSketch(s) {
       width: 2000
     };
     var view = {
-      height: 600,
-      width: 600,
+      height: height,
+      width: width - 120,
       x: 0,
       y: 0,
       zoom: 0

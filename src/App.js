@@ -9,7 +9,8 @@ import MentorTip from "./components/MentorTip";
 import Clock from "./components/Clock";
 import Cat from "./components/Cat";
 import GamingStation from "./components/GamingStation";
-import LunarLander from "./components/LunarLander";
+// import LunarLander from "./components/LunarLander";
+import Bed from "./components/Bed";
 
 class App extends React.Component {
   state = {
@@ -18,17 +19,20 @@ class App extends React.Component {
       health: 100,
       exhaustion: 0
     },
-    text: "Du solltest schafen.",
+    text: "",
     playerAction: "work",
-    catPosition: {
-      x: 600,
-      y: 600,
-      direction: true
-    }
+    catPosition: {}
   };
 
   componentDidMount() {
-    setInterval(() => this.updateTimed(), 500);
+    setInterval(() => this.updateTimed(), 33);
+    this.setState({
+      catPosition: {
+        x: 300,
+        y: window.innerHeight * 0.8,
+        moveRight: true
+      }
+    });
   }
 
   updateTimed() {
@@ -43,7 +47,7 @@ class App extends React.Component {
       //console.log(prevState);
 
       return update(prevState, {
-        time: { $set: prevState.time + 1 },
+        time: { $set: prevState.time + (1 / 33) * 2 },
         vitalStats: {
           health: {
             $set: newHealth
@@ -52,7 +56,7 @@ class App extends React.Component {
             $set: newExhaustion
           }
         },
-        text: { $set: prevState.text + "." },
+        text: { $set: "Du solltest Schafi, denn die Anzahl der vergangenen Minuten beträgt: " + ~~this.state.time  },
         catPosition: {
           $set: newCatPostion
         }
@@ -61,11 +65,28 @@ class App extends React.Component {
   }
 
   moveCat(prevPos) {
-    let dx = prevPos.x < 1000 ? 5 : -5;
+    let right, down, dx, dy, newPos
 
-    let newPos = update(prevPos, {
+    if (prevPos.x < window.innerWidth * 0.2 || prevPos.x > window.innerWidth * 0.8) {
+      right = prevPos.x < window.innerWidth * 0.5 ? true : false
+    } else {
+      right = prevPos.right
+    }
+    if (prevPos.y > window.innerHeight * 0.9 || prevPos.y < window.innerHeight * 0.6) {
+      down = prevPos.y < window.innerHeight * 0.7 ? true : false
+    } else {
+      down = prevPos.down
+    }
+
+
+    dx = prevPos.right ? 1 : -1;
+    dy = prevPos.down ? 1 : -1;
+
+    newPos = update(prevPos, {
       x: { $set: prevPos.x + dx },
-      y: { $set: prevPos.y }
+      y: { $set: prevPos.y  + dy},
+      right: {$set: right },
+      down: {$set: down}
     });
 
     return newPos;
@@ -77,10 +98,10 @@ class App extends React.Component {
     let step, newStat;
     switch (attribute) {
       case "health":
-        step = -1;
+        step = (-1 / 33) * 2;
         break;
       case "exhaustion":
-        step = 1;
+        step = (1 / 33) * 2;
         break;
     }
 
@@ -101,6 +122,10 @@ class App extends React.Component {
     this.setState({ playerAction: newAction });
   }
 
+  handleBedClick() {
+    this.setState({vitalStats: {health: 100, exhaustion: 0}})
+  }
+
   render() {
     let vitalStats = this.state.vitalStats;
     // console.log(this.state.playerAction);
@@ -119,6 +144,7 @@ class App extends React.Component {
         <MentorTip text={this.state.text} />
         <Cat position={this.state.catPosition} />
         <GamingStation />
+        <Bed onClick={() => this.handleBedClick()}/>
 
         {/* <Desk player={false} />
         <Bed player={true} /> */}

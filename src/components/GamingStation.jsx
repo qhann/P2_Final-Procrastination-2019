@@ -3,11 +3,27 @@ import LunarLander from "./LunarLander";
 
 class GamingStation extends Component {
   state = {
-    fullscreen: false
+    fullscreen: false,
+    showGame: false
   };
 
-  toggleFullscreen() {
-    this.setState({ fullscreen: !this.state.fullscreen });
+  setFullscreen() {
+    this.setState(prevState => ({ fullscreen: !prevState.fullscreen }));
+    setTimeout(() => this.setState(prevState => ({ showGame: !prevState.showGame })), 500)
+  }
+
+  handleFrameClick() {
+    if (!this.state.fullscreen) {
+      this.setFullscreen(true)
+    } else {
+      this.setFullscreen(false)
+    }
+  }
+
+  handleGameClick(e) {
+    if (this.state.showGame) {
+      e.stopPropagation()
+    }
   }
 
   render() {
@@ -15,8 +31,8 @@ class GamingStation extends Component {
     classes += this.state.fullscreen ? "fullscreen" : "";
 
     return (
-      <div onClick={() => this.toggleFullscreen()} className={classes}>
-        {this.state.fullscreen ? <LunarLander /> : {}}
+      <div onClick={() => this.handleFrameClick()} className={classes}>
+        {this.state.showGame || true ? <LunarLander onClick={(e) => this.handleGameClick(e)} /> : null}
       </div>
     );
   }
