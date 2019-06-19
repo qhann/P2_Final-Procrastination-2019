@@ -6,66 +6,54 @@ import DropDown from "./DropDown";
 class Cat extends Component {
   state = {
     img: cat,
-    dropDownVisible: false
+    menuOpen: false
   };
 
   showDropDown() {
-    this.setState({ dropDownVisible: true });
+    this.setState({ menuOpen: true });
   }
 
   userInteraction(type) {
-    switch (type) {
-      case "pet":
-        console.log("pet");
-        break;
-      case "feed":
-        console.log("feed");
-        break;
-      case "play":
-        console.log("play");
-        break;
-      default:
-        console.log("unkown action");
-    }
-    this.setState({ dropDownVisible: false });
+
   }
 
   render() {
-    const { position } = this.props;
+    const { position, menuOpen, onClick, catInteraction } = this.props;
     let dropDownOptions = [
       {
         caption: "streicheln",
         action: () => {
-          this.userInteraction("pet");
+          catInteraction("pet");
         }
       },
       {
         caption: "füttern",
         action: () => {
-          this.userInteraction("feed");
+          catInteraction("feed");
         }
       },
       {
         caption: "spielen",
         action: () => {
-          this.userInteraction("play");
+          catInteraction("play");
         }
       }
     ];
     let styles = {
-      top: position.y,
-      left: position.x
+      transform: `translate(${position.x}px, ${position.y}px)`
+      // top: position.y,
+      // left: position.x
     };
     return (
       <div className={"cat"} style={styles}>
         <DropDown
           options={dropDownOptions}
-          visible={this.state.dropDownVisible}
+          visible={menuOpen}
         />
         <img
           src={this.state.img}
           className={"cat-image"}
-          onClick={() => this.showDropDown()}
+          onClick={() => onClick()}
           alt={"cat"}
         />
       </div>

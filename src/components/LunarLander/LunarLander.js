@@ -8,7 +8,6 @@ export default function artworkSketch(s) {
   let width = window.innerWidth * 0.5;
   let height = window.innerHeight * 0.5;
   console.log(height);
-  
 
   s.setup = () => {
     s.createCanvas(width, height);
@@ -347,65 +346,35 @@ export default function artworkSketch(s) {
     var RocketLeftMapX = (rocket.x - rocket.width / 3) / world.width;
     var RocketRightMapX = (rocket.x + rocket.width / 3) / world.width;
     var RocketMapY = (rocket.y + rocket.height / 2 - 20) / world.height;
-
-    // let rFoot = {
-    //   x: backgroundX + RocketRightMapX * world.width,
-    //   y: backgroundY + RocketMapY * world.height
-    // }
-    // let lFoot = {
-    //   x: backgroundX + RocketLeftMapX * world.width,
-    //   y: backgroundY + RocketMapY * world.height
-    // }
-    var rightFoot = rotate(
-      rocket.x,
-      rocket.y,
-      rocket.x - rocket.width / 2,
-      rocket.y + rocket.height / 2,
-      (-rocket.angle / s.PI) * 180
-    );
-    var leftFoot = rotate(
-      rocket.x,
-      rocket.y,
-      rocket.x + rocket.width / 2,
-      rocket.y + rocket.height / 2,
-      (-rocket.angle / s.PI) * 180
-    );
-    // = {
-    //   x: Math.cos(rocket.angle) * (rFoot.x - rocket.x) - Math.sin(rocket.angle) * (rFoot.y - rocket.y) + rocket.x,
-    // y: Math.sin(rocket.angle) * (rFoot.x - rocket.x) + Math.cos(rocket.angle) * (rFoot.y - rocket.y) + rocket.y
-    // }
-    // let angleLFoot = {
-    //   x: Math.cos(rocket.angle) * (lFoot.x - rocket.x) - Math.sin(rocket.angle) * (lFoot.y - rocket.y) + rocket.x,
-    //   y: Math.sin(rocket.angle) * (lFoot.x - rocket.x) + Math.cos(rocket.angle) * (lFoot.y - rocket.y) + rocket.y
-    // }
-
-    // console.log(leftFoot.x + backgroundX);
-
-    s.fill(255, 255, 255);
-    s.stroke(255, 255, 255);
-    s.rect(leftFoot.x + backgroundX, leftFoot.y + backgroundY, 2, 2);
-    s.rect(rightFoot.x + backgroundX, rightFoot.y + backgroundY, 2, 2);
+    // s.rect(
+    //   backgroundX + RocketLeftMapX * world.width,
+    //   backgroundY + RocketMapY * world.height,
+    //   2,
+    //   2
+    // );
+    // s.rect(
+    //   backgroundX + RocketRightMapX * world.width,
+    //   backgroundY + RocketMapY * world.height,
+    //   2,
+    //   2
+    // );
     for (let i = 0; i < landline.length; i++) {
       var curDot = landline[i],
         prevDot = landline[i - 1];
-      if (
-        leftFoot.x / world.width < curDot[0] &&
-        leftFoot.x / world.width > prevDot[0] &&
-        curDot
-      ) {
+      if (RocketLeftMapX < curDot[0] && RocketLeftMapX > prevDot[0] && curDot) {
         curDotL = landline[i];
         prevDotL = landline[i - 1];
       }
       if (
-        rightFoot.x / world.width < curDot[0] &&
-        rightFoot.x / world.width > prevDot[0] &&
+        RocketRightMapX < curDot[0] &&
+        RocketRightMapX > prevDot[0] &&
         !curDot.r
       ) {
         curDotR = curDot;
         prevDotR = prevDot;
       }
     }
-    // console.log(curDotR[0]);
+    console.log(curDotR[0]);
 
     var percentOfSectionXL =
       (RocketLeftMapX - prevDotL[0]) / (curDotL[0] - prevDotL[0]);

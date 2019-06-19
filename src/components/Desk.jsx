@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 
-class Bed extends Component {
+class Desk extends Component {
     render() {
-        const { onClick } = this.props;
+        const { onClick, hasPlayer } = this.props;
 
 
         return (
             <div className={"desk"} onClick={onClick}>
+                <div className={"player"} >{hasPlayer ? "Player" : ""}</div>
                 <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                     <title>bed</title>
                     <metadata id="metadata3546">image/svg+xml</metadata>
@@ -22,4 +23,4 @@ class Bed extends Component {
     }
 }
 
-export default Bed;
+export default Desk;
