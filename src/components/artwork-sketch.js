@@ -101,8 +101,8 @@ export default function artworkSketch(s) {
         var path = pendulumPath[i];
 
         s.beginShape();
-        var hue = 360/joints*i/3;
-        s.stroke(hue[i], 80, 60, 50);
+        // var hue = 360/joints*i/3;
+        // s.stroke(hue[i], 80, 60, 50);
         s.strokeWeight(0.01)
         for (var j = 0; j < path.length; j++) {
           //s.vertex(path[j].x, path[j].y);

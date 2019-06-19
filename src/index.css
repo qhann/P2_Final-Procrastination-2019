@@ -74,7 +74,7 @@ body {
   font-size: 3vh;
   background: black;
   color: white;
-  border-radius: 3px;
+  border-radius: 0.6vw;
 }
 
 .clock p {
@@ -108,14 +108,14 @@ body {
   left: 85%;
   -webkit-transform: rotateY(180deg) rotate(-6deg) scale(4);
           transform: rotateY(180deg) rotate(-6deg) scale(4);
+}
+
+.bed-shape {
   opacity: 0.1;
 }
 
-.bed:hover {
+.bed-shape:hover {
   opacity: 0.5;
-}
-
-.bed:hover svg {
   -webkit-filter: url(#shadow);
           filter: url(#shadow);
 }
@@ -137,10 +137,10 @@ body {
 .gaming-station {
   background-color: black;
   position: absolute;
-  left: 42%;
-  right: 46%;
-  top: 46%;
-  bottom: 46%;
+  left: 41.9%;
+  right: 46.7%;
+  top: 45.8%;
+  bottom: 46.3%;
   opacity: 0.4;
   -webkit-transform: scale(1, 1);
           transform: scale(1, 1);
@@ -174,5 +174,22 @@ body {
 .gaming-station.fullscreen .lunar-lander {
   -webkit-transform: translate(-50%, -50%) scale(1, 1);
           transform: translate(-50%, -50%) scale(1, 1);
+}
+
+.desk {
+  position: absolute;
+  top: 60%;
+  width: 400px;
+  height: 400px;
+}
+
+.desk-shape {
+  opacity: 0.2;
+}
+
+.desk-shape:hover {
+  opacity: 0.8;
+  -webkit-filter: url(#shadow);
+          filter: url(#shadow);
 }
 /*# sourceMappingURL=index.css.map */

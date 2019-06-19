@@ -62,7 +62,7 @@ body
     font-size: 3vh
     background: black
     color: white
-    border-radius: 3px
+    border-radius: 0.6vw
     p
         position: absolute
         top: 10%
@@ -88,12 +88,12 @@ body
     top: 69%
     left: 85%
     transform: rotateY(180deg) rotate(-6deg) scale(4)
+.bed-shape
     opacity: 0.1
     &:hover
         opacity: 0.5
-        svg
-            filter: url(#shadow)
-                
+        filter: url(#shadow)
+            
         
 
 .lunar-lander
@@ -110,10 +110,10 @@ body
     position: absolute
     // width: 12%
     // height: 10%
-    left: 42%
-    right: 46%
-    top: 46%
-    bottom: 46%
+    left: 41.9%
+    right: 46.7%
+    top: 45.8%
+    bottom: 46.3%
     opacity: 0.4
     transform: scale(1,1) //translate(42vw, 38vh)
     transition: top 0.7s, right 0.7s, bottom 0.7s, left 0.7s, opacity 0.7s
@@ -136,3 +136,16 @@ body
 
         .lunar-lander
             transform: translate(-50%, -50%) scale(1,1)
+
+.desk
+    position: absolute
+    top: 60%
+    // left: 50%
+    width: 400px
+    height: 400px
+    // transform: scale(1.5, 2)
+.desk-shape
+    opacity: 0.2
+    &:hover
+        opacity: 0.8
+        filter: url(#shadow)

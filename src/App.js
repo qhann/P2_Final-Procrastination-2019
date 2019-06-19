@@ -11,6 +11,7 @@ import Cat from "./components/Cat";
 import GamingStation from "./components/GamingStation";
 // import LunarLander from "./components/LunarLander";
 import Bed from "./components/Bed";
+import Desk from "./components/Desk";
 
 class App extends React.Component {
   state = {
@@ -145,7 +146,7 @@ class App extends React.Component {
         <Cat position={this.state.catPosition} />
         <GamingStation />
         <Bed onClick={() => this.handleBedClick()}/>
-
+        <Desk />
         {/* <Desk player={false} />
         <Bed player={true} /> */}
       </div>
