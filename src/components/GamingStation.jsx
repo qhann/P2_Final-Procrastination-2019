@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import LunarLander from "./LunarLander";
+import Pong from "./Pong";
 
 class GamingStation extends Component {
   state = {
@@ -9,20 +10,23 @@ class GamingStation extends Component {
 
   setFullscreen() {
     this.setState(prevState => ({ fullscreen: !prevState.fullscreen }));
-    setTimeout(() => this.setState(prevState => ({ showGame: !prevState.showGame })), 500)
+    setTimeout(
+      () => this.setState(prevState => ({ showGame: !prevState.showGame })),
+      500
+    );
   }
 
   handleFrameClick() {
     if (!this.state.fullscreen) {
-      this.setFullscreen(true)
+      this.setFullscreen(true);
     } else {
-      this.setFullscreen(false)
+      this.setFullscreen(false);
     }
   }
 
   handleGameClick(e) {
     if (this.state.showGame) {
-      e.stopPropagation()
+      e.stopPropagation();
     }
   }
 
@@ -32,7 +36,9 @@ class GamingStation extends Component {
 
     return (
       <div onClick={() => this.handleFrameClick()} className={classes}>
-        {this.state.showGame || true ? <LunarLander onClick={(e) => this.handleGameClick(e)} /> : null}
+        {this.state.showGame || true ? (
+          <LunarLander onClick={e => this.handleGameClick(e)} />
+        ) : null}
       </div>
     );
   }
