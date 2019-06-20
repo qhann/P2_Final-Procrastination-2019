@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import mentorImage from "./mentor.svg";
 
 class MentorTip extends Component {
 
@@ -8,6 +9,7 @@ class MentorTip extends Component {
     
     return (
       <div className={"mentor-tip"}>
+          <img src={mentorImage} alt=""/>
           <p>
             {text}
           </p>

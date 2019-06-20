@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import cat from "./cat.svg";
-import cat2 from "./cat2.jpg";
 import DropDown from "./DropDown";
 
 class Cat extends Component {
@@ -18,7 +17,7 @@ class Cat extends Component {
   }
 
   render() {
-    const { position, menuOpen, onClick, catInteraction } = this.props;
+    const { position, menuOpen, onClick, catInteraction, hasPlayer } = this.props;
     let dropDownOptions = [
       {
         caption: "streicheln",
@@ -46,6 +45,7 @@ class Cat extends Component {
     };
     return (
       <div className={"cat"} style={styles}>
+        <div className={"player"} >{hasPlayer ? "Player" : ""}</div>
         <DropDown
           options={dropDownOptions}
           visible={menuOpen}

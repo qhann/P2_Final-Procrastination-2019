@@ -12,7 +12,7 @@ import GamingStation from "./components/GamingStation";
 import Bed from "./components/Bed";
 import Desk from "./components/Desk";
 import Window from "./components/Window";
-import Pong from "./components/Pong";
+import CoffeeMaker from "./components/CoffeeMaker";
 
 class App extends React.Component {
   state = {
@@ -85,7 +85,7 @@ class App extends React.Component {
       //console.log(prevState);
 
       return update(prevState, {
-        time: { $set: prevState.time + (100 / frameDuration) * 2 },
+        time: { $set: prevState.time + (1 / frameDuration) * 2 },
         vitalStats: {
           health: {
             $set: newHealth
@@ -193,7 +193,7 @@ class App extends React.Component {
           hasPlayer: { $set: atBed }
         },
         cat: {
-          hasPlayer: { $set: atBed }
+          hasPlayer: { $set: atCat }
         },
         gamingStation: {
           hasPlayer: { $set: atGameStation }
@@ -249,12 +249,13 @@ class App extends React.Component {
         break;
       case "play":
         console.log("play");
-        mentorText = "You play with the cat. It gets skinnier.";
+        mentorText = "You play with the cat. It's happy ^_^";
         break;
       default:
         console.log("unkown action");
         mentorText = "WAT?!";
     }
+    this.playerTo("cat");
     this.setState(prevState =>
       update(prevState, {
         cat: {
@@ -265,6 +266,8 @@ class App extends React.Component {
       })
     );
   }
+
+  handleCoffeeMakerClick() {}
 
   render() {
     let vitalStats = this.state.vitalStats;
@@ -303,8 +306,7 @@ class App extends React.Component {
           hasPlayer={desk.hasPlayer}
           onClick={() => this.handleDeskClick()}
         />
-        {/* <Desk player={false} />
-        <Bed player={true} /> */}
+        <CoffeeMaker onClick={() => this.handleCoffeeMakerClick()} />
       </div>
     );
   }
