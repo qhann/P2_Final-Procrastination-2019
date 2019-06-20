@@ -303,7 +303,6 @@ class App extends React.Component {
           hasPlayer={desk.hasPlayer}
           onClick={() => this.handleDeskClick()}
         />
-        <Pong />
         {/* <Desk player={false} />
         <Bed player={true} /> */}
       </div>

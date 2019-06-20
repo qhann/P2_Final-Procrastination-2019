@@ -5,7 +5,8 @@ import Pong from "./Pong";
 class GamingStation extends Component {
   state = {
     fullscreen: false,
-    showGame: false
+    showGame: false,
+    gameNumber: 0
   };
 
   setFullscreen() {
@@ -30,14 +31,30 @@ class GamingStation extends Component {
     }
   }
 
+  handleGameChange(e, number) {
+    e.stopPropagation();
+    this.state.gameNumber = number;
+  }
+
   render() {
     let classes = "gaming-station ";
     classes += this.state.fullscreen ? "fullscreen" : "";
 
     return (
       <div onClick={() => this.handleFrameClick()} className={classes}>
-        {this.state.showGame || true ? (
+        <button
+          className={"buttonLunarLander"}
+          onClick={e => this.handleGameChange(e, 1)}
+        />
+        <button
+          className={"buttonPong"}
+          onClick={e => this.handleGameChange(e, 2)}
+        />
+        {this.state.gameNumber == 1 ? (
           <LunarLander onClick={e => this.handleGameClick(e)} />
+        ) : null}
+        {this.state.gameNumber == 2 ? (
+          <Pong onClick={e => this.handleGameClick(e)} />
         ) : null}
       </div>
     );

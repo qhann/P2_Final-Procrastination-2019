@@ -5,7 +5,7 @@ import dschungel3 from "./img/dschungel3.jpg";
 
 export default function pongSketch(s) {
   s.setup = () => {
-    s.createCanvas(600, 600);
+    s.createCanvas(620, 600);
     s.frameRate(40);
   };
 

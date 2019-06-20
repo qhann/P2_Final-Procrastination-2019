@@ -145,8 +145,44 @@ body {
   position: relative;
   width: 50vw;
   height: 50vh;
-  left: 50%;
+  left: 30%;
   top: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(0.1, 0.1);
+          transform: translate(-50%, -50%) scale(0.1, 0.1);
+  -webkit-transition: -webkit-transform 0.7s;
+  transition: -webkit-transform 0.7s;
+  transition: transform 0.7s;
+  transition: transform 0.7s, -webkit-transform 0.7s;
+}
+
+.pong {
+  position: relative;
+  width: 50vw;
+  height: 50vh;
+  left: 70%;
+  top: 35%;
+  -webkit-transform: translate(-50%, -50%) scale(0.1, 0.1);
+          transform: translate(-50%, -50%) scale(0.1, 0.1);
+  -webkit-transition: -webkit-transform 0.7s;
+  transition: -webkit-transform 0.7s;
+  transition: transform 0.7s;
+  transition: transform 0.7s, -webkit-transform 0.7s;
+}
+
+.buttonLunarLander {
+  width: 10vw;
+  height: 10vh;
+  -webkit-transform: translate(-50%, -50%) scale(0.1, 0.1);
+          transform: translate(-50%, -50%) scale(0.1, 0.1);
+  -webkit-transition: -webkit-transform 0.7s;
+  transition: -webkit-transform 0.7s;
+  transition: transform 0.7s;
+  transition: transform 0.7s, -webkit-transform 0.7s;
+}
+
+.buttonPong {
+  width: 10vw;
+  height: 10vh;
   -webkit-transform: translate(-50%, -50%) scale(0.1, 0.1);
           transform: translate(-50%, -50%) scale(0.1, 0.1);
   -webkit-transition: -webkit-transform 0.7s;
@@ -192,7 +228,7 @@ body {
           box-shadow: none;
 }
 
-.gaming-station.fullscreen .lunar-lander {
+.gaming-station.fullscreen .lunar-lander, .gaming-station.fullscreen .pong, .gaming-station.fullscreen .buttonLunarLander, .gaming-station.fullscreen .buttonPong {
   -webkit-transform: translate(-50%, -50%) scale(1, 1);
           transform: translate(-50%, -50%) scale(1, 1);
 }
