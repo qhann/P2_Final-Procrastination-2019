@@ -1,5 +1,5 @@
 import React from "react";
-import room from "./roomcolor.png";
+import room from "./roomfinal.png";
 import "./App.css";
 import update from "immutability-helper";
 
