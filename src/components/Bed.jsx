@@ -2,11 +2,12 @@ import React, { Component } from "react";
 
 class Bed extends Component {
     render() {
-        const { onClick } = this.props;
+        const { onClick, hasPlayer } = this.props;
 
 
         return (
             <div className={"bed"} onClick={onClick}>
+                <div className={"player"} >{hasPlayer ? "P" : ""}</div>
                 <svg width="140" height="120" xmlns="http://www.w3.org/2000/svg">
                     <title>bed</title>
                     <metadata id="metadata3546">image/svg+xml</metadata>
