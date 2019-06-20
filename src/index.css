@@ -126,17 +126,17 @@ body {
 
 .bed {
   position: absolute;
-  top: 69%;
-  left: 85%;
-  -webkit-transform: rotateY(180deg) rotate(-6deg) scale(4);
-          transform: rotateY(180deg) rotate(-6deg) scale(4);
+  top: 50%;
+  left: 75%;
+  width: 450px;
+  height: 500px;
 }
 
-.bed-shape {
+.bed-path {
   opacity: 0.1;
 }
 
-.bed-shape:hover {
+.bed-path:hover {
   opacity: 0.5;
   -webkit-filter: url(#shadow);
           filter: url(#shadow);

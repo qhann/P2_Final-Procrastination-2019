@@ -1,5 +1,5 @@
 import React from "react";
-import room from "./roomcolor.png";
+import room from "./roomfinal.png";
 import "./App.css";
 import update from "immutability-helper";
 
@@ -165,22 +165,22 @@ class App extends React.Component {
   }
 
   playerTo(place) {
-    let atDesk = false
-    let atBed = false
-    let atCat = false
-    let atGameStation = false
+    let atDesk = false;
+    let atBed = false;
+    let atCat = false;
+    let atGameStation = false;
     switch (place) {
       case "desk":
-        atDesk = true
+        atDesk = true;
         break;
       case "bed":
-        atBed = true
+        atBed = true;
         break;
       case "cat":
-        atCat = true
+        atCat = true;
         break;
       case "gameStation":
-        atGameStation = true
+        atGameStation = true;
         break;
     }
 
@@ -214,11 +214,11 @@ class App extends React.Component {
 
   handleBedClick() {
     this.setState({ vitalStats: { health: 100, exhaustion: 0 } });
-    this.playerTo("bed")
+    this.playerTo("bed");
   }
 
   handleDeskClick() {
-    this.playerTo("desk")
+    this.playerTo("desk");
   }
 
   handleCatClick() {
@@ -231,7 +231,7 @@ class App extends React.Component {
         }
       })
     );
-    this.playerTo("cat")
+    this.playerTo("cat");
   }
 
   handleCatInteraction(type) {
@@ -266,7 +266,7 @@ class App extends React.Component {
   }
 
   handleCoffeeMakerClick() {
-    
+
   }
 
   render() {
@@ -280,7 +280,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <img src={room} className="room" alt="room" />
-        <Window time={this.state.time}/>
+        <Window time={this.state.time} />
         <StatusBar label={"health"} value={vitalStats.health} />
         <StatusBar label={"exhaustion"} value={vitalStats.exhaustion} />
         <Artwork
