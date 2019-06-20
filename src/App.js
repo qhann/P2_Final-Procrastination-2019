@@ -12,6 +12,7 @@ import GamingStation from "./components/GamingStation";
 import Bed from "./components/Bed";
 import Desk from "./components/Desk";
 import Window from "./components/Window";
+import Pong from "./components/Pong";
 
 class App extends React.Component {
   state = {
@@ -164,39 +165,41 @@ class App extends React.Component {
   }
 
   playerTo(place) {
-    let atDesk = false
-    let atBed = false
-    let atCat = false
-    let atGameStation = false
+    let atDesk = false;
+    let atBed = false;
+    let atCat = false;
+    let atGameStation = false;
     switch (place) {
       case "desk":
-        atDesk = true
+        atDesk = true;
         break;
       case "bed":
-        atBed = true
+        atBed = true;
         break;
       case "cat":
-        atCat = true
+        atCat = true;
         break;
       case "gameStation":
-        atGameStation = true
+        atGameStation = true;
         break;
     }
 
-    this.setState(prevState => update(prevState, {
-      desk: {
-        hasPlayer: {$set: atDesk}
-      },
-      bed: {
-        hasPlayer: {$set: atBed}
-      },
-      cat: {
-        hasPlayer: {$set: atBed}
-      },
-      gamingStation: {
-        hasPlayer: {$set: atGameStation}
-      }
-    } ))
+    this.setState(prevState =>
+      update(prevState, {
+        desk: {
+          hasPlayer: { $set: atDesk }
+        },
+        bed: {
+          hasPlayer: { $set: atBed }
+        },
+        cat: {
+          hasPlayer: { $set: atBed }
+        },
+        gamingStation: {
+          hasPlayer: { $set: atGameStation }
+        }
+      })
+    );
   }
 
   toggleWorking() {
@@ -213,11 +216,11 @@ class App extends React.Component {
 
   handleBedClick() {
     this.setState({ vitalStats: { health: 100, exhaustion: 0 } });
-    this.playerTo("bed")
+    this.playerTo("bed");
   }
 
   handleDeskClick() {
-    this.playerTo("desk")
+    this.playerTo("desk");
   }
 
   handleCatClick() {
@@ -230,7 +233,7 @@ class App extends React.Component {
         }
       })
     );
-    this.playerTo("cat")
+    this.playerTo("cat");
   }
 
   handleCatInteraction(type) {
@@ -274,7 +277,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <img src={room} className="room" alt="room" />
-        <Window time={this.state.time}/>
+        <Window time={this.state.time} />
         <StatusBar label={"health"} value={vitalStats.health} />
         <StatusBar label={"exhaustion"} value={vitalStats.exhaustion} />
         <Artwork
@@ -300,6 +303,7 @@ class App extends React.Component {
           hasPlayer={desk.hasPlayer}
           onClick={() => this.handleDeskClick()}
         />
+        <Pong />
         {/* <Desk player={false} />
         <Bed player={true} /> */}
       </div>
