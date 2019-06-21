@@ -128,15 +128,15 @@ html, body, .root, .App
 .bed 
     position: absolute
     top: 48%
-    right: -6.4%
-    width: 37.6%
+    width: 37%
+    right: -6.9%
+    height: 83%
     // height: 500px
 
 .bed-path
-    opacity: 0
-    &:hover > *
-        fill: red
-        filter: url(#shadow)
+    // opacity: 0
+    &:hover
+        filter: drop-shadow(-30px 10px 4px #FF8311)
             
 .window
     position: absolute
@@ -211,10 +211,10 @@ html, body, .root, .App
 
 .desk
     position: absolute
-    top: 23%
-    left: -7%
-    width: 35%
-    // height: 400px
+    top: 30%
+    left: -28.5%
+    // width: 35%
+    height: 68%
     // transform: scale(1.5, 2)
 .desk-shape
     opacity: 0.2
@@ -239,7 +239,7 @@ html, body, .root, .App
             
 
 .coffee-maker-path:hover
-    fill: red
+    filter: drop-shadow(-30px 10px 4px #FF8311)
 
 .player
     position: absolute
