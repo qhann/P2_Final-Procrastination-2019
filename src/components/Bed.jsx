@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import bedImage from "./bed1.svg"
+import bedImage from "./bed.svg"
 
 class Bed extends Component {
 
