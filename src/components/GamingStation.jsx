@@ -43,20 +43,22 @@ class GamingStation extends Component {
 
     return (
       <div onClick={() => this.handleFrameClick()} className={classes}>
-        <button
-          className={"buttonLunarLander"}
-          onClick={e => this.handleGameChange(e, 1)}
-        />
-        <button
-          className={"buttonPong"}
-          onClick={e => this.handleGameChange(e, 2)}
-        />
-        {this.state.gameNumber == 1 ? (
-          <LunarLander onClick={e => this.handleGameClick(e)} />
-        ) : null}
-        {this.state.gameNumber == 2 ? (
-          <Pong onClick={e => this.handleGameClick(e)} />
-        ) : null}
+        <div className={"screen"}>
+          <button
+            className={"buttonLunarLander"}
+            onClick={e => this.handleGameChange(e, 1)}
+          />
+          <button
+            className={"buttonPong"}
+            onClick={e => this.handleGameChange(e, 2)}
+          />
+          {this.state.gameNumber == 1 ? (
+            <LunarLander onClick={e => this.handleGameClick(e)} />
+          ) : null}
+          {this.state.gameNumber == 2 ? (
+            <Pong onClick={e => this.handleGameClick(e)} />
+          ) : null}
+        </div>
         <svg id={"game-svg"} width="100%" height="100%">
           <use xlinkHref={gameImage + "#game"} />
         </svg>
