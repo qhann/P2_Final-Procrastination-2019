@@ -4,7 +4,7 @@ import bedImage from "./bed1.svg"
 class Bed extends Component {
 
     componentDidMount() {
-        document.getElementById("coffee").contentDocument.getElementById('bed-path').addEventListener("click", this.props.onClick)
+        // document.getElementById("coffee").contentDocument.getElementById('bed-path').addEventListener("click", this.props.onClick)
     }
 
     render() {
