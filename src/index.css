@@ -154,18 +154,14 @@ html, body, .root, .App {
 .bed {
   position: absolute;
   top: 48%;
-  right: -6.4%;
-  width: 37.6%;
+  width: 37%;
+  right: -6.9%;
+  height: 83%;
 }
 
-.bed-path {
-  opacity: 0;
-}
-
-.bed-path:hover > * {
-  fill: red;
-  -webkit-filter: url(#shadow);
-          filter: url(#shadow);
+.bed-path:hover {
+  -webkit-filter: drop-shadow(-30px 10px 4px #FF8311);
+          filter: drop-shadow(-30px 10px 4px #FF8311);
 }
 
 .window {
@@ -271,9 +267,9 @@ html, body, .root, .App {
 
 .desk {
   position: absolute;
-  top: 23%;
-  left: -7%;
-  width: 35%;
+  top: 30%;
+  left: -28.5%;
+  height: 68%;
 }
 
 .desk-shape {
@@ -304,7 +300,8 @@ html, body, .root, .App {
 }
 
 .coffee-maker-path:hover {
-  fill: red;
+  -webkit-filter: drop-shadow(-30px 10px 4px #FF8311);
+          filter: drop-shadow(-30px 10px 4px #FF8311);
 }
 
 .player {

@@ -2,263 +2,491 @@
     filter: drop-shadow(-30px 10px 4px #FF8311);
 }
 
-.st0 {
+.desk0 {
     display: none;
 }
 
-.st1 {
+.desk1 {
     display: inline;
     fill: #664D6B;
 }
 
-.st2 {
+.desk2 {
     display: inline;
     fill: #2B3B62;
 }
 
-.st3 {
+.desk3 {
     display: inline;
     fill: #212C4C;
 }
 
-.st4 {
+.desk4 {
     display: inline;
     fill: #A5666A;
 }
 
-.st5 {
+.desk5 {
     display: inline;
     fill: #674E6B;
 }
 
-.st6 {
+.desk6 {
     display: inline;
     fill: #B36664;
 }
 
-.st7 {
+.desk7 {
     display: inline;
     fill: #B36361;
 }
 
-.st8 {
+.desk8 {
     display: inline;
     fill: #634E6C;
 }
 
-.st9 {
+.desk9 {
     display: inline;
     fill: #705772;
 }
 
-.st10 {
+.desk10 {
     display: inline;
     fill: #C97C89;
 }
 
-.st11 {
+.desk11 {
     display: inline;
     fill: #3F4E70;
 }
 
-.st12 {
+.desk12 {
     display: inline;
     fill: #071C3A;
 }
 
-.st13 {
+.desk13 {
     display: inline;
     fill: #2C3C62;
 }
 
-.st14 {
+.desk14 {
     display: inline;
     fill: #1C2B4C;
 }
 
-.st15 {
+.desk15 {
     display: inline;
     fill: #CC7B5C;
 }
 
-.st16 {
+.desk16 {
     display: inline;
     fill: #524350;
 }
 
-.st17 {
+.desk17 {
     display: inline;
     fill: #22213D;
 }
 
-.st18 {
+.desk18 {
     display: inline;
     fill: #554653;
 }
 
-.st19 {
+.desk19 {
     display: inline;
     fill: #794F61;
 }
 
-.st20 {
+.desk20 {
     display: inline;
     fill: #243657;
 }
 
-.st21 {
+.desk21 {
     display: inline;
     fill: #3D3D5A;
 }
 
-.st22 {
+.desk22 {
     display: inline;
     fill: #544C71;
 }
 
-.st23 {
+.desk23 {
     display: inline;
     fill: #333658;
 }
 
-.st24 {
+.desk24 {
     display: inline;
     fill: #6E4B60;
 }
 
-.st25 {
+.desk25 {
     display: inline;
     fill: #60597B;
 }
 
-.st26 {
+.desk26 {
     display: inline;
     fill: #6E7894;
 }
 
-.st27 {
+.desk27 {
     display: inline;
     fill: #6A7591;
 }
 
-.st28 {
+.desk28 {
     display: inline;
     fill: #717B96;
 }
 
-.st29 {
+.desk29 {
     display: inline;
     fill: #DCA179;
 }
 
-.st30 {
+.desk30 {
     fill: #FFFFFF;
 }
 
-.st31 {
+.desk31 {
     fill: #0D2540;
 }
 
-.st32 {
+.desk32 {
     fill: #C77A5F;
 }
 
-.st33 {
+.desk33 {
     fill: #2B3B62;
 }
 
-.st34 {
+.desk34 {
     fill: #524A6F;
 }
 
-.st35 {
+.desk35 {
     fill: #01142F;
 }
 
-.st36 {
+.desk36 {
     fill: #0F2341;
 }
 
-.st37 {
+.desk37 {
     fill: #1A2845;
 }
 
-.st38 {
+.desk38 {
     fill: #534B6F;
 }
 
-.st39 {
+.desk39 {
     fill: #737E97;
 }
 
-.st40 {
+.desk40 {
     fill: #061832;
 }
 
-.st41 {
+.desk41 {
     fill: #695F81;
 }
 
-.st42 {
+.desk42 {
     fill: #805C6E;
 }
 
-.st43 {
+.desk43 {
     fill: #00132E;
 }
 
-.st44 {
+.desk44 {
     fill: #765367;
 }
 
-.st45 {
+.desk45 {
     fill: #706586;
 }
 
-.st46 {
+.desk46 {
     fill: #795366;
 }
 
-.st47 {
+.desk47 {
     fill: #C98066;
 }
 
-.st48 {
+.desk48 {
     fill: #3C335D;
 }
 
-.st49 {
+.desk49 {
     fill: #293960;
 }
 
-.st50 {
+.desk50 {
     fill: #092040;
 }
 
-.st51 {
+.desk51 {
     fill: #0D2640;
 }
 
-.st52 {
+.desk52 {
     fill: #66718D;
 }
 
-.st53 {
+.desk53 {
     fill: #0E2741;
 }
 
-.st54 {
+.desk54 {
     fill: #192744;
 }
 
-.st55 {
+.desk55 {
     fill: #D0BD91;
 }
 
-.st56 {
+.desk56 {
     fill: #CC9769;
 }
 
-.st57 {
+.desk57 {
     fill: #9C614D;
 }
+
+.bed-path:hover {
+    filter: drop-shadow(-30px 10px 4px #FF8311);
+}
+
+.bed0 {
+    display: none;
+    fill: #4D4D4D;
+}
+
+.bed1 {
+    display: none;
+    fill: #FFFFFF;
+    stroke: #4D4D4D;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+}
+
+.bed2 {
+    display: none;
+    fill: #FFFFFF;
+    stroke: #606060;
+    stroke-width: 3;
+    stroke-miterlimit: 10;
+}
+
+.bed3 {
+    display: none;
+    fill: #FFFFFF;
+    stroke: #000000;
+    stroke-miterlimit: 10;
+}
+
+.bed4 {
+    display: none;
+    fill: #323232;
+    stroke: #000000;
+    stroke-miterlimit: 10;
+}
+
+.bed5 {
+    display: none;
+    fill: #606060;
+}
+
+.bed6 {
+    fill: #585074;
+}
+
+.bed7 {
+    fill: #585073;
+}
+
+.bed8 {
+    fill: #0C0F40;
+}
+
+.bed9 {
+    fill: #686083;
+}
+
+.bed10 {
+    fill: #665E81;
+}
+
+.bed11 {
+    fill: #453D60;
+}
+
+.bed12 {
+    fill: #675F82;
+}
+
+.bed13 {
+    fill: #2B3B62;
+}
+
+.bed14 {
+    fill: #504566;
+}
+
+.bed15 {
+    fill: #674D6B;
+}
+
+.bed16 {
+    fill: #B16A6B;
+}
+
+.bed17 {
+    fill: #AC6262;
+}
+
+.bed18 {
+    fill: #02142F;
+}
+
+.bed19 {
+    fill: #896362;
+}
+
+.bed20 {
+    fill: #B97475;
+}
+
+.bed21 {
+    fill: #8F6B6D;
+}
+
+.bed22 {
+    fill: #524A6F;
+}
+
+.bed23 {
+    fill: #1B1B48;
+}
+
+.bed24 {
+    fill: #3D4C70;
+}
+
+.bed25 {
+    fill: #765766;
+}
+
+.bed26 {
+    fill: #A8686C;
+}
+
+.bed27 {
+    fill: #354368;
+}
+
+.bed28 {
+    fill: #7A5869;
+}
+
+.bed29 {
+    fill: #5C5477;
+}
+
+.bed30 {
+    fill: #6D516D;
+}
+
+.coffee0{display:none;}
+	.coffee1{display:inline;fill:#664D6B;}
+	.coffee2{display:inline;fill:#2B3B62;}
+	.coffee3{display:inline;fill:#212C4C;}
+	.coffee4{display:inline;fill:#A5666A;}
+	.coffee5{display:inline;fill:#674E6B;}
+	.coffee6{display:inline;fill:#B36664;}
+	.coffee7{display:inline;fill:#B36361;}
+	.coffee8{display:inline;fill:#634E6C;}
+	.coffee9{display:inline;fill:#705772;}
+	.coffee10{display:inline;fill:#C97C89;}
+	.coffee11{display:inline;fill:#3F4E70;}
+	.coffee12{display:inline;fill:#071C3A;}
+	.coffee13{display:inline;fill:#2C3C62;}
+	.coffee14{display:inline;fill:#1C2B4C;}
+	.coffee15{display:inline;fill:#CC7B5C;}
+	.coffee16{display:inline;fill:#524350;}
+	.coffee17{display:inline;fill:#22213D;}
+	.coffee18{display:inline;fill:#554653;}
+	.coffee19{display:inline;fill:#794F61;}
+	.coffee20{display:inline;fill:#243657;}
+	.coffee21{display:inline;fill:#3D3D5A;}
+	.coffee22{display:inline;fill:#544C71;}
+	.coffee23{display:inline;fill:#333658;}
+	.coffee24{display:inline;fill:#6E4B60;}
+	.coffee25{display:inline;fill:#60597B;}
+	.coffee26{display:inline;fill:#6E7894;}
+	.coffee27{display:inline;fill:#6A7591;}
+	.coffee28{display:inline;fill:#717B96;}
+	.coffee29{display:inline;fill:#DCA179;}
+	.coffee30{display:inline;fill:#FFFFFF;}
+	.coffee31{display:inline;fill:#0D2540;}
+	.coffee32{display:inline;fill:#C77A5F;}
+	.coffee33{display:inline;fill:#524A6F;}
+	.coffee34{display:inline;fill:#01142F;}
+	.coffee35{display:inline;fill:#0F2341;}
+	.coffee36{display:inline;fill:#1A2845;}
+	.coffee37{display:inline;fill:#534B6F;}
+	.coffee38{display:inline;fill:#737E97;}
+	.coffee39{display:inline;fill:#061832;}
+	.coffee40{display:inline;fill:#695F81;}
+	.coffee41{display:inline;fill:#805C6E;}
+	.coffee42{display:inline;fill:#00132E;}
+	.coffee43{display:inline;fill:#765367;}
+	.coffee44{display:inline;fill:#706586;}
+	.coffee45{display:inline;fill:#795366;}
+	.coffee46{display:inline;fill:#C98066;}
+	.coffee47{display:inline;fill:#3C335D;}
+	.coffee48{display:inline;fill:#293960;}
+	.coffee49{display:inline;fill:#092040;}
+	.coffee50{display:inline;fill:#0D2640;}
+	.coffee51{display:inline;fill:#66718D;}
+	.coffee52{display:inline;fill:#0E2741;}
+	.coffee53{display:inline;fill:#192744;}
+	.coffee54{display:inline;fill:#D0BD91;}
+	.coffee55{display:inline;fill:#CC9769;}
+	.coffee56{display:inline;fill:#9C614D;}
+	.coffee57{fill:#51496E;}
+	.coffee58{fill:#AD6262;}
+	.coffee59{fill:#9F6065;}
+	.coffee60{fill:#6B7691;}
+	.coffee61{fill:#6F7994;}
+	.coffee62{fill:#AB6364;}
+	.coffee63{fill:#564B6D;}
+	.coffee64{fill:#AF6768;}
+	.coffee65{fill:#795265;}
+	.coffee66{fill:#A75C5E;}
+	.coffee67{fill:#131E38;}
+	.coffee68{fill:#7B566A;}
+	.coffee69{fill:#717B96;}
+	.coffee70{fill:#727C97;}
+	.coffee71{fill:#D7DAE1;}
+	.coffee72{fill:#2F3D63;}
+	.coffee73{fill:#05142F;}
+	.coffee74{fill:#2B3B62;}
+	.coffee75{fill:#404365;}
+	.coffee76{fill:#634D6B;}
+	.coffee77{fill:#324167;}
+	.coffee78{fill:#EFF0F3;}
+	.coffee79{fill:#654C6A;}
+	.coffee80{fill:#091530;}
+    .coffee81{fill:#524A6F;}
+    .coffee-path:hover{filter: drop-shadow(-30px 10px 4px #FF8311);}
