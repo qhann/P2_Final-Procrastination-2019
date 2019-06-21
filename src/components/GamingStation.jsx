@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import LunarLander from "./LunarLander";
 import Pong from "./Pong";
+import gameImage from "./game.svg"
 
 class GamingStation extends Component {
   state = {
@@ -56,6 +57,9 @@ class GamingStation extends Component {
         {this.state.gameNumber == 2 ? (
           <Pong onClick={e => this.handleGameClick(e)} />
         ) : null}
+        <svg id={"game-svg"} width="100%" height="100%">
+          <use xlinkHref={gameImage + "#game"} />
+        </svg>
       </div>
     );
   }
