@@ -224,26 +224,29 @@ html, body, .root, .App {
 }
 
 .gaming-station {
-  background-color: black;
   position: absolute;
+  width: 12%;
+  height: 10%;
   left: 41.9%;
-  right: 46.7%;
   top: 45.8%;
-  bottom: 46.3%;
+}
+
+.gaming-station .screen {
   opacity: 0.4;
+  background-color: black;
   -webkit-transform: scale(1, 1);
           transform: scale(1, 1);
   -webkit-transition: top 0.7s, right 0.7s, bottom 0.7s, left 0.7s, opacity 0.7s;
   transition: top 0.7s, right 0.7s, bottom 0.7s, left 0.7s, opacity 0.7s;
 }
 
-.gaming-station:hover {
+.gaming-station .screen:hover {
   border: 2px solid rgba(255, 0, 0, 0.5);
   -webkit-box-shadow: 0 0 10px red;
           box-shadow: 0 0 10px red;
 }
 
-.gaming-station.fullscreen {
+.gaming-station .screen.fullscreen {
   top: 80px;
   left: 30px;
   bottom: 30px;
@@ -254,13 +257,13 @@ html, body, .root, .App {
   z-index: 20;
 }
 
-.gaming-station.fullscreen:hover {
+.gaming-station .screen.fullscreen:hover {
   border: none;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.gaming-station.fullscreen .lunar-lander, .gaming-station.fullscreen .pong, .gaming-station.fullscreen .buttonLunarLander, .gaming-station.fullscreen .buttonPong {
+.gaming-station .screen.fullscreen .lunar-lander, .gaming-station .screen.fullscreen .pong, .gaming-station .screen.fullscreen .buttonLunarLander, .gaming-station .screen.fullscreen .buttonPong {
   -webkit-transform: translate(-50%, -50%) scale(1, 1);
           transform: translate(-50%, -50%) scale(1, 1);
 }

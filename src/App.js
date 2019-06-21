@@ -2,6 +2,7 @@ import React from "react";
 import room from "./roomwide.png";
 import "./App.css";
 import update from "immutability-helper";
+import jQuery from "jquery";
 
 import StatusBar from "./components/StatusBar";
 import Artwork from "./components/Artwork";
@@ -42,6 +43,9 @@ class App extends React.Component {
     bed: {
       hasPlayer: false
     },
+    coffee: {
+      hasPlayer: false
+    },
     gamingStation: {
       hasPlayer: false,
       fullscreen: false
@@ -66,6 +70,43 @@ class App extends React.Component {
         globalInterval: { $set: globalInterval }
       })
     );
+
+    /*
+     * Replace all SVG images with inline SVG
+     */
+    jQuery("img.svg").each(function() {
+      var $img = jQuery(this);
+      var imgID = $img.attr("id");
+      var imgClass = $img.attr("class");
+      var imgURL = $img.attr("src");
+
+      jQuery.get(imgURL, function(data) {
+        // Get the SVG tag, ignore the rest
+        var $svg = jQuery(data).find("svg");
+
+        // Add replaced image's ID to the new SVG
+        if (typeof imgID !== "undefined") {
+          $svg = $svg.attr("id", imgID);
+        }
+        // Add replaced image's classes to the new SVG
+        if (typeof imgClass !== "undefined") {
+          $svg = $svg.attr("class", imgClass + " replaced-svg");
+        }
+
+        // Remove any invalid XML tags as per http://validator.w3.org
+        $svg = $svg.removeAttr("xmlns:a");
+
+        // Replace image with new SVG
+        $img.replaceWith($svg);
+
+        // Add an handler
+        jQuery("path").each(function() {
+          jQuery(this).click(function() {
+            alert(jQuery(this).attr("id"));
+          });
+        });
+      });
+    });
   }
 
   componentWillUnmount() {
@@ -165,39 +206,48 @@ class App extends React.Component {
   }
 
   playerTo(place) {
-    let atDesk = false
-    let atBed = false
-    let atCat = false
-    let atGameStation = false
+    let atDesk = false;
+    let atBed = false;
+    let atCat = false;
+    let atCoffee = false;
+    let atGameStation = false;
     switch (place) {
       case "desk":
-        atDesk = true
+        atDesk = true;
         break;
       case "bed":
-        atBed = true
+        atBed = true;
         break;
       case "cat":
-        atCat = true
+        atCat = true;
         break;
       case "gameStation":
-        atGameStation = true
+        atGameStation = true;
+        break;
+      case "coffee":
+        atCoffee = true;
         break;
     }
 
-    this.setState(prevState => update(prevState, {
-      desk: {
-        hasPlayer: {$set: atDesk}
-      },
-      bed: {
-        hasPlayer: {$set: atBed}
-      },
-      cat: {
-        hasPlayer: {$set: atCat}
-      },
-      gamingStation: {
-        hasPlayer: {$set: atGameStation}
-      }
-    } ))
+    this.setState(prevState =>
+      update(prevState, {
+        desk: {
+          hasPlayer: { $set: atDesk }
+        },
+        bed: {
+          hasPlayer: { $set: atBed }
+        },
+        cat: {
+          hasPlayer: { $set: atCat }
+        },
+        gamingStation: {
+          hasPlayer: { $set: atGameStation }
+        },
+        coffee: {
+          hasPlayer: { $set: atCoffee }
+        }
+      })
+    );
   }
 
   toggleWorking() {
@@ -214,11 +264,11 @@ class App extends React.Component {
 
   handleBedClick() {
     this.setState({ vitalStats: { health: 100, exhaustion: 0 } });
-    this.playerTo("bed")
+    this.playerTo("bed");
   }
 
   handleDeskClick() {
-    this.playerTo("desk")
+    this.playerTo("desk");
   }
 
   handleCatClick() {
@@ -231,7 +281,7 @@ class App extends React.Component {
         }
       })
     );
-    this.playerTo("cat")
+    this.playerTo("cat");
   }
 
   handleCatInteraction(type) {
@@ -253,12 +303,12 @@ class App extends React.Component {
         console.log("unkown action");
         mentorText = "WAT?!";
     }
-    this.playerTo("cat")
+    this.playerTo("cat");
     this.setState(prevState =>
       update(prevState, {
         cat: {
           menuOpen: { $set: false },
-          moving: { $set: true },
+          moving: { $set: true }
         },
         mentorText: { $set: mentorText }
       })
@@ -266,7 +316,7 @@ class App extends React.Component {
   }
 
   handleCoffeeMakerClick() {
-    this.playerTo("coffee")
+    this.playerTo("coffee");
   }
 
   render() {
@@ -275,12 +325,13 @@ class App extends React.Component {
     let cat = this.state.cat;
     let bed = this.state.bed;
     let desk = this.state.desk;
+    let coffee = this.state.coffee;
     let gamingStation = this.state.gamingStation;
 
     return (
       <div className="App">
         <img src={room} className="room" alt="room" />
-        <Window time={this.state.time}/>
+        <Window time={this.state.time} />
         <StatusBar label={"health"} value={vitalStats.health} />
         <StatusBar label={"exhaustion"} value={vitalStats.exhaustion} />
         <Artwork

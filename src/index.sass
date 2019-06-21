@@ -178,36 +178,37 @@ html, body, .root, .App
     
 
 .gaming-station
-    background-color: black
     position: absolute
-    // width: 12%
-    // height: 10%
+    width: 12%
+    height: 10%
     left: 41.9%
-    right: 46.7%
+    // right: 46.7%
     top: 45.8%
-    bottom: 46.3%
-    opacity: 0.4
-    transform: scale(1,1) //translate(42%, 38%)
-    transition: top 0.7s, right 0.7s, bottom 0.7s, left 0.7s, opacity 0.7s
-    &:hover
-        border: 2px solid rgba(2550,0,0,0.5)
-        box-shadow: 0 0 10px red
-
-    &.fullscreen
-        top: 80px
-        left: 30px
-        bottom: 30px
-        right: 30px
-        width: auto
-        height: auto
-        opacity: 1
-        z-index: 20
+    // bottom: 46.3%
+    .screen
+        opacity: 0.4
+        background-color: black
+        transform: scale(1,1) //translate(42%, 38%)
+        transition: top 0.7s, right 0.7s, bottom 0.7s, left 0.7s, opacity 0.7s
         &:hover
-            border: none
-            box-shadow: none
+            border: 2px solid rgba(2550,0,0,0.5)
+            box-shadow: 0 0 10px red
 
-        .lunar-lander, .pong, .buttonLunarLander, .buttonPong
-            transform: translate(-50%, -50%) scale(1,1)
+        &.fullscreen
+            top: 80px
+            left: 30px
+            bottom: 30px
+            right: 30px
+            width: auto
+            height: auto
+            opacity: 1
+            z-index: 20
+            &:hover
+                border: none
+                box-shadow: none
+
+            .lunar-lander, .pong, .buttonLunarLander, .buttonPong
+                transform: translate(-50%, -50%) scale(1,1)
 
 .desk
     position: absolute
