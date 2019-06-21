@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 23.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" id="bed" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1296 1728" style="enable-background:new 0 0 1296 1728;" xml:space="preserve">
 <style type="text/css">
+	.bed-path:hover{filter: drop-shadow(-30px 10px 4px #FF8311);}
 	.st0{display:none;fill:#4D4D4D;}
 	.st1{display:none;fill:#FFFFFF;stroke:#4D4D4D;stroke-width:2;stroke-miterlimit:10;}
 	.st2{display:none;fill:#FFFFFF;stroke:#606060;stroke-width:3;stroke-miterlimit:10;}
@@ -84,7 +85,7 @@
 	c-24.95,0.08-50.08,11.77-54.03,20.34C605.25,1044.1,630.44,1038.47,653.95,1039.01z"/>
 <path class="st5" d="M804.35,1038.56c23.57,0.55,49.48,7.4,57.06,13.89c-4-9.43-31.45-23.27-58.78-23.18
 	c-24.95,0.08-50.08,11.77-54.03,20.34C755.65,1043.64,780.84,1038.01,804.35,1038.56z"/>
-<g>
+<g class="bed-path">
 	<path class="st6" d="M1086.3,416.98c0,7,0,14,0,21c-0.79,0.23-1.62,0.38-2.37,0.71c-13.07,5.75-25.86,12.28-39.26,17.13
 		c-21.21,7.67-42.78,14.37-64.27,21.22c-40.89,13.04-81.37,27.27-123.6,35.96c-22.37,4.61-44.68,9.12-67.33,12.07
 		c-13.92,1.81-27.82,3.92-41.58,6.68c-21.31,4.28-40.15,14.63-58.7,25.43c-1.39,0.81-1.91,3.14-2.83,4.76c0,0-0.02,0.02-0.02,0.02

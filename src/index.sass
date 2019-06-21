@@ -2,12 +2,23 @@
     padding: 0
     margin: 0
     font-family: "Comic Sans MS"
-    
-body
-    // width: 1600px
-    // height: 1400px
+    user-select: none
+
+html 
     background: black
+
+html, body, .root, .App
+    position: relative
+    display: block
+    width: 1919px
+    height: 1079px
+
+.App
     overflow: hidden
+
+.root, .app
+    width: 100%
+    height: 100%    
 
 .room
     position: absolute
@@ -19,13 +30,13 @@ body
 
 .status-bar-frame
     position: absolute
-    top: 3vh
+    top: 3%
     width: 11%
     height: 2.3%
-    border: 0.2vw solid grey
+    border: 3px solid grey
     border-radius: 2px
-    left: 86vw
-    overflow: hidden
+    left: 86%
+    // overflow: hidden
     &.exhaustion 
         top: 3.15%
     &.health
@@ -37,7 +48,11 @@ body
 
 .status-label
     position: absolute
-    mix-blend-mode: difference
+    color: white
+    // mix-blend-mode: difference
+    // left: -100px
+    right: 110%
+    text-transform: capitalize
 
 .artwork 
     position: absolute
@@ -48,53 +63,60 @@ body
 
 .mentor-tip
     position: absolute
-    height: 4vh
-    width: 22%
-    top: 4%
+    height: 4%
+    width: 37%
+    bottom: 4%
     left: 33%
     background: white
+    border-radius: 5px
     img
+        position: absolute
         height: 100px
-        left: -300px
+        left: -85px
+        top: -119%
 
     p
         position: absolute
-        //eft: 50%
-        top: 0
+        left: 5%
+        top: 50%
+        transform: translateY(-50%)
         overflow: hidden
 
 .clock
     position: absolute
     top: 3%
     left: 1% 
-    width: 19%
+    width: 438px
     height: 5%
     .days
-        font-size: 4vh
+        font-size: 67px
         text-align: left
         color: white
-        width: 60%
-        background: darkblue
-        border-radius: 1vw
+        width: 200px
+        // background: darkblue
+        border-radius: 1%
     .time
         color: white
         border: 3px solid white
         text-align: center
-        font-size: 3vh
+        font-size: 50px
         background: black
-        border-radius: 0.6vw
+        border-radius: 10px
         position: absolute
         top: 10%
         right: 0%
-        width: 35%
+        width: 180px
     
 .cat
     position: absolute
     // background: white
+    text-align: left
+    width: 6%
+
 
 .cat-image
-    width: 10vh
-    height: 10vh
+    width: 100%
+    height: 100%
 
 .drop-down
     position: absolute
@@ -105,15 +127,15 @@ body
 
 .bed 
     position: absolute
-    top: 50%
-    left: 75%
-    width: 450px
-    height: 500px
+    top: 48%
+    right: -6.4%
+    width: 37.6%
+    // height: 500px
 
 .bed-path
-    opacity: 0.1
-    &:hover
-        opacity: 0.5
+    opacity: 0
+    &:hover > *
+        fill: red
         filter: url(#shadow)
             
 .window
@@ -126,8 +148,8 @@ body
 
 .lunar-lander
     position: relative
-    width: 50vw
-    height: 50vh
+    width: 50%
+    height: 50%
     left: 30%
     top: 50%
     transform: translate(-50%, -50%) scale(0.1, 0.1)
@@ -135,22 +157,22 @@ body
 
 .pong 
     position: relative
-    width: 50vw
-    height: 50vh
+    width: 50%
+    height: 50%
     left: 70%
     top: 35%
     transform: translate(-50%, -50%) scale(0.1, 0.1)
     transition: transform 0.7s
 
 .buttonLunarLander
-    width: 10vw
-    height: 10vh
+    width: 10%
+    height: 10%
     transform: translate(-50%, -50%) scale(0.1, 0.1)
     transition: transform 0.7s
 
 .buttonPong
-    width: 10vw
-    height: 10vh
+    width: 10%
+    height: 10%
     transform: translate(-50%, -50%) scale(0.1, 0.1)
     transition: transform 0.7s
     
@@ -165,7 +187,7 @@ body
     top: 45.8%
     bottom: 46.3%
     opacity: 0.4
-    transform: scale(1,1) //translate(42vw, 38vh)
+    transform: scale(1,1) //translate(42%, 38%)
     transition: top 0.7s, right 0.7s, bottom 0.7s, left 0.7s, opacity 0.7s
     &:hover
         border: 2px solid rgba(2550,0,0,0.5)
@@ -189,10 +211,10 @@ body
 
 .desk
     position: absolute
-    top: 40%
-    left: -5%
-    width: 400px
-    height: 400px
+    top: 23%
+    left: -7%
+    width: 35%
+    // height: 400px
     // transform: scale(1.5, 2)
 .desk-shape
     opacity: 0.2
@@ -200,12 +222,16 @@ body
         opacity: 0.8
         filter: url(#shadow)
 
+.desk-path:hover
+    filter: drop-shadow(-30px 10px 4px #FF8311)
+
+
 .coffee-maker 
     position: absolute
-    top: 45.5%
-    left: 51%
-    width: 13%
-    height: 9%
+    top: 43%
+    left: 53%
+    width: 10%
+    // height: 9%
     img 
         width: 100%
         height: 100%
@@ -221,3 +247,4 @@ body
     left: 30%
     font-size: 3em
     color: red
+

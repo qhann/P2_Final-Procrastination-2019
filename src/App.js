@@ -60,7 +60,7 @@ class App extends React.Component {
         cat: {
           position: {
             x: { $set: 300 },
-            y: { $set: window.innerHeight * 0.8 }
+            y: { $set: 1080 /*window.innerHeight*/ * 0.8 }
           }
         },
         globalInterval: { $set: globalInterval }
@@ -110,20 +110,20 @@ class App extends React.Component {
     if (!this.state.cat.moving) return prevCat;
 
     if (
-      prevCat.position.x < window.innerWidth * 0.2 ||
-      prevCat.position.x > window.innerWidth * 0.8
+      prevCat.position.x < 1920 /*window.innerWidth*/ * 0.2 ||
+      prevCat.position.x > 1920 /*window.innerWidth*/ * 0.6
     ) {
       newDirection.x =
-        prevCat.position.x < window.innerWidth * 0.5 ? true : false;
+        prevCat.position.x < 1920 /*window.innerWidth*/ * 0.5 ? true : false;
     } else {
       newDirection.x = prevCat.direction.x;
     }
     if (
-      prevCat.position.y > window.innerHeight * 0.9 ||
-      prevCat.position.y < window.innerHeight * 0.6
+      prevCat.position.y > 1080 /*window.innerHeight*/ * 0.9 ||
+      prevCat.position.y < 1080 /*window.innerHeight*/ * 0.6
     ) {
       newDirection.y =
-        prevCat.position.y < window.innerHeight * 0.7 ? true : false;
+        prevCat.position.y < 1080 /*window.innerHeight*/ * 0.7 ? true : false;
     } else {
       newDirection.y = prevCat.direction.y;
     }
@@ -165,41 +165,39 @@ class App extends React.Component {
   }
 
   playerTo(place) {
-    let atDesk = false;
-    let atBed = false;
-    let atCat = false;
-    let atGameStation = false;
+    let atDesk = false
+    let atBed = false
+    let atCat = false
+    let atGameStation = false
     switch (place) {
       case "desk":
-        atDesk = true;
+        atDesk = true
         break;
       case "bed":
-        atBed = true;
+        atBed = true
         break;
       case "cat":
-        atCat = true;
+        atCat = true
         break;
       case "gameStation":
-        atGameStation = true;
+        atGameStation = true
         break;
     }
 
-    this.setState(prevState =>
-      update(prevState, {
-        desk: {
-          hasPlayer: { $set: atDesk }
-        },
-        bed: {
-          hasPlayer: { $set: atBed }
-        },
-        cat: {
-          hasPlayer: { $set: atCat }
-        },
-        gamingStation: {
-          hasPlayer: { $set: atGameStation }
-        }
-      })
-    );
+    this.setState(prevState => update(prevState, {
+      desk: {
+        hasPlayer: {$set: atDesk}
+      },
+      bed: {
+        hasPlayer: {$set: atBed}
+      },
+      cat: {
+        hasPlayer: {$set: atCat}
+      },
+      gamingStation: {
+        hasPlayer: {$set: atGameStation}
+      }
+    } ))
   }
 
   toggleWorking() {
@@ -216,11 +214,11 @@ class App extends React.Component {
 
   handleBedClick() {
     this.setState({ vitalStats: { health: 100, exhaustion: 0 } });
-    this.playerTo("bed");
+    this.playerTo("bed")
   }
 
   handleDeskClick() {
-    this.playerTo("desk");
+    this.playerTo("desk")
   }
 
   handleCatClick() {
@@ -233,7 +231,7 @@ class App extends React.Component {
         }
       })
     );
-    this.playerTo("cat");
+    this.playerTo("cat")
   }
 
   handleCatInteraction(type) {
@@ -255,19 +253,21 @@ class App extends React.Component {
         console.log("unkown action");
         mentorText = "WAT?!";
     }
-    this.playerTo("cat");
+    this.playerTo("cat")
     this.setState(prevState =>
       update(prevState, {
         cat: {
           menuOpen: { $set: false },
-          moving: { $set: true }
+          moving: { $set: true },
         },
         mentorText: { $set: mentorText }
       })
     );
   }
 
-  handleCoffeeMakerClick() {}
+  handleCoffeeMakerClick() {
+    this.playerTo("coffee")
+  }
 
   render() {
     let vitalStats = this.state.vitalStats;
@@ -280,7 +280,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <img src={room} className="room" alt="room" />
-        <Window time={this.state.time} />
+        <Window time={this.state.time}/>
         <StatusBar label={"health"} value={vitalStats.health} />
         <StatusBar label={"exhaustion"} value={vitalStats.exhaustion} />
         <Artwork

@@ -33,5 +33,3 @@ class DropDown extends Component {
 
 export default DropDown;
 
-let test = 3 > 5 ? "great" : "terrible";
-console.log(test);

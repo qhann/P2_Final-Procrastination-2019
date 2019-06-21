@@ -2,11 +2,30 @@
   padding: 0;
   margin: 0;
   font-family: "Comic Sans MS";
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
-body {
+html {
   background: black;
+}
+
+html, body, .root, .App {
+  position: relative;
+  display: block;
+  width: 1919px;
+  height: 1079px;
+}
+
+.App {
   overflow: hidden;
+}
+
+.root, .app {
+  width: 100%;
+  height: 100%;
 }
 
 .room {
@@ -19,13 +38,12 @@ body {
 
 .status-bar-frame {
   position: absolute;
-  top: 3vh;
+  top: 3%;
   width: 11%;
   height: 2.3%;
-  border: 0.2vw solid grey;
+  border: 3px solid grey;
   border-radius: 2px;
-  left: 86vw;
-  overflow: hidden;
+  left: 86%;
 }
 
 .status-bar-frame.exhaustion {
@@ -44,7 +62,9 @@ body {
 
 .status-label {
   position: absolute;
-  mix-blend-mode: difference;
+  color: white;
+  right: 110%;
+  text-transform: capitalize;
 }
 
 .artwork {
@@ -57,21 +77,27 @@ body {
 
 .mentor-tip {
   position: absolute;
-  height: 4vh;
-  width: 22%;
-  top: 4%;
+  height: 4%;
+  width: 37%;
+  bottom: 4%;
   left: 33%;
   background: white;
+  border-radius: 5px;
 }
 
 .mentor-tip img {
+  position: absolute;
   height: 100px;
-  left: -300px;
+  left: -85px;
+  top: -119%;
 }
 
 .mentor-tip p {
   position: absolute;
-  top: 0;
+  left: 5%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   overflow: hidden;
 }
 
@@ -79,39 +105,40 @@ body {
   position: absolute;
   top: 3%;
   left: 1%;
-  width: 19%;
+  width: 438px;
   height: 5%;
 }
 
 .clock .days {
-  font-size: 4vh;
+  font-size: 67px;
   text-align: left;
   color: white;
-  width: 60%;
-  background: darkblue;
-  border-radius: 1vw;
+  width: 200px;
+  border-radius: 1%;
 }
 
 .clock .time {
   color: white;
   border: 3px solid white;
   text-align: center;
-  font-size: 3vh;
+  font-size: 50px;
   background: black;
-  border-radius: 0.6vw;
+  border-radius: 10px;
   position: absolute;
   top: 10%;
   right: 0%;
-  width: 35%;
+  width: 180px;
 }
 
 .cat {
   position: absolute;
+  text-align: left;
+  width: 6%;
 }
 
 .cat-image {
-  width: 10vh;
-  height: 10vh;
+  width: 100%;
+  height: 100%;
 }
 
 .drop-down {
@@ -126,18 +153,17 @@ body {
 
 .bed {
   position: absolute;
-  top: 50%;
-  left: 75%;
-  width: 450px;
-  height: 500px;
+  top: 48%;
+  right: -6.4%;
+  width: 37.6%;
 }
 
 .bed-path {
-  opacity: 0.1;
+  opacity: 0;
 }
 
-.bed-path:hover {
-  opacity: 0.5;
+.bed-path:hover > * {
+  fill: red;
   -webkit-filter: url(#shadow);
           filter: url(#shadow);
 }
@@ -153,8 +179,8 @@ body {
 
 .lunar-lander {
   position: relative;
-  width: 50vw;
-  height: 50vh;
+  width: 50%;
+  height: 50%;
   left: 30%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%) scale(0.1, 0.1);
@@ -167,8 +193,8 @@ body {
 
 .pong {
   position: relative;
-  width: 50vw;
-  height: 50vh;
+  width: 50%;
+  height: 50%;
   left: 70%;
   top: 35%;
   -webkit-transform: translate(-50%, -50%) scale(0.1, 0.1);
@@ -180,8 +206,8 @@ body {
 }
 
 .buttonLunarLander {
-  width: 10vw;
-  height: 10vh;
+  width: 10%;
+  height: 10%;
   -webkit-transform: translate(-50%, -50%) scale(0.1, 0.1);
           transform: translate(-50%, -50%) scale(0.1, 0.1);
   -webkit-transition: -webkit-transform 0.7s;
@@ -191,8 +217,8 @@ body {
 }
 
 .buttonPong {
-  width: 10vw;
-  height: 10vh;
+  width: 10%;
+  height: 10%;
   -webkit-transform: translate(-50%, -50%) scale(0.1, 0.1);
           transform: translate(-50%, -50%) scale(0.1, 0.1);
   -webkit-transition: -webkit-transform 0.7s;
@@ -245,10 +271,9 @@ body {
 
 .desk {
   position: absolute;
-  top: 40%;
-  left: -5%;
-  width: 400px;
-  height: 400px;
+  top: 23%;
+  left: -7%;
+  width: 35%;
 }
 
 .desk-shape {
@@ -261,12 +286,16 @@ body {
           filter: url(#shadow);
 }
 
+.desk-path:hover {
+  -webkit-filter: drop-shadow(-30px 10px 4px #FF8311);
+          filter: drop-shadow(-30px 10px 4px #FF8311);
+}
+
 .coffee-maker {
   position: absolute;
-  top: 45.5%;
-  left: 51%;
-  width: 13%;
-  height: 9%;
+  top: 43%;
+  left: 53%;
+  width: 10%;
 }
 
 .coffee-maker img {
