@@ -22,8 +22,9 @@ class Cat extends Component {
 
   render() {
     const { position, menuOpen, onClick, catInteraction, hasPlayer } = this.props;
+    if (!hasPlayer && this.state.playerImage != builtgirl) this.setState({playerImage: builtgirl})
     let playerStyles = {
-      backgroundImage: `url(${this.state.playerImage})`
+      backgroundImage: hasPlayer ? `url(${this.state.playerImage})` : "none"
     }
     let dropDownOptions = [
       {
