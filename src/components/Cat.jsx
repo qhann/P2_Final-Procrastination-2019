@@ -4,12 +4,13 @@ import DropDown from "./DropDown";
 import petgirl from "./petgirl.svg";
 import playgirl from "./playgirl.svg";
 import builtgirl from "./builtgirl.svg";
+import feedgirl from "./feedgirl.svg";
 
 class Cat extends Component {
   state = {
     img: cat,
     menuOpen: false,
-    playerImage: builtgirl
+    playerAction: builtgirl
   };
 
   showDropDown() {
@@ -22,28 +23,49 @@ class Cat extends Component {
 
   render() {
     const { position, menuOpen, onClick, catInteraction, hasPlayer } = this.props;
-    if (!hasPlayer && this.state.playerImage != builtgirl) this.setState({playerImage: builtgirl})
+    let playerImage, playerPostion
+    if (!hasPlayer && this.state.playerAction != "none") this.setState({ playerAction: "none" })
+
+    switch (this.state.playerAction) {
+      case "pet":
+        playerImage = petgirl
+        playerPostion = "-100% 30%"
+        break;
+      case "feed":
+        playerImage = feedgirl
+        break;
+      case "play":
+        playerImage = playgirl
+        break;
+      case "none":
+        break;
+
+    }
+
     let playerStyles = {
-      backgroundImage: hasPlayer ? `url(${this.state.playerImage})` : "none"
+      backgroundImage: hasPlayer ? `url(${playerImage})` : "none",
+      backgroundPosition: playerPostion
     }
     let dropDownOptions = [
       {
         caption: "streicheln",
         action: () => {
           catInteraction("pet");
-          this.setState({playerImage: petgirl})
+          this.setState({ playerAction: "pet" })
         }
       },
       {
         caption: "füttern",
         action: () => {
           catInteraction("feed");
+          this.setState({ playerAction: "feed" })
         }
       },
       {
         caption: "spielen",
         action: () => {
           catInteraction("play");
+          this.setState({ playerAction: "play" })
         }
       }
     ];
