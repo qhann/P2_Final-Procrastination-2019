@@ -6,7 +6,7 @@ import Intro from "./components/Intro";
 
 class App extends React.Component {
   state = {
-    current: "intro"
+    current: "room"
   }
   
 

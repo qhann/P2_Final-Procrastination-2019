@@ -36,7 +36,7 @@ class GamingStation extends Component {
     return (
       <div className={"gaming-station "}>
         <div className={"player"} >{hasPlayer ? "Player" : ""}</div>
-        <Moonlight time={time} className={"moonlight-bed"} />
+        {/* <Moonlight time={time} className={"moonlight-bed"} /> */}
         <GamingStationSvg />
         <div className={screenClasses} onClick={onClick}>
           {this.state.gameNumber == 0 ? (

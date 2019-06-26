@@ -191,8 +191,8 @@ html, body, .root, .App {
 .pattern.pattern-bed-top {
   -webkit-mask-size: 366px;
           mask-size: 366px;
-  -webkit-mask-position: 136px 46px;
-          mask-position: 136px 46px;
+  -webkit-mask-position: 145px 51px;
+          mask-position: 145px 51px;
 }
 
 .pattern.pattern-bed-side {
@@ -203,8 +203,9 @@ html, body, .root, .App {
 }
 
 .pattern .moonlight-bed-side {
-  top: -128px;
+  top: -146px;
   width: 408px;
+  height: 217px;
 }
 
 .pattern.pattern-room {
@@ -216,11 +217,11 @@ html, body, .root, .App {
 
 .pattern .moonlight-room {
   top: 726px;
-  left: 1231px;
-  width: 237px;
-  height: 140px;
-  -webkit-transform-origin: 0 -52px;
-          transform-origin: 0 -52px;
+  left: 1241px;
+  width: 193px;
+  height: 162px;
+  -webkit-transform-origin: 0 -135px;
+          transform-origin: 0 -135px;
 }
 
 .pattern.pattern-window {
