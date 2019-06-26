@@ -31,10 +31,10 @@ class Cat extends Component {
       case "pet":
         playerImage = petgirl
         playerPostion = {
-          top: "",
-          left: ""
+          top: "-185px",
+          left: "-120px"
         }
-        height = "285px"
+        // height = "285px"
         width = "168px"
         break;
       case "feed":
@@ -48,7 +48,7 @@ class Cat extends Component {
       case "play":
         playerImage = playgirl
         playerPostion = {
-          top: "-85px",
+          top: "-105px",
           left: "-131px"
         }
         width = "168px"
