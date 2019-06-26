@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Moonlight from "./Moonlight";
+import windowMask from "./dummy-white.png";
+
 
 class Window extends Component {
 
@@ -19,7 +21,7 @@ class Window extends Component {
         </div>
         <div className={"wall"}></div>
         <div className={"moonlight-window"} >
-          <Moonlight time={time} />
+          <Moonlight time={time} selector={"window"} mask={windowMask}/>
         </div>
       </div>
     );
