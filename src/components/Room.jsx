@@ -15,7 +15,6 @@ import CoffeeMaker from "./CoffeeMaker";
 import roomMask from "./room-mask.png";
 import Moonlight from "./Moonlight";
 
-
 class App extends React.Component {
   state = {
     time: 0,
@@ -23,7 +22,12 @@ class App extends React.Component {
       health: 100,
       exhaustion: 0
     },
-    mentorText: "Hefte raus, Klassenarbeit.",
+    mentorText:
+      "Hefte raus, Klassenarbeit, " +
+      this.props.playerName +
+      "! You are " +
+      this.props.gender +
+      ".",
     cat: {
       hasPlayer: false,
       position: {
@@ -302,12 +306,12 @@ class App extends React.Component {
     let desk = this.state.desk;
     let coffee = this.state.coffee;
     let gamingStation = this.state.gamingStation;
-    let time = ~~(this.state.time * 100)/100 
+    let time = ~~(this.state.time * 100) / 100;
 
     return (
       <div className="Room">
         <img src={room} className="room" alt="room" />
-        <Moonlight time={time} selector={"room"} mask={roomMask}/>
+        <Moonlight time={time} selector={"room"} mask={roomMask} />
 
         <Window time={~~this.state.time} />
         <StatusBar label={"health"} value={~~vitalStats.health} />
