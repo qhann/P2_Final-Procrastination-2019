@@ -5,6 +5,7 @@ import Moonlight from "./Moonlight";
 import bedSideMask from "./bed-mask-side-bw.png"
 import bedTopMask from "./bed-mask-top-bw.png"
 import sleepgirl1 from "./sleepgirl1.svg"
+import sleepgirl2 from "./sleepgirl2.svg"
 
 
 class Bed extends Component {
@@ -16,7 +17,7 @@ class Bed extends Component {
             <div className={"bed"}>
                 {hasPlayer ?
                     <img
-                        src={sleepgirl1}
+                        src={time % 10 > 5 ? sleepgirl1 : sleepgirl2}
                         className={"bed-girl"}
                     />
                     : null}
