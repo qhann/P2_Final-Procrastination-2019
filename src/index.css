@@ -530,4 +530,12 @@ html, body, .root, .App {
   right: 68%;
   top: 50%;
 }
+
+.bed-girl {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  right: 35%;
+  top: 6%;
+}
 /*# sourceMappingURL=index.css.map */
