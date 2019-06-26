@@ -126,8 +126,8 @@ export default function artworkSketch(s) {
 
         s.beginShape();
         var hue = ((360 / joints) * i) / 3;
-        s.stroke(hue, 80, 60, 50);
-        s.strokeWeight(0.1 * Math.pow(Math.abs(deviation), 4));
+        s.stroke(100, 80, 60, 50);
+        s.strokeWeight(1 * Math.pow(Math.abs(deviation), 4));
         for (var j = 0; j < path.length; j++) {
           // s.vertex(path[j].x, path[j].y);
         }

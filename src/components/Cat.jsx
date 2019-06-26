@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import cat from "./cat.svg";
 import DropDown from "./DropDown";
+import petgirl from "./petgirl.svg";
+import playgirl from "./playgirl.svg";
+import builtgirl from "./builtgirl.svg";
 
 class Cat extends Component {
   state = {
     img: cat,
-    menuOpen: false
+    menuOpen: false,
+    playerImage: builtgirl
   };
 
   showDropDown() {
@@ -18,11 +22,15 @@ class Cat extends Component {
 
   render() {
     const { position, menuOpen, onClick, catInteraction, hasPlayer } = this.props;
+    let playerStyles = {
+      backgroundImage: `url(${this.state.playerImage})`
+    }
     let dropDownOptions = [
       {
         caption: "streicheln",
         action: () => {
           catInteraction("pet");
+          this.setState({playerImage: petgirl})
         }
       },
       {
@@ -45,7 +53,7 @@ class Cat extends Component {
     };
     return (
       <div className={"cat"} style={styles}>
-        <div className={"player"} >{hasPlayer ? "Player" : ""}</div>
+        <div className={"player"} style={playerStyles}>{hasPlayer ? "Player" : ""}</div>
         <DropDown
           options={dropDownOptions}
           visible={menuOpen}

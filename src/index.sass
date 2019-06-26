@@ -159,22 +159,25 @@ html, body, .root, .App
 .pattern 
     &.pattern-bed-top
         mask-size: 366px
-        mask-position: 136px 46px
+        mask-position: 145px 51px
+    .moonlight-bed-top
+        // transform-origin: 
     &.pattern-bed-side
         mask-size: 275px
         mask-position: 145px 112px
     .moonlight-bed-side
-        top: -128px
+        top: -146px
         width: 408px
+        height: 217px //167px
     &.pattern-room
         mask-size: 1920px
         mask-position: 0 0
     .moonlight-room
         top: 726px
-        left: 1231px
-        width: 237px
-        height: 140px
-        transform-origin: 0 -52px
+        left: 1241px
+        width: 193px
+        height: 162px
+        transform-origin: 0 -135px
     &.pattern-window
         mask-size: 1920px
         mask-position: 0 0
@@ -377,8 +380,11 @@ html, body, .root, .App
 
 .player
     position: absolute
-    top: 30%
+    top: -100%
     left: 30%
+    height: 300px
+    width: 100px
+    background-repeat: no-repeat
     font-size: 3em
     color: red
 
