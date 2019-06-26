@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Playboy from "./playboy.svg";
-import Playgirl from "./playgirl.svg";
+import Boy from "./boy.svg";
+import Girl from "./girl.svg";
 
 class CharacterSelection extends Component {
   state = {
@@ -26,13 +26,13 @@ class CharacterSelection extends Component {
       <div className={"characterSelection"}>
         <p>Charakterauswahl:</p>
         <img
-          src={Playboy}
+          src={Boy}
           className={"button-character-select button-playboy"}
           onClick={() => this.setGender("male")}
           style={this.state.gender == "male" ? genderHighlight : {}}
         />
         <img
-          src={Playgirl}
+          src={Girl}
           className={"button-character-select button-playgirl"}
           onClick={() => this.setGender("female")}
           style={this.state.gender == "female" ? genderHighlight : {}}
