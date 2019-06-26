@@ -5,6 +5,7 @@ import petgirl from "./petgirl.svg";
 import playgirl from "./playgirl.svg";
 import builtgirl from "./builtgirl.svg";
 import feedgirl from "./feedgirl.svg";
+import girl from "./girl.svg";
 
 class Cat extends Component {
   state = {
@@ -23,28 +24,51 @@ class Cat extends Component {
 
   render() {
     const { position, menuOpen, onClick, catInteraction, hasPlayer } = this.props;
-    let playerImage, playerPostion
+    let playerImage, playerPostion = {}, width, height
     if (!hasPlayer && this.state.playerAction != "none") this.setState({ playerAction: "none" })
 
     switch (this.state.playerAction) {
       case "pet":
         playerImage = petgirl
-        playerPostion = "-100% 30%"
+        playerPostion = {
+          top: "",
+          left: ""
+        }
+        height = "285px"
+        width = "168px"
         break;
       case "feed":
         playerImage = feedgirl
+        playerPostion = {
+          top: "-85px",
+          left: "-131px"
+        }
+        width = "168px"
         break;
       case "play":
         playerImage = playgirl
+        playerPostion = {
+          top: "-85px",
+          left: "-131px"
+        }
+        width = "168px"
         break;
       case "none":
+        playerImage = girl
+        playerPostion = {
+          top: "-278px",
+          left: "-124px"
+        }
         break;
 
     }
 
     let playerStyles = {
       backgroundImage: hasPlayer ? `url(${playerImage})` : "none",
-      backgroundPosition: playerPostion
+      top: playerPostion.top,
+      left: playerPostion.left,
+      width: width,
+      height: height
     }
     let dropDownOptions = [
       {
