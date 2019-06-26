@@ -3,12 +3,12 @@ import React, { Component } from "react";
 class StatusBar extends Component {
   render() {
     const { value, label, onClick } = this.props;
-    let width = 1920 * 0.11
+    let width = 1920 * 0.112
     let height = 1080 * 0.026
 
     let styles = {
-      width: width + "px",
-      height: height + "px",
+      // width: width + "px",
+      // height: height + "px",
       backgroundPositionX: (width / 100) * value + "px"
     }
 

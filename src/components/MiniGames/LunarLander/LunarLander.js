@@ -5,9 +5,9 @@ import jet1 from "./assets/jet.png";
 import jet2 from "./assets/jet2.png";
 
 export default function artworkSketch(s) {
-  let width = window.innerWidth * 0.5;
-  let height = window.innerHeight * 0.5;
-  console.log(height);
+  let width = 1920 * 0.5;
+  let height = 1080 * 0.5;
+  // console.log(height);
 
   s.setup = () => {
     s.createCanvas(width, height);
@@ -374,7 +374,7 @@ export default function artworkSketch(s) {
         prevDotR = prevDot;
       }
     }
-    console.log(curDotR[0]);
+    // console.log(curDotR[0]);
 
     var percentOfSectionXL =
       (RocketLeftMapX - prevDotL[0]) / (curDotL[0] - prevDotL[0]);
@@ -387,7 +387,7 @@ export default function artworkSketch(s) {
 
     //s.rect(backgroundX + curDot[0]*world.width, backgroundY + curDot[1]*world.height, 2, 2);
     if (RocketMapY >= yOfPointR || RocketMapY >= yOfPointL) {
-      console.log(yOfPointR + " " + yOfPointR);
+      // console.log(yOfPointR + " " + yOfPointR);
       return true;
     }
     return false;
@@ -443,8 +443,8 @@ export default function artworkSketch(s) {
     startButton(view.width + 7, 25);
     if (playerWins) {
       scoreVelocity = (1 / rocket.speed()) * 50;
-      scoreFuel = 1000 / (100.1 - rocket.fuel);
-      scoreTime = (1 / (timeElapsed - 7)) * 60;
+      scoreFuel = 1000 / (100.1 - rocket.fuel) -10;
+      scoreTime = (1 / (timeElapsed )) * 120;
       score = Math.floor(500 * (scoreVelocity + scoreFuel + scoreTime));
       console.log(
         " v: " + scoreVelocity + " t: " + scoreTime + " f: " + scoreFuel

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import deskImage from "./desk.svg";
+import DeskSvg from "./SVGs/DeskSvg.jsx";
+import Artwork from "./Artwork";
+
 
 class Desk extends Component {
     render() {
@@ -7,13 +9,17 @@ class Desk extends Component {
 
 
         return (
-            <div className={"desk"} onClick={onClick}>
-                <div className={"player"} >{hasPlayer ? "Player" : ""}</div>
+            <div className={"desk"}>
+                <div className={"player"} >{hasPlayer ? "." : ""}</div>
                 {/* <object data={deskImage} type="image/svg+xml"></object> */}
                 {/* <svg width="100%" height="100%">
                     <use xlinkHref={deskImage + "#desk"} id="robot-1" />
                 </svg> */}
-
+                <DeskSvg onClick={onClick} />
+                <Artwork
+                    onClick={onClick}
+                    working={hasPlayer}
+                />
             </div>
         );
     }

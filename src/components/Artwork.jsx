@@ -8,7 +8,7 @@ class Artwork extends Component {
         const {working, onClick} = this.props        
         return (
             <div className={"artwork"} onClick={onClick}>
-                <P5Wrapper playing={working} sketch={artworkSketch} />
+                <P5Wrapper playing={working} sketch={artworkSketch} speedFactor={100}/>
             </div>
         );
     }

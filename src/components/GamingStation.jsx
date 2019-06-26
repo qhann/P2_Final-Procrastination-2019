@@ -1,7 +1,11 @@
 import React, { Component } from "react";
-import LunarLander from "./LunarLander";
-import Pong from "./Pong";
-import gameImage from "./game.svg"
+import LunarLander from "./MiniGames/LunarLander";
+import Pong from "./MiniGames/Pong";
+import GamingStationSvg from "./SVGs/GamingStationSvg"
+import lunarPreview from "./MiniGames/LunarLander/preview.jpg"
+import pongPreview from "./MiniGames/Pong/preview.JPG"
+import Moonlight from "./Moonlight";
+
 
 class GamingStation extends Component {
   state = {
@@ -10,48 +14,45 @@ class GamingStation extends Component {
     gameNumber: 0
   };
 
-  setFullscreen() {
-    this.setState(prevState => ({ fullscreen: !prevState.fullscreen }));
-    setTimeout(
-      () => this.setState(prevState => ({ showGame: !prevState.showGame })),
-      500
-    );
-  }
-
-  handleFrameClick() {
-    if (!this.state.fullscreen) {
-      this.setFullscreen(true);
-    } else {
-      this.setFullscreen(false);
-    }
-  }
 
   handleGameClick(e) {
-    if (this.state.showGame) {
-      e.stopPropagation();
-    }
+    e.stopPropagation();
   }
 
   handleGameChange(e, number) {
-    e.stopPropagation();
-    this.state.gameNumber = number;
+    if (e) e.stopPropagation();
+    this.setState({ gameNumber: number })
+    // this.state.gameNumber = number;
   }
 
   render() {
-    let classes = "gaming-station ";
-    classes += this.state.fullscreen ? "fullscreen" : "";
+    const { onClick, hasPlayer, fullscreen, time } = this.props;
+
+    let screenClasses = "screen";
+    screenClasses += fullscreen ? " fullscreen" : "";
+
+    if (!fullscreen && this.state.gameNumber) this.handleGameChange(null, 0)
 
     return (
-      <div onClick={() => this.handleFrameClick()} className={classes}>
-        <div className={"screen"}>
-          <button
-            className={"buttonLunarLander"}
-            onClick={e => this.handleGameChange(e, 1)}
-          />
-          <button
-            className={"buttonPong"}
-            onClick={e => this.handleGameChange(e, 2)}
-          />
+      <div className={"gaming-station "}>
+        <div className={"player"} >{hasPlayer ? "Player" : ""}</div>
+        <Moonlight time={time} className={"moonlight-bed"} />
+        <GamingStationSvg />
+        <div className={screenClasses} onClick={onClick}>
+          {this.state.gameNumber == 0 ? (
+            <div>
+              <img
+                src={lunarPreview}
+                className={"button-game-select button-lunar"}
+                onClick={e => this.handleGameChange(e, 1)}
+              />
+              <img
+                src={pongPreview}
+                className={"button-game-select button-pong"}
+                onClick={e => this.handleGameChange(e, 2)}
+              />
+            </div>
+          ) : null}
           {this.state.gameNumber == 1 ? (
             <LunarLander onClick={e => this.handleGameClick(e)} />
           ) : null}
@@ -59,9 +60,6 @@ class GamingStation extends Component {
             <Pong onClick={e => this.handleGameClick(e)} />
           ) : null}
         </div>
-        <svg id={"game-svg"} width="100%" height="100%">
-          <use xlinkHref={gameImage + "#game"} />
-        </svg>
       </div>
     );
   }

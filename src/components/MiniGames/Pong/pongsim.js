@@ -59,8 +59,8 @@ export default function pongSketch(s) {
     ry = s.sqrt(s.sq(ges) - s.sq(rx));
   }
 
-  var scr1 = s.loadImage("img/dschungel2.jpg");
-  var scr2 = s.loadImage("img/dschungel3.jpg");
+  var scr1 = s.loadImage(dschungel2);
+  var scr2 = s.loadImage(dschungel3);
 
   s.draw = () => {
     console.log(z);

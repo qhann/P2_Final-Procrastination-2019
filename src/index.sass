@@ -27,6 +27,11 @@ html, body, .root, .App
     left: 0
     z-index: -5
     // opacity: 0.4
+.App
+    > .moonlight
+        top: 791px
+        left: 1242px
+        transform-origin: 0 -100px
 
 .status-bar-frame
     position: absolute
@@ -44,6 +49,8 @@ html, body, .root, .App
     
 .status-bar
     position: absolute
+    height: 100%
+    width: 100%
     background: linear-gradient(#000, #000) no-repeat 
 
 .status-label
@@ -60,6 +67,7 @@ html, body, .root, .App
     text-align: left
     top: 40%
     left: 5%
+    z-index: 10
 
 .mentor-tip
     position: absolute
@@ -112,6 +120,7 @@ html, body, .root, .App
     // background: white
     text-align: left
     width: 6%
+    z-index: 10
 
 
 .cat-image
@@ -123,6 +132,8 @@ html, body, .root, .App
     top: -40px
 
 .artwork
+    top: 0
+    pointer-events: none
     transform: rotate(-90deg)
 
 .bed 
@@ -131,27 +142,118 @@ html, body, .root, .App
     width: 37%
     right: -6.9%
     height: 83%
+    // overflow: hidden
     // height: 500px
+    .moonlight
+        top: 110px
+        left: -103px
+        height: 200px
+        transform-origin: 0 -40px
+
+.pattern
+    position: absolute
+    mask-mode: luminance
+    mask-repeat: no-repeat
+    pointer-events: none
+
+.pattern 
+    &.pattern-bed-top
+        mask-size: 366px
+        mask-position: 136px 46px
+    &.pattern-bed-side
+        mask-size: 275px
+        mask-position: 145px 112px
+    .moonlight-bed-side
+        top: -128px
+        width: 408px
+    &.pattern-room
+        mask-size: 1920px
+        mask-position: 0 0
+    .moonlight-room
+        top: 726px
+        left: 1231px
+        width: 237px
+        height: 140px
+        transform-origin: 0 -204px
+    
+
 
 .bed-path
     // opacity: 0
     &:hover
         filter: drop-shadow(-30px 10px 4px #FF8311)
             
+.bed-lower
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    // top: 48%
+    // width: 37%
+    // right: -6.9%
+    z-index: 60
+    // height: 83%
+
 .window
     position: absolute
-    background: black
-    width: 13%
-    height: 16%
-    top: 33%
-    left: 68.5%
+    top: 30.4%
+    left: 63.2%
+    width: 13.4%
+    height: 20.7%
+    z-index: -1
+    overflow: hidden
+    .sky
+        position: absolute
+        background: black
+        top: 10px
+        left: 10px
+        bottom: 10px
+        right: 10px
+            // width: 100%
+        // height: 100%
+        // top: 33%
+        // left: 64.5%
+    // .wall
+    //     position: absolute
+    //     width: 500px
+    //     height: 118px
+    //     top: 116%
+    //     background: #00132e
+    //     left: -100px
+    //     z-index: 12
+    .moonlight
+        height: 11px
+        top: 95%
+        left: 31px
+
+
+.moonlight
+    position: absolute
+    // top: 100%
+    // left: 5px
+    width: 203px
+    height: 200%
+    background: white
+    opacity: 0.2
+    transform-origin: 0 0 
+    mix-blend-mode: difference
+    overflow: hidden
+    z-index: 10
+    &.vertical
+        // width: 1000px
+
+.pattern
+    position: absolute
+    width: 100%
+    height: 100%
+    mix-blend-mode: 
 
 .lunar-lander
     position: relative
     width: 50%
     height: 50%
-    left: 30%
-    top: 50%
+    left: 50%
+    top: 40%
     transform: translate(-50%, -50%) scale(0.1, 0.1)
     transition: transform 0.7s
 
@@ -179,43 +281,65 @@ html, body, .root, .App
 
 .gaming-station
     position: absolute
-    width: 12%
-    height: 10%
-    left: 41.9%
+    width: 25%
+    height: 26%
+    left: 38%
     // right: 46.7%
     top: 45.8%
     // bottom: 46.3%
-    .screen
-        opacity: 0.4
-        background-color: black
-        transform: scale(1,1) //translate(42%, 38%)
-        transition: top 0.7s, right 0.7s, bottom 0.7s, left 0.7s, opacity 0.7s
+    // overflow: hidden
+    .moonlight
+        top: 150px
+        left: 508px
+        transform-origin: 0 0 
+
+.screen
+    position: absolute
+    top: 6%
+    left: 16.9%
+    width: 43.2%
+    height: 36.4%
+    // bottom: 57%
+    // right: 40%
+    opacity: 0.4
+    background-color: black
+    transform: scale(1,1) //translate(42%, 38%)
+    transition: top 0.7s, width 0.7s, height 0.7s, left 0.7s, opacity 0.7s
+    &:hover
+        // filter: drop-shadow(-30px 10px 4px #FF8311)
+        border: 4px solid rgba(2550,0,0,0.5)
+        box-shadow: 0 0 10px red
+    .button-game-select
+        position: relative
+        width: 40%
+        height: 80%
+        top: 3%
+        left: 0%
+        margin: 5%
+    &.fullscreen
+        // top: -30vh
+        top: -350px
+        // left: -26vw
+        left: -570px
+        // bottom: 30px
+        // right: 30px
+        width: 1600px
+        height: 900px //70vh
+        opacity: 1
+        z-index: 20
         &:hover
-            border: 2px solid rgba(2550,0,0,0.5)
-            box-shadow: 0 0 10px red
-
-        &.fullscreen
-            top: 80px
-            left: 30px
-            bottom: 30px
-            right: 30px
-            width: auto
-            height: auto
-            opacity: 1
-            z-index: 20
-            &:hover
-                border: none
-                box-shadow: none
-
-            .lunar-lander, .pong, .buttonLunarLander, .buttonPong
-                transform: translate(-50%, -50%) scale(1,1)
+            border: none
+            box-shadow: none
+        .lunar-lander, .pong
+            position: absolute
+            transform: translate(-50%, -50%) scale(1,1)
 
 .desk
     position: absolute
-    top: 30%
-    left: -28.5%
-    // width: 35%
-    height: 68%
+    top: 36%
+    // left: -28.5%
+    width: 21%
+    // height: 30%
     // transform: scale(1.5, 2)
 .desk-shape
     opacity: 0.2
@@ -229,8 +353,8 @@ html, body, .root, .App
 
 .coffee-maker 
     position: absolute
-    top: 43%
-    left: 53%
+    top: 47%
+    left: 52%
     width: 10%
     // height: 9%
     img 
@@ -239,7 +363,7 @@ html, body, .root, .App
         &:hover
             
 
-.coffee-maker-path:hover
+.coffee-path:hover
     filter: drop-shadow(-30px 10px 4px #FF8311)
 
 .player

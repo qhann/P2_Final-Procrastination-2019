@@ -4,7 +4,6 @@ import "./App.css";
 import update from "immutability-helper";
 
 import StatusBar from "./components/StatusBar";
-import Artwork from "./components/Artwork";
 import MentorTip from "./components/MentorTip";
 import Clock from "./components/Clock";
 import Cat from "./components/Cat";
@@ -13,6 +12,9 @@ import Bed from "./components/Bed";
 import Desk from "./components/Desk";
 import Window from "./components/Window";
 import CoffeeMaker from "./components/CoffeeMaker";
+import roomMask from "./components/room-mask.png";
+import Moonlight from "./components/Moonlight";
+
 
 class App extends React.Component {
   state = {
@@ -21,7 +23,7 @@ class App extends React.Component {
       health: 100,
       exhaustion: 0
     },
-    mentorText: "You should sleep",
+    mentorText: "Hefte raus, Klassenarbeit.",
     cat: {
       hasPlayer: false,
       position: {
@@ -69,7 +71,6 @@ class App extends React.Component {
         globalInterval: { $set: globalInterval }
       })
     );
-
   }
 
   componentWillUnmount() {
@@ -89,7 +90,7 @@ class App extends React.Component {
       //console.log(prevState);
 
       return update(prevState, {
-        time: { $set: prevState.time + (1 / frameDuration) * 2 },
+        time: { $set: prevState.time + (10 / frameDuration) * 2 },
         vitalStats: {
           health: {
             $set: newHealth
@@ -115,7 +116,7 @@ class App extends React.Component {
 
     if (
       prevCat.position.x < 1920 /*window.innerWidth*/ * 0.2 ||
-      prevCat.position.x > 1920 /*window.innerWidth*/ * 0.6
+      prevCat.position.x > 1920 /*window.innerWidth*/ * 0.8
     ) {
       newDirection.x =
         prevCat.position.x < 1920 /*window.innerWidth*/ * 0.5 ? true : false;
@@ -279,7 +280,18 @@ class App extends React.Component {
   }
 
   handleCoffeeMakerClick() {
+    console.log("coffee");
+
     this.playerTo("coffee");
+  }
+
+  handleGameStationClick() {
+    this.setState({
+      gamingStation: {
+        hasPlayer: true,
+        fullscreen: !this.state.gamingStation.fullscreen
+      }
+    });
   }
 
   render() {
@@ -290,17 +302,17 @@ class App extends React.Component {
     let desk = this.state.desk;
     let coffee = this.state.coffee;
     let gamingStation = this.state.gamingStation;
+    let time = ~~(this.state.time * 100)/100 
 
     return (
       <div className="App">
         <img src={room} className="room" alt="room" />
-        <Window time={this.state.time} />
-        <StatusBar label={"health"} value={vitalStats.health} />
-        <StatusBar label={"exhaustion"} value={vitalStats.exhaustion} />
-        <Artwork
-          onClick={() => this.toggleWorking()}
-          working={this.state.playerAction === "work"}
-        />
+        <Moonlight time={time} selector={"room"} mask={roomMask}/>
+
+        <Window time={~~this.state.time} />
+        <StatusBar label={"health"} value={~~vitalStats.health} />
+        <StatusBar label={"exhaustion"} value={~~vitalStats.exhaustion} />
+
         <Clock time={this.state.time} />
         <MentorTip text={this.state.mentorText} />
         <Cat
@@ -314,13 +326,24 @@ class App extends React.Component {
           hasPlayer={gamingStation.hasPlayer}
           onClick={() => this.handleGameStationClick()}
           fullscreen={gamingStation.fullscreen}
+          time={time}
         />
-        <Bed hasPlayer={bed.hasPlayer} onClick={() => this.handleBedClick()} />
+        <Bed
+          hasPlayer={bed.hasPlayer}
+          onClick={() => this.handleBedClick()}
+          time={time}
+        />
+        {/* <BedLowerSvg/> */}
+
         <Desk
           hasPlayer={desk.hasPlayer}
           onClick={() => this.handleDeskClick()}
+          time={time}
         />
-        <CoffeeMaker onClick={() => this.handleCoffeeMakerClick()} />
+        <CoffeeMaker
+          hasPlayer={coffee.hasPlayer}
+          onClick={() => this.handleCoffeeMakerClick()}
+        />
       </div>
     );
   }
