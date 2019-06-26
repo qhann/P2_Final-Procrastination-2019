@@ -14,17 +14,18 @@ class Bed extends Component {
 
         return (
             <div className={"bed"}>
-                {/* <div className={"player"} >{ "Player" : ""}</div> */}
+                {hasPlayer ?
+                    <img
+                        src={sleepgirl1}
+                        className={"bed-girl"}
+                    />
+                    : null}
                 <Moonlight time={time} mask={bedTopMask} selector={"bed-top"} />
                 <Moonlight time={time} mask={bedSideMask} selector={"bed-side"} vertical={true} />
                 <Moonlight time={time} mask={bedSideMask} selector={"bed-side"} vertical={true} />
                 <BedSvg onClick={onClick} />
                 {/* <BedLowerSvg onClick={onClick} /> */}
-                <img
-               
-                src={hasPlayer ? sleepgirl1 : null}
-                className={"bed-girl"}
-                />
+
             </div>
         );
     }
