@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import cat from "./cat.svg";
+import cat from "./SVGs/cat.svg";
 import DropDown from "./DropDown";
-import petgirl from "./petgirl.svg";
-import playgirl from "./playgirl.svg";
-import builtgirl from "./builtgirl.svg";
-import feedgirl from "./feedgirl.svg";
-import girl from "./girl.svg";
+import petgirl from "./Player/petgirl.svg";
+import playgirl from "./Player/playgirl.svg";
+import builtgirl from "./Player/builtgirl.svg";
+import feedgirl from "./Player/feedgirl.svg";
+import girl from "./Player/girl.svg";
 
 class Cat extends Component {
   state = {

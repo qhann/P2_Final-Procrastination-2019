@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Mentor from "./mentor.svg";
+import Mentor from "./SVGs/mentor.svg";
 
 class Intro extends Component {
   render() {
