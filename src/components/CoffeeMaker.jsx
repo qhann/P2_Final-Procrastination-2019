@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CoffeeSvg from "./SVGs/CoffeeSvg";
-import builtboy from "./Player/builtboy.svg";
+import coffeeboy from "./Player/coffeeboy.svg";
 
 class CoffeeMaker extends Component {
   render() {
@@ -8,7 +8,7 @@ class CoffeeMaker extends Component {
 
     return (
       <div className={"coffee-maker"}>
-        {hasPlayer ? <img src={builtboy} className={"coffee-guy"} /> : null}
+        {hasPlayer ? <img src={coffeeboy} className={"coffee-guy"} /> : null}
         <CoffeeSvg onClick={onClick} />
       </div>
     );

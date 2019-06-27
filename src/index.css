@@ -445,6 +445,14 @@ html, body, .root, .App {
   height: 100%;
 }
 
+.coffee-guy {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  top: 10%;
+  left: 45%;
+}
+
 .coffee-path:hover {
   -webkit-filter: drop-shadow(-30px 10px 4px #FF8311);
           filter: drop-shadow(-30px 10px 4px #FF8311);
@@ -560,13 +568,5 @@ html, body, .root, .App {
   height: 400px;
   top: 10%;
   right: -41%;
-}
-
-.coffee-guy {
-  position: absolute;
-  width: 450px;
-  height: 450px;
-  top: 10%;
-  left: 45%;
 }
 /*# sourceMappingURL=index.css.map */
