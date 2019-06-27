@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Moonlight from "./Moonlight";
-import windowMask from "./dummy-white.png";
+import windowMask from "./Masks/dummy-white.png";
 
 
 class Window extends Component {

@@ -12,7 +12,7 @@ import Bed from "./Bed";
 import Desk from "./Desk";
 import Window from "./Window";
 import CoffeeMaker from "./CoffeeMaker";
-import roomMask from "./room-mask.png";
+import roomMask from "./Masks/room-mask.png";
 import Moonlight from "./Moonlight";
 
 class App extends React.Component {

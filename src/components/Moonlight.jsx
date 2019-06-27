@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import pattern from "./pattern.png"
 
 class Moonlight extends Component {
 

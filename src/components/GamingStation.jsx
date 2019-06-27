@@ -20,9 +20,11 @@ class GamingStation extends Component {
   }
 
   handleGameChange(e, number) {
-    if (e) e.stopPropagation();
-    this.setState({ gameNumber: number })
-    // this.state.gameNumber = number;
+    if (this.state.fullscreen) {
+      if (e) e.stopPropagation();
+      this.setState({ gameNumber: number })
+      // this.state.gameNumber = number;
+    }
   }
 
   render() {
@@ -36,7 +38,7 @@ class GamingStation extends Component {
     return (
       <div className={"gaming-station "}>
         <div className={"player"} >{hasPlayer ? "Player" : ""}</div>
-        {/* <Moonlight time={time} className={"moonlight-bed"} /> */}
+        <Moonlight time={time} className={"moonlight-bed"} />
         <GamingStationSvg />
         <div className={screenClasses} onClick={onClick}>
           {this.state.gameNumber == 0 ? (

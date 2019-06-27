@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Boy from "./boy.svg";
-import Girl from "./girl.svg";
+import Boy from "./Player/boy.svg";
+import Girl from "./Player/girl.svg";
 
 class CharacterSelection extends Component {
   state = {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import mentorImage from "./mentor.svg";
+import mentorImage from "./SVGs/mentor.svg";
 
 class MentorTip extends Component {
 

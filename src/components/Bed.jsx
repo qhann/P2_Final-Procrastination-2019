@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import BedSvg from "./SVGs/BedSvg";
 import BedLowerSvg from "./SVGs/BedLowerSvg";
 import Moonlight from "./Moonlight";
-import bedSideMask from "./bed-mask-side-bw.png";
-import bedTopMask from "./bed-mask-top-bw.png";
-import sleepgirl1 from "./sleepgirl1.svg";
-import sleepgirl2 from "./sleepgirl2.svg";
+import bedSideMask from "./Masks/bed-mask-side-bw.png";
+import bedTopMask from "./Masks/bed-mask-top-bw.png";
+import sleepgirl1 from "./Player/sleepgirl1.svg";
+import sleepgirl2 from "./Player/sleepgirl2.svg";
 
 class Bed extends Component {
   render() {
