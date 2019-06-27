@@ -464,6 +464,8 @@ html, body, .root, .App {
   font-size: 3em;
   top: 60%;
   right: 43%;
+  background: white;
+  border: none;
 }
 
 .button-character-select {
@@ -483,8 +485,8 @@ html, body, .root, .App {
 
 .input-character-name {
   position: absolute;
-  top: 70%;
-  left: 30%;
+  top: 72%;
+  left: 32%;
   width: 450px;
   height: 50px;
   font-size: 2em;
@@ -492,20 +494,24 @@ html, body, .root, .App {
 
 .button-character-start {
   position: absolute;
-  top: 70%;
-  left: 58%;
+  top: 72%;
+  left: 60%;
   width: 100px;
   height: 50px;
   font-size: 2em;
+  background: white;
+  border: none;
 }
 
-.button-room-start {
+.button-intro {
   position: absolute;
   top: 76%;
   left: 65%;
   width: 100px;
   height: 50px;
   font-size: 2em;
+  background: white;
+  border: none;
 }
 
 .intro-text {
@@ -525,10 +531,10 @@ html, body, .root, .App {
 
 .intro-mentor {
   position: absolute;
-  width: 350px;
-  height: 350px;
+  width: 310px;
+  height: 310px;
   right: 68%;
-  top: 50%;
+  top: 51%;
 }
 
 .bed-girl {
@@ -545,5 +551,13 @@ html, body, .root, .App {
   height: 400px;
   top: 10%;
   right: -41%;
+}
+
+.coffee-guy {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  top: 10%;
+  left: 45%;
 }
 /*# sourceMappingURL=index.css.map */

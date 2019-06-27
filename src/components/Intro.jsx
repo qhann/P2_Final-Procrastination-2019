@@ -6,7 +6,7 @@ class Intro extends Component {
     const { endIntro, playerName } = this.props;
     return (
       <div className={"intro"}>
-        <button className={"button-room-start"} onClick={endIntro}>
+        <button className={"button-intro"} onClick={endIntro}>
           Start
         </button>
         <p className={"intro-text"}>
