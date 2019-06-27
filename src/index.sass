@@ -345,6 +345,13 @@ html, body, .root, .App
         .lunar-lander, .pong
             position: absolute
             transform: translate(-50%, -50%) scale(1,1)
+        &::after
+            content: ""
+            position: absolute
+            top: -50%
+            right: -50%
+            bottom: -50%
+            left: -50%
 
 .desk
     position: absolute
@@ -402,6 +409,8 @@ html, body, .root, .App
     font-size: 3em
     top: 60%
     right: 43%
+    background: white
+    border: none
 
 .button-character-select 
     position: absolute
@@ -417,27 +426,31 @@ html, body, .root, .App
 
 .input-character-name
     position: absolute
-    top: 70%
-    left: 30%
+    top: 72%
+    left: 32%
     width: 450px
     height: 50px
     font-size: 2em
 
 .button-character-start
     position: absolute
-    top: 70%
-    left: 58%
+    top: 72%
+    left: 60%
     width: 100px
     height: 50px
     font-size: 2em
+    background: white
+    border: none
 
-.button-room-start
+.button-intro
     position: absolute
     top: 76%
     left: 65%
     width: 100px
     height: 50px
     font-size: 2em
+    background: white
+    border: none
 
 .intro-text 
     position: absolute
@@ -455,10 +468,10 @@ html, body, .root, .App
 
 .intro-mentor
     position: absolute
-    width: 350px
-    height: 350px
+    width: 310px
+    height: 310px
     right: 68%
-    top: 50%
+    top: 51%
 
 .bed-girl
     position: absolute
@@ -473,5 +486,12 @@ html, body, .root, .App
     height: 400px
     top: 10%
     right: -41%
+
+.coffee-guy
+    position: absolute
+    width: 450px
+    height: 450px
+    top: 10%
+    left: 45%
 
     

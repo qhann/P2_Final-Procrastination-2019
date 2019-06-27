@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import DeskSvg from "./SVGs/DeskSvg.jsx";
 import Artwork from "./Artwork";
-import builtboy from "./builtboy.svg"
+import builtboy from "./Player/builtboy.svg"
 
 
 class Desk extends Component {
