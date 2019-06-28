@@ -61,8 +61,6 @@ function keyReleased() {
 
 //setting keyboard controls, stop snakerino from reversing
 
-
-//the good food
 var food = {
     a: 400,
     b: 300,
@@ -77,7 +75,7 @@ var food = {
     }
 };
 
-//sssnek
+
 var snake = {
     x: 80,
     y: 180,
@@ -91,8 +89,6 @@ var snake = {
 };
 
 
-//Raupe und Pflaume wurden von mir gezeichnet. BG Blatt übernommen
-//the good fruit2
 var fruit2 = {
     m: 400,
     n: 550,
@@ -107,7 +103,6 @@ var fruit2 = {
     }
 };
 
-//rrraupi
 var raupi = {
     c: 100,
     d: 190,
@@ -160,7 +155,7 @@ function draw() {
     food.canv();
     snake.canv();
 
-    // snek eats snack
+    
     if (snake.x === food.a && snake.y === food.b) {
         snekL++;
         score++;
@@ -168,13 +163,13 @@ function draw() {
         food.eat();
     }
 
-    //snakerino moves, extend snak
+    
     snakeBody.push({ x: snake.x, y: snake.y });
     if (snakeBody.length > snekL) {
         snakeBody.splice(0, 1);
     }
 
-    //direction
+ 
     if (dir == "right") {
         snake.x = snake.x + box;
     }
@@ -188,7 +183,6 @@ function draw() {
         snake.y = snake.y + box;
     }
 
-    //collision wall
     for (var i = 0; i < snakeBody.length; i++) {
         if (
             snakeBody.length != 1 &&
@@ -252,7 +246,6 @@ function draw() {
         fruit2.canv();
         raupi.canv();
     
-        // raup eats snack
         if (raupi.c <= fruit2.m+50 && raupi.c >= fruit2.m-50 && raupi.d <= fruit2.n+50&& raupi.d >= fruit2.n-50) {
             robL++;
             score++;
@@ -260,7 +253,6 @@ function draw() {
             fruit2.eat();
         }
     
-        //raupirino moves, extend snak
         raupiBody.push({ c: raupi.c, d: raupi.d });
         if (raupiBody.length > robL) {
             raupiBody.splice(0, 1);
