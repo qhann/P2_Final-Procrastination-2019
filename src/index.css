@@ -330,28 +330,6 @@ html, body, .root, .App {
   transition: transform 0.7s, -webkit-transform 0.7s;
 }
 
-.buttonLunarLander {
-  width: 10%;
-  height: 10%;
-  -webkit-transform: translate(-50%, -50%) scale(0.1, 0.1);
-          transform: translate(-50%, -50%) scale(0.1, 0.1);
-  -webkit-transition: -webkit-transform 0.7s;
-  transition: -webkit-transform 0.7s;
-  transition: transform 0.7s;
-  transition: transform 0.7s, -webkit-transform 0.7s;
-}
-
-.buttonPong {
-  width: 10%;
-  height: 10%;
-  -webkit-transform: translate(-50%, -50%) scale(0.1, 0.1);
-          transform: translate(-50%, -50%) scale(0.1, 0.1);
-  -webkit-transition: -webkit-transform 0.7s;
-  transition: -webkit-transform 0.7s;
-  transition: transform 0.7s;
-  transition: transform 0.7s, -webkit-transform 0.7s;
-}
-
 .gaming-station {
   position: absolute;
   width: 25%;
