@@ -15,39 +15,28 @@ class Cat extends Component {
     catTransform: {}
   };
 
+
   showDropDown() {
     this.setState({ menuOpen: true });
   }
 
-  userInteraction(type) { }
-
   hallucinate() {
     this.setState({
       catTransform: {
-        transform: "scale(150)", 
-        opacity: "0", 
+        transform: "scale(150)",
+        opacity: "0",
         transition: "transform 0.7s ease-in, opacity 1.5s"
       }
     })
   }
 
-  render() {
-    const {
-      position,
-      menuOpen,
-      onClick,
-      catInteraction,
-      hasPlayer,
-      transitionSpeed
-    } = this.props;
+  getPlayerStyles(playerAction) {
     let playerImage,
       playerPostion = {},
       width,
       height;
-    if (!hasPlayer && this.state.playerAction != "none")
-      this.setState({ playerAction: "none" });
 
-    switch (this.state.playerAction) {
+    switch (playerAction) {
       case "pet":
         playerImage = petgirl;
         playerPostion = {
@@ -82,32 +71,35 @@ class Cat extends Component {
         break;
     }
 
-    let playerStyles = {
-      backgroundImage: hasPlayer ? `url(${playerImage})` : "none",
+    return {
+      backgroundImage: this.props.hasPlayer ? `url(${playerImage})` : "none",
       top: playerPostion.top,
       left: playerPostion.left,
       width: width,
       height: height
     };
-    let dropDownOptions = [
+  }
+
+  getDropDownOptions() {
+    return [
       {
         caption: "streicheln",
         action: () => {
-          catInteraction("pet");
+          this.props.catInteraction("pet");
           this.setState({ playerAction: "pet" });
         }
       },
       {
         caption: "füttern",
         action: () => {
-          catInteraction("feed");
+          this.props.catInteraction("feed");
           this.setState({ playerAction: "feed" });
         }
       },
       {
         caption: "spielen",
         action: () => {
-          catInteraction("play");
+          this.props.catInteraction("play");
           this.setState({ playerAction: "play" });
         }
       },
@@ -119,18 +111,26 @@ class Cat extends Component {
         }
       }
     ];
-    console.log(transitionSpeed);
-    
+  }
+
+  render() {
+    const { position, menuOpen, onClick, hasPlayer, transitionSpeed } = this.props;
+
+    if (!hasPlayer && this.state.playerAction != "none") {
+      this.setState({ playerAction: "none" });
+    }
+
+    let playerStyles = this.getPlayerStyles(this.state.playerAction)
+    let dropDownOptions = this.getDropDownOptions()
+
     let styles = {
       transform: `translate(${position.x}px, ${position.y}px)`,
       transition: transitionSpeed
-      // top: position.y,
-      // left: position.x
     };
+
     return (
       <div className={"cat"} style={styles}>
         <div className={"player"} style={playerStyles}>
-          {/* {hasPlayer ? "Player" : ""} */}
         </div>
         <DropDown options={dropDownOptions} visible={menuOpen} />
         <img
