@@ -444,9 +444,12 @@ html, body, .root, .App {
   width: 10%;
 }
 
-.coffee-maker img {
-  width: 100%;
-  height: 100%;
+.coffee-guy {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  top: 10%;
+  left: 45%;
 }
 
 .coffee-path:hover {
@@ -465,7 +468,7 @@ html, body, .root, .App {
   pointer-events: none;
 }
 
-.start p, .characterSelection p {
+.start p, .character-selection p {
   font-size: 10em;
   color: white;
 }
@@ -554,7 +557,7 @@ html, body, .root, .App {
   position: absolute;
   width: 150px;
   height: 150px;
-  right: 35%;
+  right: 38%;
   top: 6%;
 }
 
@@ -564,13 +567,5 @@ html, body, .root, .App {
   height: 400px;
   top: 10%;
   right: -41%;
-}
-
-.coffee-guy {
-  position: absolute;
-  width: 450px;
-  height: 450px;
-  top: 10%;
-  left: 45%;
 }
 /*# sourceMappingURL=index.css.map */
