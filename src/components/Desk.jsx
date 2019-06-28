@@ -9,8 +9,6 @@ class Desk extends Component {
         const { onClick, hasPlayer, time } = this.props;
 
         return (
-            // <div className={"desk"}>
-            //     <div className={"player"} >{hasPlayer ? "." : ""}</div>
             <div className={"desk"}>
                 {hasPlayer ?
                     <img
@@ -18,10 +16,6 @@ class Desk extends Component {
                         className={"desk-guy"}
                     />
                     : null}
-                {/* <object data={deskImage} type="image/svg+xml"></object> */}
-                {/* <svg width="100%" height="100%">
-                    <use xlinkHref={deskImage + "#desk"} id="robot-1" />
-                </svg> */}
                 <DeskSvg onClick={onClick} />
                 <Artwork
                     onClick={onClick}

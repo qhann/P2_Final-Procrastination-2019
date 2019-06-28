@@ -39,26 +39,6 @@ class App extends React.Component {
     }
   }
 
-  // handleStart() {
-  //   this.setState({ currentScreen: "characterSelection" });
-  // }
-
-  // handleIntroStart(gender, name) {
-  //   if (gender && name) {
-  //     this.setState({
-  //       currentScreen: "intro",
-  //       playerName: name,
-  //       gender: gender
-  //     });
-  //   } else {
-  //     console.log("missing information");
-  //   }
-  // }
-
-  // handleIntroEnd() {
-  //   this.setState({ currentScreen: "room" });
-  // }
-
   render() {
     return (
       <div className="App">

@@ -11,6 +11,7 @@ class Bed extends Component {
   render() {
     const { onClick, hasPlayer, time } = this.props;
     let sleepSlower = 20
+
     return (
       <div className={"bed"}>
         {hasPlayer ? (
@@ -33,7 +34,6 @@ class Bed extends Component {
           vertical={true}
         />
         <BedSvg onClick={onClick} />
-        {/* <BedLowerSvg onClick={onClick} /> */}
       </div>
     );
   }
