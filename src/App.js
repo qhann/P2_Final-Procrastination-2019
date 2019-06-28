@@ -8,7 +8,7 @@ import CharacterSelection from "./components/CharacterSelection";
 
 class App extends React.Component {
   state = {
-    currentScreen: "start",
+    currentScreen: "room",
     playerName: "",
     gender: ""
   };

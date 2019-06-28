@@ -35,7 +35,7 @@ class GamingStation extends Component {
     let screenClasses = "screen";
     screenClasses += fullscreen ? " fullscreen" : "";
 
-    if (!fullscreen && this.state.gameNumber) this.handleGameChange(null, 0)
+    if (!fullscreen && this.state.gameNumber != 0) this.setState({gameNumber: 0})
 
     return (
       <div className={"gaming-station "}>
