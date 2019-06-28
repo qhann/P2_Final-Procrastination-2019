@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CoffeeSvg from "./SVGs/CoffeeSvg";
-import coffeeBoy from "./Player/coffeeBoy.svg";
-import coffeeGirl from "./Player/coffeeGirl.svg";
+// import coffeeBoy from "./Player/coffeeBoy.svg";
+// import coffeeGirl from "./Player/coffeeGirl.svg";
 
 class CoffeeMaker extends Component {
     render() {
@@ -9,10 +9,10 @@ class CoffeeMaker extends Component {
 
         return (
             <div className={"coffee-maker"}>
-                {hasPlayer ?
+                {/* {hasPlayer ?
                     <img src={gender == "male" ? coffeeBoy : coffeeGirl} className={"coffee-guy"} />
                     : null
-                }
+                } */}
                 <CoffeeSvg onClick={onClick} />
             </div>
         );

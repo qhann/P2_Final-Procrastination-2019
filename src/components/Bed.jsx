@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import BedSvg from "./SVGs/BedSvg";
-import BedLowerSvg from "./SVGs/BedLowerSvg";
 import Moonlight from "./Moonlight";
 import bedSideMask from "./Masks/bed-mask-side-bw.png";
 import bedTopMask from "./Masks/bed-mask-top-bw.png";
-import sleepgirl1 from "./Player/sleepgirl1.svg";
-import sleepgirl2 from "./Player/sleepgirl2.svg";
+import Player from "./Player"
+
+// import sleepgirl1 from "./Player/sleepgirl1.svg";
+// import sleepgirl2 from "./Player/sleepgirl2.svg";
 
 class Bed extends Component {
   render() {
@@ -15,10 +16,11 @@ class Bed extends Component {
     return (
       <div className={"bed"}>
         {hasPlayer ? (
-          <img
-            src={time % sleepSlower > sleepSlower / 2 ? sleepgirl1 : sleepgirl2}
-            className={"bed-girl"}
-          />
+            <Player gender={"girl"} action={"sleep"} tired={false} />
+        //   <img
+        //     src={time % sleepSlower > sleepSlower / 2 ? sleepgirl1 : sleepgirl2}
+        //     className={"bed-girl"}
+        //   />
         ) : null}
         <Moonlight time={time} mask={bedTopMask} selector={"bed-top"} />
         <Moonlight

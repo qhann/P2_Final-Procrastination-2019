@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import DeskSvg from "./SVGs/DeskSvg.jsx";
 import Artwork from "./Artwork";
-import builtboy from "./Player/builtboy.svg"
-import builtboy2 from "./Player/builtboy2.svg"
+// import builtboy from "./Player/builtboy.svg"
+// import builtboy2 from "./Player/builtboy2.svg"
 
 class Desk extends Component {
     render() {
@@ -10,12 +10,12 @@ class Desk extends Component {
 
         return (
             <div className={"desk"}>
-                {hasPlayer ?
+                {/* {hasPlayer ?
                     <img
                         src={time % 1000  > 9 ? builtboy: builtboy2 }
                         className={"desk-guy"}
                     />
-                    : null}
+                    : null} */}
                 <DeskSvg onClick={onClick} />
                 <Artwork
                     onClick={onClick}

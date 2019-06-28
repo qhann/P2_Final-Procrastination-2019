@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import cat from "./SVGs/cat.svg";
 import DropDown from "./DropDown";
-import petgirl from "./Player/petgirl.svg";
-import playgirl from "./Player/playgirl.svg";
-import builtgirl from "./Player/builtgirl.svg";
-import feedgirl from "./Player/feedgirl.svg";
-import girl from "./Player/girl.svg";
+// import petgirl from "./Player/petgirl.svg";
+// import playgirl from "./Player/playgirl.svg";
+// import builtgirl from "./Player/builtgirl.svg";
+// import feedgirl from "./Player/feedgirl.svg";
+// import girl from "./Player/girl.svg";
 
 class Cat extends Component {
   state = {
     img: cat,
     menuOpen: false,
-    playerAction: builtgirl,
+    playerAction: "none",
     catTransform: {}
   };
 
@@ -38,7 +38,7 @@ class Cat extends Component {
 
     switch (playerAction) {
       case "pet":
-        playerImage = petgirl;
+        // playerImage = petgirl;
         playerPostion = {
           top: "-185px",
           left: "-120px"
@@ -47,7 +47,7 @@ class Cat extends Component {
         width = "168px";
         break;
       case "feed":
-        playerImage = feedgirl;
+        // playerImage = feedgirl;
         playerPostion = {
           top: "-85px",
           left: "-131px"
@@ -55,7 +55,7 @@ class Cat extends Component {
         width = "168px";
         break;
       case "play":
-        playerImage = playgirl;
+        // playerImage = playgirl;
         playerPostion = {
           top: "-105px",
           left: "-131px"
@@ -63,7 +63,7 @@ class Cat extends Component {
         width = "168px";
         break;
       case "none":
-        playerImage = girl;
+        // playerImage = girl;
         playerPostion = {
           top: "-278px",
           left: "-124px"
@@ -130,8 +130,8 @@ class Cat extends Component {
 
     return (
       <div className={"cat"} style={styles}>
-        <div className={"player"} style={playerStyles}>
-        </div>
+        {/* <div className={"player"} style={playerStyles}>
+        </div> */}
         <DropDown options={dropDownOptions} visible={menuOpen} />
         <img
           src={this.state.img}

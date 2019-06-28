@@ -9,7 +9,7 @@ class MentorTip extends Component {
 
     return (
       <div className={"mentor-tip"}>
-        <img src={mentorImage} alt="" />
+        <img src={mentorImage} alt={"mentor"} />
         <p>
           {text}
         </p>
