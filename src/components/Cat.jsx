@@ -11,14 +11,25 @@ class Cat extends Component {
   state = {
     img: cat,
     menuOpen: false,
-    playerAction: builtgirl
+    playerAction: builtgirl,
+    catTransform: {}
   };
 
   showDropDown() {
     this.setState({ menuOpen: true });
   }
 
-  userInteraction(type) {}
+  userInteraction(type) { }
+
+  hallucinate() {
+    this.setState({
+      catTransform: {
+        transform: "scale(150)", 
+        opacity: "0", 
+        transition: "transform 0.7s ease-in, opacity 1.5s"
+      }
+    })
+  }
 
   render() {
     const {
@@ -98,6 +109,13 @@ class Cat extends Component {
           catInteraction("play");
           this.setState({ playerAction: "play" });
         }
+      },
+      {
+        caption: "hallucinate",
+        action: () => {
+          this.hallucinate();
+          setTimeout(() => this.setState({ catTransform: {} }), 1000);
+        }
       }
     ];
     let styles = {
@@ -105,10 +123,11 @@ class Cat extends Component {
       // top: position.y,
       // left: position.x
     };
+    let catStyles = { transform: `${this.state.catTransform}` }
     return (
       <div className={"cat"} style={styles}>
         <div className={"player"} style={playerStyles}>
-          {hasPlayer ? "Player" : ""}
+          {/* {hasPlayer ? "Player" : ""} */}
         </div>
         <DropDown options={dropDownOptions} visible={menuOpen} />
         <img
@@ -116,6 +135,7 @@ class Cat extends Component {
           className={"cat-image"}
           onClick={() => onClick()}
           alt={"cat"}
+          style={this.state.catTransform}
         />
       </div>
     );

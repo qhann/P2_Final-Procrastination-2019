@@ -20,7 +20,9 @@ class GamingStation extends Component {
   }
 
   handleGameChange(e, number) {
-    if (this.state.fullscreen) {
+    console.log(this.props.fullscreen);
+    if (this.props.fullscreen) {
+      
       if (e) e.stopPropagation();
       this.setState({ gameNumber: number })
       // this.state.gameNumber = number;

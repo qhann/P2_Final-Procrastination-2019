@@ -145,16 +145,24 @@ html, body, .root, .App {
   text-align: left;
   width: 6%;
   z-index: 10;
+  -webkit-transition: -webkit-transform 1s;
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s;
 }
 
 .cat-image {
   width: 100%;
   height: 100%;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  opacity: 1;
 }
 
 .drop-down {
   position: absolute;
   top: -40px;
+  z-index: 10;
 }
 
 .artwork {
@@ -391,6 +399,11 @@ html, body, .root, .App {
   z-index: 20;
 }
 
+.screen.fullscreen .button-game-select:hover {
+  -webkit-filter: drop-shadow(-30px 10px 4px #FF8311);
+          filter: drop-shadow(-30px 10px 4px #FF8311);
+}
+
 .screen.fullscreen:hover {
   border: none;
   -webkit-box-shadow: none;
@@ -401,15 +414,6 @@ html, body, .root, .App {
   position: absolute;
   -webkit-transform: translate(-50%, -50%) scale(1, 1);
           transform: translate(-50%, -50%) scale(1, 1);
-}
-
-.screen.fullscreen::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  right: -50%;
-  bottom: -50%;
-  left: -50%;
 }
 
 .desk {

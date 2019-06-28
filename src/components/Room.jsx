@@ -23,11 +23,7 @@ class App extends React.Component {
       exhaustion: 0
     },
     mentorText:
-      "Hefte raus, Klassenarbeit, " +
-      this.props.playerName +
-      "! You are " +
-      this.props.gender +
-      ".",
+      "Hefte raus, Klassenarbeit!",
     cat: {
       hasPlayer: false,
       position: {
@@ -39,7 +35,8 @@ class App extends React.Component {
         x: 1,
         y: 1
       },
-      menuOpen: false
+      menuOpen: false,
+      interaction: "none"
     },
     desk: {
       hasPlayer: false,
@@ -55,7 +52,7 @@ class App extends React.Component {
       hasPlayer: false,
       fullscreen: false
     },
-    frameRate: 15,
+    frameRate: 2,
     globalInterval: {}
   };
 
@@ -64,6 +61,7 @@ class App extends React.Component {
       () => this.updateTimed(),
       1000 / this.state.frameRate
     );
+
     this.setState(prevState =>
       update(prevState, {
         cat: {
@@ -78,7 +76,7 @@ class App extends React.Component {
   }
 
   componentWillUnmount() {
-    clearImmediate(this.state.globalInterval);
+    clearInterval(this.state.globalInterval);
   }
 
   updateTimed() {
@@ -89,12 +87,13 @@ class App extends React.Component {
         "exhaustion",
         prevState.vitalStats.exhaustion
       );
-      let newCat = this.moveCat(prevState.cat);
+      let newCat = this.state.time.toFixed(1) % 6 == 0 ? this.moveCat(prevState.cat) : prevState.cat;
+      console.log(this.state.time.toFixed(1) % 6);
 
       //console.log(prevState);
 
       return update(prevState, {
-        time: { $set: prevState.time + (50 / frameDuration) * 2 },
+        time: { $set: prevState.time + (1 / this.state.frameRate) * 2 },
         vitalStats: {
           health: {
             $set: newHealth
@@ -114,44 +113,23 @@ class App extends React.Component {
   }
 
   moveCat(prevCat) {
-    let dx, dy, newPos;
+    let dx, dy, newCat;
     let newDirection = {};
     if (!this.state.cat.moving) return prevCat;
 
-    if (
-      prevCat.position.x < 1920 /*window.innerWidth*/ * 0.2 ||
-      prevCat.position.x > 1920 /*window.innerWidth*/ * 0.8
-    ) {
-      newDirection.x =
-        prevCat.position.x < 1920 /*window.innerWidth*/ * 0.5 ? true : false;
-    } else {
-      newDirection.x = prevCat.direction.x;
-    }
-    if (
-      prevCat.position.y > 1080 /*window.innerHeight*/ * 0.9 ||
-      prevCat.position.y < 1080 /*window.innerHeight*/ * 0.6
-    ) {
-      newDirection.y =
-        prevCat.position.y < 1080 /*window.innerHeight*/ * 0.7 ? true : false;
-    } else {
-      newDirection.y = prevCat.direction.y;
+    let newPosition = {
+      x: 1920 * Math.random(),
+      y: 800 + 200 * Math.random(),
     }
 
-    dx = newDirection.x ? 1 : -1;
-    dy = newDirection.y ? 1 : -1;
-
-    newPos = update(prevCat, {
+    newCat = update(prevCat, {
       position: {
-        x: { $set: ~~(prevCat.position.x + dx) },
-        y: { $set: ~~(prevCat.position.y + dy) }
+        x: { $set: newPosition.x },
+        y: { $set: newPosition.y }
       },
-      direction: {
-        x: { $set: newDirection.x },
-        y: { $set: newDirection.y }
-      }
     });
 
-    return newPos;
+    return newCat;
   }
 
   updateVital(attribute, prevStat) {
@@ -216,18 +194,6 @@ class App extends React.Component {
         }
       })
     );
-  }
-
-  toggleWorking() {
-    console.log("toggle");
-
-    let newAction;
-    if (this.state.playerAction === "work") {
-      newAction = null;
-    } else {
-      newAction = "work";
-    }
-    this.setState({ playerAction: newAction });
   }
 
   handleBedClick() {

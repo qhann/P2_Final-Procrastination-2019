@@ -10,12 +10,12 @@ import sleepgirl2 from "./Player/sleepgirl2.svg";
 class Bed extends Component {
   render() {
     const { onClick, hasPlayer, time } = this.props;
-
+    let sleepSlower = 20
     return (
       <div className={"bed"}>
         {hasPlayer ? (
           <img
-            src={time % 16 > 9 ? sleepgirl1 : sleepgirl2}
+            src={time % sleepSlower > sleepSlower / 2 ? sleepgirl1 : sleepgirl2}
             className={"bed-girl"}
           />
         ) : null}
