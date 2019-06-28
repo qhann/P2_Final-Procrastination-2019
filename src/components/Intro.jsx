@@ -3,10 +3,10 @@ import Mentor from "./SVGs/mentor.svg";
 
 class Intro extends Component {
   render() {
-    const { endIntro, playerName } = this.props;
+    const { nextScreen, playerName } = this.props;
     return (
       <div className={"intro"}>
-        <button className={"button-intro"} onClick={endIntro}>
+        <button className={"button-intro"} onClick={nextScreen}>
           Start
         </button>
         <p className={"intro-text"}>

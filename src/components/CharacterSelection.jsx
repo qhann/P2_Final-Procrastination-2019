@@ -17,7 +17,7 @@ class CharacterSelection extends Component {
   }
 
   render() {
-    const { startIntro } = this.props;
+    const { nextScreen } = this.props;
 
     let genderHighlight = {
       filter: "drop-shadow(5px 5px 10px red)"
@@ -44,7 +44,7 @@ class CharacterSelection extends Component {
         />
         <button
           className={"button-character-start"}
-          onClick={() => startIntro(this.state.gender, this.state.name)}
+          onClick={() => nextScreen(this.state.gender, this.state.name)}
         >
           Intro
         </button>

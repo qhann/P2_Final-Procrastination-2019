@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Patrick+Hand+SC|Stylish|Varela+Round|Walter+Turncoat|DM+Sans|Nanum+Gothic|Arimo&display=swap')
+
 *
     padding: 0
     margin: 0
-    font-family: "Helvetica"
+    font-family: 'Stylish', cursive
     user-select: none
 
 html 
@@ -56,6 +58,7 @@ html, body, .root, .App
 .status-label
     position: absolute
     color: white
+    font-size: 1.5em
     // mix-blend-mode: difference
     // left: -100px
     right: 110%
@@ -92,15 +95,18 @@ html, body, .root, .App
 
 .clock
     position: absolute
-    top: 3%
-    left: 1% 
+    top: 2%
+    left: -1% 
     width: 438px
     height: 5%
+    transform: scale(0.8)
     .days
+        position: relative
         font-size: 67px
         text-align: left
         color: white
         width: 200px
+        left: 20px
         // background: darkblue
         border-radius: 1%
     .time
@@ -111,8 +117,8 @@ html, body, .root, .App
         background: black
         border-radius: 10px
         position: absolute
-        top: 10%
-        right: 0%
+        top: 170%
+        left: 10px
         width: 180px
     
 .cat
@@ -121,7 +127,7 @@ html, body, .root, .App
     text-align: left
     width: 6%
     z-index: 10
-    transition: transform 1s
+    transition: transform 1s linear
 
 
 .cat-image
@@ -392,7 +398,7 @@ html, body, .root, .App
 
 .coffee-guy
     position: absolute
-    width: 380px
+    width: 380px 
     height: 380px
     top: 10%
     left: 45%

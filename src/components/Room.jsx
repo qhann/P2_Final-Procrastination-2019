@@ -87,8 +87,8 @@ class App extends React.Component {
         "exhaustion",
         prevState.vitalStats.exhaustion
       );
-      let newCat = this.state.time.toFixed(1) % 6 == 0 ? this.moveCat(prevState.cat) : prevState.cat;
-      console.log(this.state.time.toFixed(1) % 6);
+      let newCat = this.state.time.toFixed(1) % 24 == 0 ? this.moveCat(prevState.cat) : prevState.cat;
+      // console.log(this.state.time.toFixed(1) % 6);
 
       //console.log(prevState);
 
@@ -118,15 +118,21 @@ class App extends React.Component {
     if (!this.state.cat.moving) return prevCat;
 
     let newPosition = {
-      x: 1920 * Math.random(),
-      y: 800 + 200 * Math.random(),
+      x: 150 + 1520 * Math.random(),
+      y: 800 + 150 * Math.random(),
     }
+    let a = prevCat.position.x - newPosition.x
+    let b = prevCat.position.y - newPosition.y
+    let distance = Math.sqrt( a*a + b*b )
+    // console.log(distance);
+    
 
     newCat = update(prevCat, {
       position: {
         x: { $set: newPosition.x },
         y: { $set: newPosition.y }
       },
+      transitionSpeed: {$set: `transform ${distance/400}s linear`}
     });
 
     return newCat;
@@ -280,8 +286,8 @@ class App extends React.Component {
         <Moonlight time={time} selector={"room"} mask={roomMask} />
 
         <Window time={~~this.state.time} />
-        <StatusBar label={"health"} value={~~vitalStats.health} />
-        <StatusBar label={"exhaustion"} value={~~vitalStats.exhaustion} />
+        <StatusBar label={"Gesundheit"} selector={"health"} value={~~vitalStats.health} />
+        <StatusBar label={"Erschöpfung"} selector={"exhaustion"} value={~~vitalStats.exhaustion} />
 
         <Clock time={this.state.time} />
         <MentorTip text={this.state.mentorText} />
@@ -290,6 +296,7 @@ class App extends React.Component {
           onClick={() => this.handleCatClick()}
           catInteraction={action => this.handleCatInteraction(action)}
           position={cat.position}
+          transitionSpeed={cat.transitionSpeed}
           menuOpen={cat.menuOpen}
         />
         <GamingStation

@@ -8,46 +8,75 @@ import CharacterSelection from "./components/CharacterSelection";
 
 class App extends React.Component {
   state = {
-    current: "room",
+    currentScreen: "start",
     playerName: "",
     gender: ""
   };
 
-  handleStart() {
-    this.setState({ current: "characterSelection" });
-  }
-
-  handleIntroStart(gender, name) {
-    if (gender && name) {
-      this.setState({ current: "intro", playerName: name, gender: gender });
-    } else {
-      console.log("missing information");
+  switchScreen(destination, props) {
+    let newScreen, newProps;
+    switch (destination) {
+      case "start":
+        newScreen = "start";
+        break;
+      case "characterSelection":
+        newScreen = "characterSelection";
+        break;
+      case "intro":
+        if (props.name && props.gender) {
+          newScreen = "intro"
+          newProps = {playerName: props.name, gender: props.gender}
+        }
+        break;
+      case "room":
+        newScreen = "room";
+        break;
+      case "end":
+        break;
+    }
+    if (newScreen) {
+      this.setState({ currentScreen: newScreen, ...newProps });
     }
   }
 
-  handleIntroEnd() {
-    this.setState({ current: "room" });
-  }
+  // handleStart() {
+  //   this.setState({ currentScreen: "characterSelection" });
+  // }
+
+  // handleIntroStart(gender, name) {
+  //   if (gender && name) {
+  //     this.setState({
+  //       currentScreen: "intro",
+  //       playerName: name,
+  //       gender: gender
+  //     });
+  //   } else {
+  //     console.log("missing information");
+  //   }
+  // }
+
+  // handleIntroEnd() {
+  //   this.setState({ currentScreen: "room" });
+  // }
 
   render() {
     return (
       <div className="App">
-        {this.state.current == "start" ? (
-          <Start start={() => this.handleStart()} />
+        {this.state.currentScreen == "start" ? (
+          <Start nextScreen={() => this.switchScreen("characterSelection")} />
         ) : null}
-        {this.state.current == "characterSelection" ? (
+        {this.state.currentScreen == "characterSelection" ? (
           <CharacterSelection
-            startIntro={(gender, name) => this.handleIntroStart(gender, name)}
+            nextScreen={(gender, name) => this.switchScreen("intro", {gender, name})}
           />
         ) : null}
-        {this.state.current == "intro" ? (
+        {this.state.currentScreen == "intro" ? (
           <Intro
             playerName={this.state.playerName}
-            endIntro={() => this.handleIntroEnd()}
+            nextScreen={() => this.switchScreen("room")}
           />
         ) : null}
-
-        {this.state.current == "room" ? (
+        {this.state.currentScreen == "room" ? (
           <Room playerName={this.state.playerName} gender={this.state.gender} />
         ) : null}
       </div>

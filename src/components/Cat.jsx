@@ -37,7 +37,8 @@ class Cat extends Component {
       menuOpen,
       onClick,
       catInteraction,
-      hasPlayer
+      hasPlayer,
+      transitionSpeed
     } = this.props;
     let playerImage,
       playerPostion = {},
@@ -118,12 +119,14 @@ class Cat extends Component {
         }
       }
     ];
+    console.log(transitionSpeed);
+    
     let styles = {
-      transform: `translate(${position.x}px, ${position.y}px)`
+      transform: `translate(${position.x}px, ${position.y}px)`,
+      transition: transitionSpeed
       // top: position.y,
       // left: position.x
     };
-    let catStyles = { transform: `${this.state.catTransform}` }
     return (
       <div className={"cat"} style={styles}>
         <div className={"player"} style={playerStyles}>

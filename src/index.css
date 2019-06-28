@@ -1,7 +1,8 @@
+@import url("https://fonts.googleapis.com/css?family=Patrick+Hand+SC|Stylish|Varela+Round|Walter+Turncoat|DM+Sans|Nanum+Gothic|Arimo&display=swap");
 * {
   padding: 0;
   margin: 0;
-  font-family: "Helvetica";
+  font-family: 'Stylish', cursive;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -72,6 +73,7 @@ html, body, .root, .App {
 .status-label {
   position: absolute;
   color: white;
+  font-size: 1.5em;
   right: 110%;
   text-transform: capitalize;
 }
@@ -113,17 +115,21 @@ html, body, .root, .App {
 
 .clock {
   position: absolute;
-  top: 3%;
-  left: 1%;
+  top: 2%;
+  left: -1%;
   width: 438px;
   height: 5%;
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
 }
 
 .clock .days {
+  position: relative;
   font-size: 67px;
   text-align: left;
   color: white;
   width: 200px;
+  left: 20px;
   border-radius: 1%;
 }
 
@@ -135,8 +141,8 @@ html, body, .root, .App {
   background: black;
   border-radius: 10px;
   position: absolute;
-  top: 10%;
-  right: 0%;
+  top: 170%;
+  left: 10px;
   width: 180px;
 }
 
@@ -145,10 +151,10 @@ html, body, .root, .App {
   text-align: left;
   width: 6%;
   z-index: 10;
-  -webkit-transition: -webkit-transform 1s;
-  transition: -webkit-transform 1s;
-  transition: transform 1s;
-  transition: transform 1s, -webkit-transform 1s;
+  -webkit-transition: -webkit-transform 1s linear;
+  transition: -webkit-transform 1s linear;
+  transition: transform 1s linear;
+  transition: transform 1s linear, -webkit-transform 1s linear;
 }
 
 .cat-image {
