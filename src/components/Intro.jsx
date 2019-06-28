@@ -22,12 +22,11 @@ class Intro extends Component {
           nicht ausreichend kreativ ausgelastet. Nun möchtest du mit deiner
           ersten Skulptur beginnen, die du daraufhin veröffentlichen kannst. Du
           wirst ab jetzt drei Tage deine Freizeit zwischen 18 Uhr abends und 6
-          Uhr morgens erleben und erhältst die Chance deinen Traum zu erfüllen.
-          Während dem Arbeiten an der Skulptur ist es möglich, Fleißpunkte zu
-          sammeln, wenn du dich nicht zu sehr von anderen Faktoren ablenken
-          lässt. Du solltest immer deine Gesundheit im Blick behalten und
-          dementsprechend überlegte Entscheidungen treffen. Diese werden
-          Konsequenzen für deine Zukunft haben.
+          Uhr morgens erleben und erhältst die Chance deinen Traum zu erfüllen,
+          wenn du dich von anderen Faktoren nicht zu sehr ablenken lässt. Du
+          solltest immer deine Gesundheit im Blick behalten und dementsprechend
+          überlegte Entscheidungen treffen. Diese werden Konsequenzen für deine
+          Zukunft haben.
         </p>
         <img src={Mentor} className={"intro-mentor"} />
       </div>

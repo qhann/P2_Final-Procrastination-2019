@@ -461,7 +461,7 @@ html, body, .root, .App {
   pointer-events: none;
 }
 
-.start p, .characterSelection p {
+.start p, .character-selection p {
   font-size: 10em;
   color: white;
 }

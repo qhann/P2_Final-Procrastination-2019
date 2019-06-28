@@ -23,7 +23,7 @@ class CharacterSelection extends Component {
       filter: "drop-shadow(5px 5px 10px red)"
     };
     return (
-      <div className={"characterSelection"}>
+      <div className={"character-selection"}>
         <p>Charakterauswahl:</p>
         <img
           src={Boy}
