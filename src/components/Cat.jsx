@@ -3,11 +3,6 @@ import catSit from "./Cat/catSit.svg";
 import DropDown from "./DropDown";
 import Player from "./Player";
 import catScary from "./Cat/catScary.svg"
-// import petgirl from "./Player/petgirl.svg";
-// import playgirl from "./Player/playgirl.svg";
-// import builtgirl from "./Player/builtgirl.svg";
-// import feedgirl from "./Player/feedgirl.svg";
-// import girl from "./Player/girl.svg";
 
 class Cat extends Component {
   state = {
