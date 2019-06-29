@@ -29,7 +29,6 @@ class Cat extends Component {
         transition: "transform 0.7s ease-in, opacity 1.5s"
       },
       img: catScary
-      
     });
     setTimeout(() => this.setState({ catTransform: {}, img: catSit }), 200);
   }
@@ -90,21 +89,18 @@ class Cat extends Component {
         caption: "streicheln",
         action: () => {
           this.props.catInteraction("pet");
-          this.setState({ playerAction: "pet" });
         }
       },
       {
         caption: "füttern",
         action: () => {
           this.props.catInteraction("feed");
-          this.setState({ playerAction: "feed" });
         }
       },
       {
         caption: "spielen",
         action: () => {
           this.props.catInteraction("play");
-          this.setState({ playerAction: "play" });
         }
       },
       {
@@ -146,12 +142,11 @@ class Cat extends Component {
           <Player time={time} gender={player.gender} action={player.action} tiredness={player.tiredness} />
         ) : null}
         <DropDown options={dropDownOptions} isVisible={menuOpen} />
-        <img
-          src={this.state.img}
+        <div
+          // src={this.state.img}
           className={"cat-image"}
           onClick={() => onClick()}
-          alt={"cat"}
-          style={this.state.catTransform}
+          style={{...this.state.catTransform, backgroundImage: `url(${this.state.img})`}}
         />
       </div>
     );
