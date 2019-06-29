@@ -48,7 +48,7 @@ class Room extends React.Component {
       hasPlayer: false,
       fullscreen: false
     },
-    frameRate: 15,
+    frameRate: 6,
     globalInterval: {}
   };
 
@@ -107,8 +107,8 @@ class Room extends React.Component {
     if (!this.state.cat.moving) return prevCat;
 
     newPosition = {
-      x: 150 + 1520 * Math.random(),
-      y: 800 + 150 * Math.random()
+      x: ~~(150 + 1520 * Math.random()),
+      y: ~~(800 + 150 * Math.random())
     };
 
     dx = prevCat.position.x - newPosition.x;
@@ -200,6 +200,8 @@ class Room extends React.Component {
   }
 
   handleCatClick() {
+    console.log(this.state.cat.menuOpen);
+    
     let cat = this.state.cat;
     this.setState(prevState =>
       update(prevState, {
@@ -267,12 +269,52 @@ class Room extends React.Component {
     let coffee = this.state.coffee;
     let gamingStation = this.state.gamingStation;
     let time = ~~(this.state.time * 100) / 100;
+    let player = {
+      gender: this.props.gender,
+      tiredness: "rested"
+    }
 
     return (
       <div className="Room">
         <img src={room} className="room" alt="room" />
-        <Moonlight time={time} selector={"room"} mask={roomMask} />
 
+        <Cat
+          hasPlayer={cat.hasPlayer}
+          player={{...player, action: "none"}}
+          onClick={() => this.handleCatClick()}
+          catInteraction={action => this.handleCatInteraction(action)}
+          position={cat.position}
+          transition={cat.transition}
+          menuOpen={cat.menuOpen}
+          time={time}
+          />
+        <GamingStation
+          hasPlayer={gamingStation.hasPlayer}
+          player={{...player, action: "none" }}
+          onClick={() => this.handleGameStationClick()}
+          fullscreen={gamingStation.fullscreen}
+          time={time}
+          />
+        <Bed
+          hasPlayer={bed.hasPlayer}
+          player={{...player, action: "sleep" }}
+          onClick={() => this.handleBedClick()}
+          time={time}
+          />
+        <Desk
+          hasPlayer={desk.hasPlayer}
+          player={{...player, action: "build" }}
+          onClick={() => this.handleDeskClick()}
+          time={time}
+          />
+        <CoffeeMaker
+          hasPlayer={coffee.hasPlayer}
+          player={{...player, action: "coffee"}}
+          onClick={() => this.handleCoffeeMakerClick()}
+          time={time}
+          />
+
+        <Moonlight time={time} selector={"room"} mask={roomMask} />
         <Window time={~~this.state.time} />
         <StatusBar
           label={"Gesundheit"}
@@ -287,36 +329,6 @@ class Room extends React.Component {
 
         <Clock time={this.state.time} />
         <MentorTip text={this.state.mentorText} />
-        <Cat
-          hasPlayer={cat.hasPlayer}
-          onClick={() => this.handleCatClick()}
-          catInteraction={action => this.handleCatInteraction(action)}
-          position={cat.position}
-          transition={cat.transition}
-          menuOpen={cat.menuOpen}
-        />
-        <GamingStation
-          hasPlayer={gamingStation.hasPlayer}
-          onClick={() => this.handleGameStationClick()}
-          fullscreen={gamingStation.fullscreen}
-          time={time}
-        />
-        <Bed
-          hasPlayer={bed.hasPlayer}
-          onClick={() => this.handleBedClick()}
-          time={time}
-        />
-        {/* <BedLowerSvg/> */}
-
-        <Desk
-          hasPlayer={desk.hasPlayer}
-          onClick={() => this.handleDeskClick()}
-          time={time}
-        />
-        <CoffeeMaker
-          hasPlayer={coffee.hasPlayer}
-          onClick={() => this.handleCoffeeMakerClick()}
-        />
       </div>
     );
   }

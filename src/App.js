@@ -1,16 +1,18 @@
 import React from "react";
 import "./App.css";
 import update from "immutability-helper";
+
 import Room from "./components/Room";
 import Intro from "./components/Intro";
 import Start from "./components/Start";
 import CharacterSelection from "./components/CharacterSelection";
+import EndScreen from "./components/EndScreen";
 
 class App extends React.Component {
   state = {
     currentScreen: "room",
     playerName: "",
-    gender: ""
+    gender: "boy"
   };
 
   switchScreen(destination, props) {

@@ -7,17 +7,13 @@ import Player from "./Player"
 
 class Bed extends Component {
   render() {
-    const { onClick, hasPlayer, time } = this.props;
+    const { onClick, hasPlayer, time, player } = this.props;
     let sleepSlower = 20
 
     return (
       <div className={"bed"}>
         {hasPlayer ? (
-            <Player gender={"boy"} action={"sleep"} tiredness={"rested"} />
-        //   <img
-        //     src={time % sleepSlower > sleepSlower / 2 ? sleepgirl1 : sleepgirl2}
-        //     className={"bed-girl"}
-        //   />
+            <Player time={time} gender={player.gender} action={player.action} tiredness={player.tiredness} />
         ) : null}
         <Moonlight time={time} mask={bedTopMask} selector={"bed-top"} />
         <Moonlight

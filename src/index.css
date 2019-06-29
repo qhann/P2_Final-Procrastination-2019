@@ -469,6 +469,90 @@ html, body, .root, .App {
   height: 130px;
 }
 
+.player.build.girl {
+  height: 410px;
+  top: 40px;
+  left: 230px;
+}
+
+.player.build.boy {
+  height: 410px;
+  top: 40px;
+  left: 230px;
+}
+
+.player.coffee.girl {
+  height: 410px;
+  top: -50px;
+  left: 160px;
+}
+
+.player.coffee.boy {
+  height: 410px;
+  top: -50px;
+  left: 160px;
+}
+
+.player.coffee.girl {
+  height: 410px;
+  top: -110px;
+  left: 160px;
+}
+
+.player.coffee.boy {
+  height: 410px;
+  top: -110px;
+  left: 160px;
+}
+
+.player.none.girl {
+  height: 410px;
+  top: -270px;
+  left: 100px;
+}
+
+.player.none.boy {
+  height: 410px;
+  top: -270px;
+  left: 100px;
+}
+
+.player.pet.girl {
+  height: 280px;
+  top: -170px;
+  left: -120px;
+}
+
+.player.pet.boy {
+  height: 280px;
+  top: -170px;
+  left: -120px;
+}
+
+.player.feed.girl {
+  height: 280px;
+  top: -110px;
+  left: -180px;
+}
+
+.player.feed.boy {
+  height: 280px;
+  top: -110px;
+  left: -180px;
+}
+
+.player.play.girl {
+  height: 280px;
+  top: -140px;
+  left: -180px;
+}
+
+.player.play.boy {
+  height: 280px;
+  top: -140px;
+  left: -180px;
+}
+
 .start p, .character-selection p {
   font-size: 10em;
   color: white;
