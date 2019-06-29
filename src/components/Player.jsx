@@ -36,8 +36,8 @@ import buildBoy_2_tiredest from "./Player/buildBoy-2-tiredest.svg";
 import coffeeGirl from "./Player/coffeeGirl.svg";
 import coffeeGirl_tired from "./Player/coffeeGirl-tired.svg";
 import coffeeGirl_tiredest from "./Player/coffeeGirl-tiredest.svg";
-import coffeeGirl_2 from "./Player/coffeeGirl.svg";
-import coffeeGirl_2_tired from "./Player/coffeeGirl-tired.svg";
+import coffeeGirl_2 from "./Player/coffeeGirl-2.svg";
+import coffeeGirl_2_tired from "./Player/coffeeGirl-2-tired.svg";
 import coffeeGirl_2_tiredest from "./Player/coffeeGirl-tiredest.svg";
 import coffeeBoy from "./Player/coffeeBoy.svg";
 import coffeeBoy_tired from "./Player/coffeeBoy-tired.svg";
@@ -152,13 +152,14 @@ class Player extends Component {
     let useImage = playerImage[gender][action][tiredness]
     // console.log(~~time);
     
+
     if (Array.isArray(useImage)) {
-        let timer = (time.toFixed(1) % (frameDuration || 1) == 0)
+        let timer = (time.toFixed(1) % (frameDuration || 1) >= (frameDuration / 2 || 0.5))
         useImage = timer ? useImage[0] : useImage[1]
     }
 
     return (
-      <img className={`player ${gender} ${action}`} src={useImage} alt="player-image"/>
+      <img className={`player ${gender} ${action}`} src={useImage} alt=""/>
     );
   }
 }

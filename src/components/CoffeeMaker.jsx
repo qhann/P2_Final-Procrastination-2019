@@ -10,7 +10,7 @@ class CoffeeMaker extends Component {
         return (
             <div className={"coffee-maker"}>
                 {hasPlayer ? (
-                    <Player time={time} gender={player.gender} action={player.action} tiredness={player.tiredness} />
+                    <Player time={time} frameDuration={10} gender={player.gender} action={player.action} tiredness={player.tiredness} />
                 ) : null}
                 <CoffeeSvg onClick={onClick} />
             </div>
