@@ -443,13 +443,23 @@ html, body, .root, .App {
 
 .player {
   position: absolute;
-  top: -120%;
-  left: -80%;
-  height: 500px;
   background-repeat: no-repeat;
   font-size: 3em;
   color: red;
   pointer-events: none;
+  z-index: 10;
+}
+
+.player.sleep.girl {
+  top: 63px;
+  left: 288px;
+  height: 136px;
+}
+
+.player.sleep.boy {
+  top: 77px;
+  left: 275px;
+  height: 130px;
 }
 
 .start p, .character-selection p {

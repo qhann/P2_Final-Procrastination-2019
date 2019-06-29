@@ -16,7 +16,7 @@ class Bed extends Component {
     return (
       <div className={"bed"}>
         {hasPlayer ? (
-            <Player gender={"girl"} action={"sleep"} tired={false} />
+            <Player gender={"boy"} action={"sleep"} tiredness={"rested"} />
         //   <img
         //     src={time % sleepSlower > sleepSlower / 2 ? sleepgirl1 : sleepgirl2}
         //     className={"bed-girl"}

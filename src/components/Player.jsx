@@ -2,36 +2,36 @@ import React, { Component } from "react";
 
 import boy from "./Player/boy.svg";
 import boy_tired from "./Player/boy-tired.svg";
-import boy_tiredest from "./Player/boy-tiredest.svg";
+// import boy_tiredest from "./Player/boy-tiredest.svg";
 import girl from "./Player/girl.svg";
 import girl_tired from "./Player/girl-tired.svg";
-import girl_tiredest from "./Player/girl-tiredest.svg";
+// import girl_tiredest from "./Player/girl-tiredest.svg";
 
 import sleepGirl from "./Player/sleepGirl.svg";
 import sleepGirl_tired from "./Player/sleepGirl-tired.svg";
-import sleepGirl_tiredest from "./Player/sleepGirl-tiredest.svg";
+// import sleepGirl_tiredest from "./Player/sleepGirl-tiredest.svg";
 import sleepGirl_2 from "./Player/sleepGirl-2.svg";
 import sleepGirl_2_tired from "./Player/sleepGirl-2-tired.svg";
-import sleepGirl_2_tiredest from "./Player/sleepGirl-2est-tired.svg";
+// import sleepGirl_2_tiredest from "./Player/sleepGirl-2-tiredest.svg";
 import sleepBoy from "./Player/sleepBoy.svg";
 import sleepBoy_tired from "./Player/sleepBoy-tired.svg";
-import sleepBoy_tiredest from "./Player/sleepBoy-tiredest.svg";
+// import sleepBoy_tiredest from "./Player/sleepBoy-tiredest.svg";
 import sleepBoy_2 from "./Player/sleepBoy-2.svg";
 import sleepBoy_2_tired from "./Player/sleepBoy-2-tired.svg";
-import sleepBoy_2_tiredest from "./Player/sleepBoy-2est-tired.svg";
+// import sleepBoy_2_tiredest from "./Player/sleepBoy-2-tiredest.svg";
 
 import buildGirl from "./Player/buildGirl.svg";
 import buildGirl_tired from "./Player/buildGirl-tired.svg";
 import buildGirl_tiredest from "./Player/buildGirl-tiredest.svg";
 import buildGirl_2 from "./Player/buildGirl-2.svg";
 import buildGirl_2_tired from "./Player/buildGirl-2-tired.svg";
-import buildGirl_2_tiredest from "./Player/buildGirl-2est-tired.svg";
+import buildGirl_2_tiredest from "./Player/buildGirl-2-tiredest.svg";
 import buildBoy from "./Player/buildBoy.svg";
 import buildBoy_tired from "./Player/buildBoy-tired.svg";
 import buildBoy_tiredest from "./Player/buildBoy-tiredest.svg";
 import buildBoy_2 from "./Player/buildBoy-2.svg";
 import buildBoy_2_tired from "./Player/buildBoy-2-tired.svg";
-import buildBoy_2_tiredest from "./Player/buildBoy-2est-tired.svg";
+import buildBoy_2_tiredest from "./Player/buildBoy-2-tiredest.svg";
 
 import coffeeGirl from "./Player/coffeeGirl.svg";
 import coffeeGirl_tired from "./Player/coffeeGirl-tired.svg";
@@ -76,12 +76,12 @@ class Player extends Component {
             none: {
                 rested: girl,
                 tired: girl_tired,
-                tiredest: girl_tiredest
+                // tiredest: girl_tiredest
             },
             sleep: {
                 rested: [sleepGirl, sleepGirl_2],
                 tired: [sleepGirl_tired, sleepGirl_2_tired],
-                tiredest: [sleepGirl_tiredest, sleepGirl_2_tiredest]
+                // tiredest: [sleepGirl_tiredest, sleepGirl_2_tiredest]
             },
             build: {
                 rested: [buildGirl, buildGirl_2],
@@ -113,12 +113,12 @@ class Player extends Component {
             none: {
                 rested: boy,
                 tired: boy_tired,
-                tiredest: boy_tiredest
+                // tiredest: boy_tiredest
             },
             sleep: {
                 rested: [sleepBoy, sleepBoy_2],
                 tired: [sleepBoy_tired, sleepBoy_2_tired],
-                tiredest: [sleepBoy_tiredest, sleepBoy_2_tiredest]
+                // tiredest: [sleepBoy_tiredest, sleepBoy_2_tiredest]
             },
             build: {
                 rested: [buildBoy, buildBoy_2],
@@ -148,15 +148,17 @@ class Player extends Component {
         }
     }
 
+    console.log(gender, action, tiredness)
+    console.log(playerImage[gender][action][tiredness])
     let useImage = playerImage[gender][action][tiredness]
 
-    if (useImage.isArray()) {
+    if (Array.isArray(useImage)) {
         let timer = (time % frameDuration == 0)
         useImage = timer ? useImage[0] : useImage[1]
     }
 
     return (
-      <img src={useImage} alt="player"/>
+      <img className={`player ${gender} ${action}`} src={useImage} alt="player"/>
     );
   }
 }
