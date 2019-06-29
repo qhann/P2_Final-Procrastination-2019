@@ -15,15 +15,14 @@ import CoffeeMaker from "./CoffeeMaker";
 import roomMask from "./Masks/room-mask.png";
 import Moonlight from "./Moonlight";
 
-class App extends React.Component {
+class Room extends React.Component {
   state = {
     time: 0,
     vitalStats: {
       health: 100,
       exhaustion: 0
     },
-    mentorText:
-      "Hefte raus, Klassenarbeit!",
+    mentorText: "Hefte raus, Klassenarbeit!",
     cat: {
       hasPlayer: false,
       position: {
@@ -87,7 +86,10 @@ class App extends React.Component {
         "exhaustion",
         prevState.vitalStats.exhaustion
       );
-      let newCat = this.state.time.toFixed(1) % 24 == 0 ? this.moveCat(prevState.cat) : prevState.cat;
+      let newCat =
+        this.state.time.toFixed(1) % 24 == 0
+          ? this.moveCat(prevState.cat)
+          : prevState.cat;
       // console.log(this.state.time.toFixed(1) % 6);
 
       //console.log(prevState);
@@ -119,20 +121,19 @@ class App extends React.Component {
 
     let newPosition = {
       x: 150 + 1520 * Math.random(),
-      y: 800 + 150 * Math.random(),
-    }
-    let a = prevCat.position.x - newPosition.x
-    let b = prevCat.position.y - newPosition.y
-    let distance = Math.sqrt( a*a + b*b )
+      y: 800 + 150 * Math.random()
+    };
+    let a = prevCat.position.x - newPosition.x;
+    let b = prevCat.position.y - newPosition.y;
+    let distance = Math.sqrt(a * a + b * b);
     // console.log(distance);
-    
 
     newCat = update(prevCat, {
       position: {
         x: { $set: newPosition.x },
         y: { $set: newPosition.y }
       },
-      transitionSpeed: {$set: `transform ${distance/400}s linear`}
+      transitionSpeed: { $set: `transform ${distance / 400}s linear` }
     });
 
     return newCat;
@@ -286,8 +287,16 @@ class App extends React.Component {
         <Moonlight time={time} selector={"room"} mask={roomMask} />
 
         <Window time={~~this.state.time} />
-        <StatusBar label={"Gesundheit"} selector={"health"} value={~~vitalStats.health} />
-        <StatusBar label={"Erschöpfung"} selector={"exhaustion"} value={~~vitalStats.exhaustion} />
+        <StatusBar
+          label={"Gesundheit"}
+          selector={"health"}
+          value={~~vitalStats.health}
+        />
+        <StatusBar
+          label={"Erschöpfung"}
+          selector={"exhaustion"}
+          value={~~vitalStats.exhaustion}
+        />
 
         <Clock time={this.state.time} />
         <MentorTip text={this.state.mentorText} />
@@ -326,4 +335,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Room;

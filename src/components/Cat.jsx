@@ -11,7 +11,7 @@ class Cat extends Component {
   state = {
     img: cat,
     menuOpen: false,
-    playerAction: builtgirl,
+    playerAction: "",
     catTransform: {}
   };
 
@@ -19,16 +19,16 @@ class Cat extends Component {
     this.setState({ menuOpen: true });
   }
 
-  userInteraction(type) { }
+  userInteraction(type) {}
 
   hallucinate() {
     this.setState({
       catTransform: {
-        transform: "scale(150)", 
-        opacity: "0", 
+        transform: "scale(150)",
+        opacity: "0",
         transition: "transform 0.7s ease-in, opacity 1.5s"
       }
-    })
+    });
   }
 
   render() {
@@ -120,7 +120,7 @@ class Cat extends Component {
       }
     ];
     console.log(transitionSpeed);
-    
+
     let styles = {
       transform: `translate(${position.x}px, ${position.y}px)`,
       transition: transitionSpeed
