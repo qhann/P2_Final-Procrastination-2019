@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import catSit from "./Cat/catSit.svg";
 import DropDown from "./DropDown";
 import Player from "./Player";
+import catScary from "./Cat/catScary.svg"
 // import petgirl from "./Player/petgirl.svg";
 // import playgirl from "./Player/playgirl.svg";
 // import builtgirl from "./Player/builtgirl.svg";
@@ -12,7 +13,7 @@ class Cat extends Component {
   state = {
     img: catSit,
     menuOpen: false,
-    playerAction: "none",
+    playerAction: "none", 
     catTransform: {}
   };
 
@@ -24,9 +25,11 @@ class Cat extends Component {
     this.setState({
       catTransform: {
         transform: "scale(150)",
-        opacity: "0.4",
-        transition: "transform 0.2s ease-in, opacity 0.5s"
-      }
+        opacity: "0",
+        transition: "transform 0.7s ease-in, opacity 1.5s"
+      },
+      img: catScary
+      
     });
     setTimeout(() => this.setState({ catTransform: {} }), 200);
   }
