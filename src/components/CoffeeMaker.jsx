@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import CoffeeSvg from "./SVGs/CoffeeSvg";
-// import coffeeBoy from "./Player/coffeeBoy.svg";
-// import coffeeGirl from "./Player/coffeeGirl.svg";
+
 
 class CoffeeMaker extends Component {
     render() {

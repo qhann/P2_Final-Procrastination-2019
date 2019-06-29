@@ -330,6 +330,16 @@ html, body, .root, .App {
   transition: transform 0.7s, -webkit-transform 0.7s;
 }
 
+.button-lunar {
+  width: 40%;
+  height: 40%;
+}
+
+.button-pong {
+  width: 30%;
+  height: 30%;
+}
+
 .gaming-station {
   position: absolute;
   width: 25%;
@@ -367,9 +377,6 @@ html, body, .root, .App {
 
 .screen .button-game-select {
   position: relative;
-  width: 40%;
-  height: 80%;
-  top: 3%;
   left: 0%;
   margin: 5%;
 }

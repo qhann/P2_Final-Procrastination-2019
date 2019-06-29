@@ -23,8 +23,7 @@ class Room extends React.Component {
       health: 100,
       exhaustion: 0
     },
-    mentorText:
-      "Hefte raus, Klassenarbeit!",
+    mentorText: "Hefte raus, Klassenarbeit!",
     cat: {
       hasPlayer: false,
       position: {
@@ -83,7 +82,10 @@ class Room extends React.Component {
         "exhaustion",
         prevState.vitalStats.exhaustion
       );
-      let newCat = this.state.time.toFixed(1) % 24 == 0 ? this.moveCat(prevState.cat) : prevState.cat;
+      let newCat =
+        this.state.time.toFixed(1) % 24 == 0
+          ? this.moveCat(prevState.cat)
+          : prevState.cat;
 
       return update(prevState, {
         time: { $set: prevState.time + (1 / this.state.frameRate) * 2 },
@@ -106,19 +108,19 @@ class Room extends React.Component {
 
     newPosition = {
       x: 150 + 1520 * Math.random(),
-      y: 800 + 150 * Math.random(),
-    }
+      y: 800 + 150 * Math.random()
+    };
 
-    dx = prevCat.position.x - newPosition.x
-    dy = prevCat.position.y - newPosition.y
-    distance = Math.sqrt( dx*dx + dy*dy )  
+    dx = prevCat.position.x - newPosition.x;
+    dy = prevCat.position.y - newPosition.y;
+    distance = Math.sqrt(dx * dx + dy * dy);
 
     newCat = update(prevCat, {
       position: {
         x: { $set: newPosition.x },
         y: { $set: newPosition.y }
       },
-      transition: {$set: `transform ${distance/400}s linear`}
+      transition: { $set: `transform ${distance / 400}s linear` }
     });
 
     return newCat;
@@ -272,8 +274,16 @@ class Room extends React.Component {
         <Moonlight time={time} selector={"room"} mask={roomMask} />
 
         <Window time={~~this.state.time} />
-        <StatusBar label={"Gesundheit"} selector={"health"} value={~~vitalStats.health} />
-        <StatusBar label={"Erschöpfung"} selector={"exhaustion"} value={~~vitalStats.exhaustion} />
+        <StatusBar
+          label={"Gesundheit"}
+          selector={"health"}
+          value={~~vitalStats.health}
+        />
+        <StatusBar
+          label={"Erschöpfung"}
+          selector={"exhaustion"}
+          value={~~vitalStats.exhaustion}
+        />
 
         <Clock time={this.state.time} />
         <MentorTip text={this.state.mentorText} />

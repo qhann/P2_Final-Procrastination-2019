@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import cat from "./SVGs/cat.svg";
+import cat from "./Cat/cat-sit.svg";
 import DropDown from "./DropDown";
 // import petgirl from "./Player/petgirl.svg";
 // import playgirl from "./Player/playgirl.svg";
@@ -15,7 +15,6 @@ class Cat extends Component {
     catTransform: {}
   };
 
-
   showDropDown() {
     this.setState({ menuOpen: true });
   }
@@ -27,7 +26,7 @@ class Cat extends Component {
         opacity: "0",
         transition: "transform 0.7s ease-in, opacity 1.5s"
       }
-    })
+    });
   }
 
   getPlayerStyles(playerAction) {
@@ -114,14 +113,20 @@ class Cat extends Component {
   }
 
   render() {
-    const { position, menuOpen, onClick, hasPlayer, transitionSpeed } = this.props;
+    const {
+      position,
+      menuOpen,
+      onClick,
+      hasPlayer,
+      transitionSpeed
+    } = this.props;
 
     if (!hasPlayer && this.state.playerAction != "none") {
       this.setState({ playerAction: "none" });
     }
 
-    let playerStyles = this.getPlayerStyles(this.state.playerAction)
-    let dropDownOptions = this.getDropDownOptions()
+    let playerStyles = this.getPlayerStyles(this.state.playerAction);
+    let dropDownOptions = this.getDropDownOptions();
 
     let styles = {
       transform: `translate(${position.x}px, ${position.y}px)`,
