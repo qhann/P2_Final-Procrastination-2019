@@ -1,25 +1,23 @@
 import React, { Component } from "react";
 import cat from "./SVGs/cat.svg";
 import DropDown from "./DropDown";
-import petgirl from "./Player/petgirl.svg";
-import playgirl from "./Player/playgirl.svg";
-import builtgirl from "./Player/builtgirl.svg";
-import feedgirl from "./Player/feedgirl.svg";
-import girl from "./Player/girl.svg";
+// import petgirl from "./Player/petgirl.svg";
+// import playgirl from "./Player/playgirl.svg";
+// import builtgirl from "./Player/builtgirl.svg";
+// import feedgirl from "./Player/feedgirl.svg";
+// import girl from "./Player/girl.svg";
 
 class Cat extends Component {
   state = {
     img: cat,
     menuOpen: false,
-    playerAction: "",
+    playerAction: "none",
     catTransform: {}
   };
 
   showDropDown() {
     this.setState({ menuOpen: true });
   }
-
-  userInteraction(type) {}
 
   hallucinate() {
     this.setState({
@@ -31,25 +29,15 @@ class Cat extends Component {
     });
   }
 
-  render() {
-    const {
-      position,
-      menuOpen,
-      onClick,
-      catInteraction,
-      hasPlayer,
-      transitionSpeed
-    } = this.props;
+  getPlayerStyles(playerAction) {
     let playerImage,
       playerPostion = {},
       width,
       height;
-    if (!hasPlayer && this.state.playerAction != "none")
-      this.setState({ playerAction: "none" });
 
-    switch (this.state.playerAction) {
+    switch (playerAction) {
       case "pet":
-        playerImage = petgirl;
+        // playerImage = petgirl;
         playerPostion = {
           top: "-185px",
           left: "-120px"
@@ -58,7 +46,7 @@ class Cat extends Component {
         width = "168px";
         break;
       case "feed":
-        playerImage = feedgirl;
+        // playerImage = feedgirl;
         playerPostion = {
           top: "-85px",
           left: "-131px"
@@ -66,7 +54,7 @@ class Cat extends Component {
         width = "168px";
         break;
       case "play":
-        playerImage = playgirl;
+        // playerImage = playgirl;
         playerPostion = {
           top: "-105px",
           left: "-131px"
@@ -74,7 +62,7 @@ class Cat extends Component {
         width = "168px";
         break;
       case "none":
-        playerImage = girl;
+        // playerImage = girl;
         playerPostion = {
           top: "-278px",
           left: "-124px"
@@ -82,32 +70,35 @@ class Cat extends Component {
         break;
     }
 
-    let playerStyles = {
-      backgroundImage: hasPlayer ? `url(${playerImage})` : "none",
+    return {
+      backgroundImage: this.props.hasPlayer ? `url(${playerImage})` : "none",
       top: playerPostion.top,
       left: playerPostion.left,
       width: width,
       height: height
     };
-    let dropDownOptions = [
+  }
+
+  getDropDownOptions() {
+    return [
       {
         caption: "streicheln",
         action: () => {
-          catInteraction("pet");
+          this.props.catInteraction("pet");
           this.setState({ playerAction: "pet" });
         }
       },
       {
         caption: "füttern",
         action: () => {
-          catInteraction("feed");
+          this.props.catInteraction("feed");
           this.setState({ playerAction: "feed" });
         }
       },
       {
         caption: "spielen",
         action: () => {
-          catInteraction("play");
+          this.props.catInteraction("play");
           this.setState({ playerAction: "play" });
         }
       },
@@ -119,19 +110,33 @@ class Cat extends Component {
         }
       }
     ];
-    console.log(transitionSpeed);
+  }
+
+  render() {
+    const {
+      position,
+      menuOpen,
+      onClick,
+      hasPlayer,
+      transitionSpeed
+    } = this.props;
+
+    if (!hasPlayer && this.state.playerAction != "none") {
+      this.setState({ playerAction: "none" });
+    }
+
+    let playerStyles = this.getPlayerStyles(this.state.playerAction);
+    let dropDownOptions = this.getDropDownOptions();
 
     let styles = {
       transform: `translate(${position.x}px, ${position.y}px)`,
       transition: transitionSpeed
-      // top: position.y,
-      // left: position.x
     };
+
     return (
       <div className={"cat"} style={styles}>
-        <div className={"player"} style={playerStyles}>
-          {/* {hasPlayer ? "Player" : ""} */}
-        </div>
+        {/* <div className={"player"} style={playerStyles}>
+        </div> */}
         <DropDown options={dropDownOptions} visible={menuOpen} />
         <img
           src={this.state.img}

@@ -5,14 +5,14 @@ class MentorTip extends Component {
 
 
   render() {
-    const {text} = this.props
-    
+    const { text } = this.props
+
     return (
       <div className={"mentor-tip"}>
-          <img src={mentorImage} alt=""/>
-          <p>
-            {text}
-          </p>
+        <img src={mentorImage} alt={"mentor"} />
+        <p>
+          {text}
+        </p>
       </div>
     );
   }

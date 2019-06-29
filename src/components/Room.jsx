@@ -1,19 +1,20 @@
 import React from "react";
-import room from "./roomwide.png";
-// import "./App.css";
 import update from "immutability-helper";
 
-import StatusBar from "./StatusBar";
-import MentorTip from "./MentorTip";
-import Clock from "./Clock";
-import Cat from "./Cat";
-import GamingStation from "./GamingStation";
 import Bed from "./Bed";
 import Desk from "./Desk";
-import Window from "./Window";
+import Cat from "./Cat";
+import GamingStation from "./GamingStation";
 import CoffeeMaker from "./CoffeeMaker";
-import roomMask from "./Masks/room-mask.png";
+
+import Clock from "./Clock";
+import StatusBar from "./StatusBar";
+import MentorTip from "./MentorTip";
+import Window from "./Window";
 import Moonlight from "./Moonlight";
+
+import room from "./roomwide.png";
+import roomMask from "./Masks/room-mask.png";
 
 class Room extends React.Component {
   state = {
@@ -30,10 +31,6 @@ class Room extends React.Component {
         y: 0
       },
       moving: true,
-      direction: {
-        x: 1,
-        y: 1
-      },
       menuOpen: false,
       interaction: "none"
     },
@@ -79,7 +76,6 @@ class Room extends React.Component {
   }
 
   updateTimed() {
-    let frameDuration = 1000 / this.state.frameRate;
     this.setState(prevState => {
       let newHealth = this.updateVital("health", prevState.vitalStats.health);
       let newExhaustion = this.updateVital(
@@ -90,9 +86,6 @@ class Room extends React.Component {
         this.state.time.toFixed(1) % 24 == 0
           ? this.moveCat(prevState.cat)
           : prevState.cat;
-      // console.log(this.state.time.toFixed(1) % 6);
-
-      //console.log(prevState);
 
       return update(prevState, {
         time: { $set: prevState.time + (1 / this.state.frameRate) * 2 },
@@ -104,36 +97,30 @@ class Room extends React.Component {
             $set: newExhaustion
           }
         },
-        // mentorText: {
-        //   $set:
-        //     "Du solltest Schafi, denn die Anzahl der vergangenen Minuten beträgt: " +
-        //     ~~this.state.time
-        // },
         cat: { $set: newCat }
       });
     });
   }
 
   moveCat(prevCat) {
-    let dx, dy, newCat;
-    let newDirection = {};
+    let newCat, newPosition, dx, dy, distance;
     if (!this.state.cat.moving) return prevCat;
 
-    let newPosition = {
+    newPosition = {
       x: 150 + 1520 * Math.random(),
       y: 800 + 150 * Math.random()
     };
-    let a = prevCat.position.x - newPosition.x;
-    let b = prevCat.position.y - newPosition.y;
-    let distance = Math.sqrt(a * a + b * b);
-    // console.log(distance);
+
+    dx = prevCat.position.x - newPosition.x;
+    dy = prevCat.position.y - newPosition.y;
+    distance = Math.sqrt(dx * dx + dy * dy);
 
     newCat = update(prevCat, {
       position: {
         x: { $set: newPosition.x },
         y: { $set: newPosition.y }
       },
-      transitionSpeed: { $set: `transform ${distance / 400}s linear` }
+      transition: { $set: `transform ${distance / 400}s linear` }
     });
 
     return newCat;
@@ -305,7 +292,7 @@ class Room extends React.Component {
           onClick={() => this.handleCatClick()}
           catInteraction={action => this.handleCatInteraction(action)}
           position={cat.position}
-          transitionSpeed={cat.transitionSpeed}
+          transition={cat.transition}
           menuOpen={cat.menuOpen}
         />
         <GamingStation
