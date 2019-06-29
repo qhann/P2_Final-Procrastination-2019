@@ -31,7 +31,7 @@ class Cat extends Component {
       img: catScary
       
     });
-    setTimeout(() => this.setState({ catTransform: {} }), 200);
+    setTimeout(() => this.setState({ catTransform: {}, img: catSit }), 200);
   }
 
   getPlayerStyles(playerAction) {
