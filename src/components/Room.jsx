@@ -271,7 +271,7 @@ class Room extends React.Component {
     let time = ~~(this.state.time * 100) / 100;
     let player = {
       gender: this.props.gender,
-      tiredness: "rested"
+      tiredness: "tired"
     }
 
     return (

@@ -13,7 +13,7 @@ class Bed extends Component {
     return (
       <div className={"bed"}>
         {hasPlayer ? (
-            <Player time={time} gender={player.gender} action={player.action} tiredness={player.tiredness} />
+            <Player time={time} frameDuration={6} gender={player.gender} action={player.action} tiredness={player.tiredness} />
         ) : null}
         <Moonlight time={time} mask={bedTopMask} selector={"bed-top"} />
         <Moonlight

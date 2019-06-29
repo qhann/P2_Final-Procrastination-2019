@@ -472,37 +472,25 @@ html, body, .root, .App {
 .player.build.girl {
   height: 410px;
   top: 40px;
-  left: 230px;
+  right: 0;
 }
 
 .player.build.boy {
   height: 410px;
   top: 40px;
-  left: 230px;
-}
-
-.player.coffee.girl {
-  height: 410px;
-  top: -50px;
-  left: 160px;
-}
-
-.player.coffee.boy {
-  height: 410px;
-  top: -50px;
-  left: 160px;
+  right: 0;
 }
 
 .player.coffee.girl {
   height: 410px;
   top: -110px;
-  left: 160px;
+  right: -160px;
 }
 
 .player.coffee.boy {
   height: 410px;
   top: -110px;
-  left: 160px;
+  right: -160px;
 }
 
 .player.none.girl {

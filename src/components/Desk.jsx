@@ -10,7 +10,7 @@ class Desk extends Component {
         return (
             <div className={"desk"}>
                 {hasPlayer ? (
-                    <Player time={time} gender={player.gender} action={player.action} tiredness={player.tiredness} />
+                    <Player time={time} frameDuration={4} gender={player.gender} action={player.action} tiredness={player.tiredness} />
                 ) : null}
                 <DeskSvg onClick={onClick} />
                 <Artwork

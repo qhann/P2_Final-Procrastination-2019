@@ -12,7 +12,7 @@ class App extends React.Component {
   state = {
     currentScreen: "room",
     playerName: "",
-    gender: "boy"
+    gender: "girl"
   };
 
   switchScreen(destination, props) {
