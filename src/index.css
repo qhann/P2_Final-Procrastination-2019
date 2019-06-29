@@ -163,6 +163,10 @@ html, body, .root, .App {
   -webkit-transform: scale(1);
           transform: scale(1);
   opacity: 1;
+  -webkit-transition: opacity 1s, -webkit-transform 0.5s;
+  transition: opacity 1s, -webkit-transform 0.5s;
+  transition: transform 0.5s, opacity 1s;
+  transition: transform 0.5s, opacity 1s, -webkit-transform 0.5s;
 }
 
 .drop-down {
@@ -330,16 +334,6 @@ html, body, .root, .App {
   transition: transform 0.7s, -webkit-transform 0.7s;
 }
 
-.button-lunar {
-  width: 40%;
-  height: 40%;
-}
-
-.button-pong {
-  width: 30%;
-  height: 30%;
-}
-
 .gaming-station {
   position: absolute;
   width: 25%;
@@ -375,10 +369,27 @@ html, body, .root, .App {
           box-shadow: 0 0 10px red;
 }
 
+.screen .game-select {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+}
+
 .screen .button-game-select {
   position: relative;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 40%;
   left: 0%;
   margin: 5%;
+}
+
+.screen .game-select-text {
+  width: 100%;
+  height: 30%;
+  font-size: 100%;
+  color: white;
 }
 
 .screen.fullscreen {
@@ -506,37 +517,37 @@ html, body, .root, .App {
 }
 
 .player.pet.girl {
-  height: 280px;
-  top: -170px;
+  height: 300px;
+  top: -185px;
   left: -120px;
 }
 
 .player.pet.boy {
-  height: 280px;
-  top: -170px;
+  height: 300px;
+  top: -185px;
   left: -120px;
 }
 
 .player.feed.girl {
-  height: 280px;
+  height: 300px;
   top: -110px;
   left: -180px;
 }
 
 .player.feed.boy {
-  height: 280px;
+  height: 300px;
   top: -110px;
   left: -180px;
 }
 
 .player.play.girl {
-  height: 280px;
+  height: 300px;
   top: -140px;
   left: -180px;
 }
 
 .player.play.boy {
-  height: 280px;
+  height: 300px;
   top: -140px;
   left: -180px;
 }

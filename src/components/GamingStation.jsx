@@ -23,7 +23,7 @@ class GamingStation extends Component {
   handleGameChange(e, number) {
     console.log(this.props.fullscreen);
     if (this.props.fullscreen) {
-      
+
       if (e) e.stopPropagation();
       this.setState({ gameNumber: number })
       // this.state.gameNumber = number;
@@ -36,17 +36,16 @@ class GamingStation extends Component {
     let screenClasses = "screen";
     screenClasses += fullscreen ? " fullscreen" : "";
 
-    if (!fullscreen && this.state.gameNumber != 0) this.setState({gameNumber: 0})
+    if (!fullscreen && this.state.gameNumber != 0) this.setState({ gameNumber: 0 })
 
     return (
       <div className={"gaming-station "}>
-        {hasPlayer ? (
-            <Player time={time} gender={player.gender} action={player.action} tiredness={player.tiredness} />
-        ) : null}        <Moonlight time={time} className={"moonlight-bed"} />
+        <Moonlight time={time} className={"moonlight-bed"} />
         <GamingStationSvg />
         <div className={screenClasses} onClick={onClick}>
           {this.state.gameNumber == 0 ? (
-            <div>
+            <div className={"game-select"} >
+              {/* <p className={"game-select-text"} >Wähle ein Spiel</p> */}
               <img
                 src={lunarPreview}
                 className={"button-game-select button-lunar"}

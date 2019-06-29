@@ -17,11 +17,16 @@ export default function artworkSketch(s) {
   let deltaSpeed = 0;
   let deltaSpeedDeriv = 0
   let deviation;
+  let lessCorrect = 4
+  let opacity 
+  let color
   // let hue = new Array(joints).fill(() => s.random(0, 360));
   let level = 1;
-  let speedDistortion = 0.0;
+  let speedDistortion = 0;
   let frame = 0;
   let frameSkip = 1;
+  let exhaustion = 0
+  let health = 100
 
   let showPendulum = true;
   let showPendulumPath = true;
@@ -37,6 +42,12 @@ export default function artworkSketch(s) {
 
   s.myCustomRedrawAccordingToNewPropsHandler = function(props) {
     playing = props.playing ? 1 : 0;
+    exhaustion = props.vitalStats.exhaustion
+    health = props.vitalStats.health
+    speedDistortion = exhaustion*exhaustion / 30000
+    frameSkip = ~~(exhaustion / 10) + 1 * (~~((100-health)/10))+1
+    speedFactor = 6/exhaustion * frameSkip
+    console.log(frameSkip)
   };
 
   s.setup = () => {
@@ -66,22 +77,22 @@ export default function artworkSketch(s) {
     // s.background(240, 240, 240);
     // console.log(speedRelation, ~~s.random(2, 8));
     let k = 100-speedDistortion
-    deltaSpeedDeriv += (s.random() - 0.5) * speedDistortion; // deltaSpeed // (1 - speedDistortion / 2) +
-    deltaSpeed += deltaSpeedDeriv
+    deltaSpeed += (s.random() - 0.5) * speedDistortion; // deltaSpeed // (1 - speedDistortion / 2) +
+    // deltaSpeed += deltaSpeedDeriv
     deltaSpeed -= deltaSpeed / 4;
     speedRelation += deltaSpeed;
-    speedRelation -= (speedRelation - speedRelationInit) / 1.1;
+    speedRelation -= (speedRelation - speedRelationInit) / lessCorrect;
     // console.log(speedRelation);
 
     angle += speed * speedFactor * playing; //* (1-(4/2) + 4 * Math.random());
 
-    deviation = speedRelation / speedRelationInit;
+    deviation = Math.abs((speedRelation / speedRelationInit) -1) ;
 
     // each frame, create new positions for each joint
     if (angle <= maxAngle + speed) {
       // start at the center position
       var pos = center.copy();
-      //console.log(Math.random());
+      // console.log(exhaustion);
 
       //pos.mult(1, ~~(32*(Math.random() * 0.2 + 0.9))/32);
       // pos.mult(2, ~~(32*(Math.random() * 0.2 + 0.9))/32)
@@ -94,7 +105,7 @@ export default function artworkSketch(s) {
         if (i % 2 == 1) a = -a;
         var nextPos = p5.Vector.fromAngle(s.radians(a));
         nextPos.setMag(
-          ((joints - i) / joints) * lineLength * deviation * deviation
+          ((joints - i) / joints) * lineLength * (deviation+1 * deviation+1 )
         );
         nextPos.add(pos);
 
@@ -103,10 +114,14 @@ export default function artworkSketch(s) {
           s.noStroke();
           s.fill(255, 10);
           //s.ellipse(pos.x, pos.y, 4, 4);
+
+          opacity = 255 * (frameSkip)/5
+          color = angle //Math.abs(180 - ((angle * (speedRelation+1)) % 360))
           s.noFill();
-          s.strokeWeight(0.9);
-          s.stroke(255, 10 * (frameSkip + 1));
-          s.line(pos.x, pos.y, nextPos.x, nextPos.y);
+          s.strokeWeight(frameSkip);
+          s.colorMode(s.HSB, 360, 100, health, 255);
+          s.stroke(color  , 100 - exhaustion, health * 500, opacity);
+          s.line(pos.x + 100*deviation/i, pos.y+ 100*deviation/i, nextPos.x- 200*deviation/i, nextPos.y- 200*deviation/i);
         }
 
         if (i == level) pendulumPath[i].push(nextPos);
@@ -125,20 +140,22 @@ export default function artworkSketch(s) {
         var path = pendulumPath[i];
 
         s.beginShape();
+        s.colorMode(s.HSB, 100, 100, 100, 255);
         var hue = ((360 / joints) * i) / 3;
-        s.stroke(100, 80, 60, 50);
-        s.strokeWeight(1 * Math.pow(Math.abs(deviation), 4));
+        s.stroke(color, 100, 100, 255-opacity);
+        s.strokeWeight(1 * Math.pow(Math.abs(deviation), 16));
         for (var j = 0; j < path.length; j++) {
-          // s.vertex(path[j].x, path[j].y);
+          // s.vertex(pos.x, pos.y);
         }
         s.endShape();
       }
     }
   };
-
+  
   s.keyPressed = () => {
     // console.log(s.key);
-    let dDistortion = 0.1;
+    // console.log(speedDistortion, frameSkip);
+    let dDistortion = 0.02;
     let dSpeed = 0.1;
     switch (s.key) {
       case "PageUp":
@@ -163,6 +180,5 @@ export default function artworkSketch(s) {
       default:
         return false;
     }
-    // console.log(speedDistortion, frameSkip);
   };
 }

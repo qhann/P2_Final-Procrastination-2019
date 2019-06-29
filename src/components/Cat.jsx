@@ -26,6 +26,7 @@ class Cat extends Component {
       img: catScary
       
     });
+    setTimeout(() => this.setState({ catTransform: {}, img: catSit }), 200);
   }
 
   getPlayerStyles(playerAction) {
@@ -105,7 +106,6 @@ class Cat extends Component {
         caption: "hallucinate",
         action: () => {
           this.hallucinate();
-          setTimeout(() => this.setState({ catTransform: {} }), 1000);
         }
       }
     ];
@@ -127,7 +127,7 @@ class Cat extends Component {
     }
 
     // let playerStyles = this.getPlayerStyles(this.state.playerAction);
-    player.action = this.state.playerAction
+    // player.action = this.state.playerAction
     let dropDownOptions = this.getDropDownOptions();
 
     let styles = {
