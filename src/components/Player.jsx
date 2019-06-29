@@ -70,7 +70,6 @@ import playBoy_tiredest from "./Player/playBoy-tiredest.svg";
 class Player extends Component {
   render() {
     const { action, gender, tiredness, frameDuration, time } = this.props;
-
     let playerImage = {
         girl: {
             none: {
@@ -148,17 +147,18 @@ class Player extends Component {
         }
     }
 
-    console.log(gender, action, tiredness)
-    console.log(playerImage[gender][action][tiredness])
+    // console.log(gender, action, tiredness)
+    // console.log(playerImage[gender][action][tiredness])
     let useImage = playerImage[gender][action][tiredness]
-
+    // console.log(~~time);
+    
     if (Array.isArray(useImage)) {
-        let timer = (time % frameDuration == 0)
+        let timer = (time.toFixed(1) % (frameDuration || 1) == 0)
         useImage = timer ? useImage[0] : useImage[1]
     }
 
     return (
-      <img className={`player ${gender} ${action}`} src={useImage} alt="player"/>
+      <img className={`player ${gender} ${action}`} src={useImage} alt="player-image"/>
     );
   }
 }

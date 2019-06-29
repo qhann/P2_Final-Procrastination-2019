@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import catSit from "./Cat/catSit.svg";
 import DropDown from "./DropDown";
+import Player from "./Player";
 // import petgirl from "./Player/petgirl.svg";
 // import playgirl from "./Player/playgirl.svg";
 // import builtgirl from "./Player/builtgirl.svg";
@@ -118,14 +119,17 @@ class Cat extends Component {
       menuOpen,
       onClick,
       hasPlayer,
-      transitionSpeed
-    } = this.props;
+      transitionSpeed,
+      gender,
+      player,
+      time } = this.props;
 
     if (!hasPlayer && this.state.playerAction != "none") {
       this.setState({ playerAction: "none" });
     }
 
-    let playerStyles = this.getPlayerStyles(this.state.playerAction);
+    // let playerStyles = this.getPlayerStyles(this.state.playerAction);
+    player.action = this.state.playerAction
     let dropDownOptions = this.getDropDownOptions();
 
     let styles = {
@@ -135,9 +139,10 @@ class Cat extends Component {
 
     return (
       <div className={"cat"} style={styles}>
-        {/* <div className={"player"} style={playerStyles}>
-        </div> */}
-        <DropDown options={dropDownOptions} visible={menuOpen} />
+        {hasPlayer ? (
+          <Player time={time} gender={player.gender} action={player.action} tiredness={player.tiredness} />
+        ) : null}
+        <DropDown options={dropDownOptions} isVisible={menuOpen} />
         <img
           src={this.state.img}
           className={"cat-image"}

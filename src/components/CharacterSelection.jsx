@@ -29,13 +29,13 @@ class CharacterSelection extends Component {
           src={Boy}
           className={"button-character-select button-playboy"}
           onClick={() => this.setGender("male")}
-          style={this.state.gender == "male" ? genderHighlight : {}}
+          style={this.state.gender == "boy" ? genderHighlight : {}}
         />
         <img
           src={Girl}
           className={"button-character-select button-playgirl"}
           onClick={() => this.setGender("female")}
-          style={this.state.gender == "female" ? genderHighlight : {}}
+          style={this.state.gender == "girl" ? genderHighlight : {}}
         />
         <input
           maxLength={25}

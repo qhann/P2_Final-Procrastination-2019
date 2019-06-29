@@ -5,6 +5,7 @@ import GamingStationSvg from "./SVGs/GamingStationSvg"
 import lunarPreview from "./MiniGames/LunarLander/preview.jpg"
 import pongPreview from "./MiniGames/Pong/preview.JPG"
 import Moonlight from "./Moonlight";
+import Player from "./Player"
 
 
 class GamingStation extends Component {
@@ -30,7 +31,7 @@ class GamingStation extends Component {
   }
 
   render() {
-    const { onClick, hasPlayer, fullscreen, time } = this.props;
+    const { onClick, hasPlayer, fullscreen, time, player } = this.props;
 
     let screenClasses = "screen";
     screenClasses += fullscreen ? " fullscreen" : "";
@@ -39,8 +40,9 @@ class GamingStation extends Component {
 
     return (
       <div className={"gaming-station "}>
-        {/* <div className={"player"} >{hasPlayer ? "Player" : ""}</div> */}
-        <Moonlight time={time} className={"moonlight-bed"} />
+        {hasPlayer ? (
+            <Player time={time} gender={player.gender} action={player.action} tiredness={player.tiredness} />
+        ) : null}        <Moonlight time={time} className={"moonlight-bed"} />
         <GamingStationSvg />
         <div className={screenClasses} onClick={onClick}>
           {this.state.gameNumber == 0 ? (
