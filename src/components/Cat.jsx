@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import cat from "./Cat/cat-sit.svg";
+import catSit from "./Cat/catSit.svg";
 import DropDown from "./DropDown";
 import Player from "./Player";
 // import petgirl from "./Player/petgirl.svg";
@@ -10,7 +10,7 @@ import Player from "./Player";
 
 class Cat extends Component {
   state = {
-    img: cat,
+    img: catSit,
     menuOpen: false,
     playerAction: "none",
     catTransform: {}
