@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import cat from "./SVGs/cat.svg";
+import cat from "./Cat/cat-sit.svg";
 import DropDown from "./DropDown";
 // import petgirl from "./Player/petgirl.svg";
 // import playgirl from "./Player/playgirl.svg";
