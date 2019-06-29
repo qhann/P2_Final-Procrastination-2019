@@ -48,7 +48,7 @@ class Room extends React.Component {
       hasPlayer: false,
       fullscreen: false
     },
-    frameRate: 2,
+    frameRate: 15,
     globalInterval: {}
   };
 

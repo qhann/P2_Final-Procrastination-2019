@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import DeskSvg from "./SVGs/DeskSvg.jsx";
 import Artwork from "./Artwork";
-// import builtboy from "./Player/builtboy.svg"
-// import builtboy2 from "./Player/builtboy2.svg"
 
 class Desk extends Component {
     render() {

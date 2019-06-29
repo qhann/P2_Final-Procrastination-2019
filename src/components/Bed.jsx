@@ -5,9 +5,6 @@ import bedSideMask from "./Masks/bed-mask-side-bw.png";
 import bedTopMask from "./Masks/bed-mask-top-bw.png";
 import Player from "./Player"
 
-// import sleepgirl1 from "./Player/sleepgirl1.svg";
-// import sleepgirl2 from "./Player/sleepgirl2.svg";
-
 class Bed extends Component {
   render() {
     const { onClick, hasPlayer, time } = this.props;
@@ -16,7 +13,7 @@ class Bed extends Component {
     return (
       <div className={"bed"}>
         {hasPlayer ? (
-            <Player gender={"girl"} action={"sleep"} tired={false} />
+            <Player gender={"boy"} action={"sleep"} tiredness={"rested"} />
         //   <img
         //     src={time % sleepSlower > sleepSlower / 2 ? sleepgirl1 : sleepgirl2}
         //     className={"bed-girl"}
