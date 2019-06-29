@@ -24,10 +24,11 @@ class Cat extends Component {
     this.setState({
       catTransform: {
         transform: "scale(150)",
-        opacity: "0",
-        transition: "transform 0.7s ease-in, opacity 1.5s"
+        opacity: "0.4",
+        transition: "transform 0.2s ease-in, opacity 0.5s"
       }
     });
+    setTimeout(() => this.setState({ catTransform: {} }), 200);
   }
 
   getPlayerStyles(playerAction) {
@@ -107,7 +108,6 @@ class Cat extends Component {
         caption: "hallucinate",
         action: () => {
           this.hallucinate();
-          setTimeout(() => this.setState({ catTransform: {} }), 1000);
         }
       }
     ];
@@ -129,7 +129,7 @@ class Cat extends Component {
     }
 
     // let playerStyles = this.getPlayerStyles(this.state.playerAction);
-    player.action = this.state.playerAction
+    // player.action = this.state.playerAction
     let dropDownOptions = this.getDropDownOptions();
 
     let styles = {

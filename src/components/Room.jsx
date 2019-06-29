@@ -133,10 +133,10 @@ class Room extends React.Component {
     let step, newStat;
     switch (attribute) {
       case "health":
-        step = (-1 / frameDuration) * 2;
+        step = (-0.3 / this.state.frameRate) * 2;
         break;
       case "exhaustion":
-        step = (1 / frameDuration) * 2;
+        step = (6.25 / 60 / this.state.frameRate) * 2;
         break;
     }
 
@@ -178,7 +178,8 @@ class Room extends React.Component {
           hasPlayer: { $set: atBed }
         },
         cat: {
-          hasPlayer: { $set: atCat }
+          hasPlayer: { $set: atCat },
+          menuOpen: {$set: !atCat ? false : prevState.cat.menuOpen}
         },
         gamingStation: {
           hasPlayer: { $set: atGameStation }
@@ -234,11 +235,13 @@ class Room extends React.Component {
         mentorText = "WAT?!";
     }
     this.playerTo("cat");
+    // setTimeout(() => this.setState(prevState => {update(prevState, {cat: {}})}))
     this.setState(prevState =>
       update(prevState, {
         cat: {
           menuOpen: { $set: false },
-          moving: { $set: true }
+          moving: { $set: true },
+          interaction: {$set: type}
         },
         mentorText: { $set: mentorText }
       })
@@ -271,7 +274,8 @@ class Room extends React.Component {
     let time = ~~(this.state.time * 100) / 100;
     let player = {
       gender: this.props.gender,
-      tiredness: "tired"
+      tiredness: "tired",
+      action: this.state.cat.interaction
     }
 
     return (
@@ -280,7 +284,7 @@ class Room extends React.Component {
 
         <Cat
           hasPlayer={cat.hasPlayer}
-          player={{...player, action: "none"}}
+          player={player}
           onClick={() => this.handleCatClick()}
           catInteraction={action => this.handleCatInteraction(action)}
           position={cat.position}
@@ -306,6 +310,7 @@ class Room extends React.Component {
           player={{...player, action: "build" }}
           onClick={() => this.handleDeskClick()}
           time={time}
+          vitalStats={vitalStats}
           />
         <CoffeeMaker
           hasPlayer={coffee.hasPlayer}

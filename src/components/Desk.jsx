@@ -5,8 +5,9 @@ import Player from "./Player"
 
 class Desk extends Component {
     render() {
-        const { onClick, hasPlayer, time, player } = this.props;
-
+        const { onClick, hasPlayer, time, player, vitalStats } = this.props;
+        // console.log(~~vitalStats.exhaustion);
+        
         return (
             <div className={"desk"}>
                 {hasPlayer ? (
@@ -16,6 +17,7 @@ class Desk extends Component {
                 <Artwork
                     onClick={onClick}
                     working={hasPlayer}
+                    vitalStats={vitalStats}
                 />
             </div>
         );

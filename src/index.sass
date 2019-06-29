@@ -135,7 +135,7 @@ html, body, .root, .App
     height: 100%
     transform: scale(1)
     opacity: 1
-    // transition: transform 1s, opacity 1s
+    transition: transform 0.5s, opacity 1s
 
 .drop-down
     position: absolute
@@ -289,17 +289,17 @@ html, body, .root, .App
     transform: translate(-50%, -50%) scale(0.1, 0.1)
     transition: transform 0.7s
 
-.button-lunar
-    width: 40%
-    height: 40%
-//     transform: translate(-50%, -50%) scale(0.1, 0.1)
-//     transition: transform 0.7s
+// .button-lunar
+//     width: 40%
+//     height: 40%
+// //     transform: translate(-50%, -50%) scale(0.1, 0.1)
+// //     transition: transform 0.7s
 
-.button-pong
-    width: 30%
-    height: 30%
-    // transform: translate(-50%, -50%) scale(0.1, 0.1)
-    // transition: transform 0.7s
+// .button-pong
+//     width: 30%
+//     height: 30%
+//     // transform: translate(-50%, -50%) scale(0.1, 0.1)
+//     // transition: transform 0.7s
     
 
 .gaming-station
@@ -332,13 +332,28 @@ html, body, .root, .App
         // filter: drop-shadow(-30px 10px 4px #FF8311)
         border: 4px solid rgba(2550,0,0,0.5)
         box-shadow: 0 0 10px red
+    .game-select
+        position: absolute
+        height: 100%
+        width: 100%
+        top: 0
     .button-game-select
+        // display: flex
+        // flex-direction: 
         position: relative
-        // width: 40%
+        object-fit: cover
+        width: 40%
         // height: 80%
         // top: 20%
         left: 0%
         margin: 5%
+    .game-select-text
+        // margin-top: 10% 
+        width: 100%
+        height: 30%
+        // height: 90px
+        font-size: 100%
+        color: white
         
     &.fullscreen
         // top: -30vh
@@ -458,29 +473,29 @@ html, body, .root, .App
             left: 100px
     &.pet
         &.girl
-            height: 280px
-            top: -170px
+            height: 300px
+            top: -185px
             left: -120px
         &.boy
-            height: 280px
-            top: -170px
+            height: 300px
+            top: -185px
             left: -120px
     &.feed
         &.girl
-            height: 280px
+            height: 300px
             top: -110px
             left: -180px
         &.boy
-            height: 280px
+            height: 300px
             top: -110px
             left: -180px
     &.play
         &.girl
-            height: 280px
+            height: 300px
             top: -140px
             left: -180px
         &.boy
-            height: 280px
+            height: 300px
             top: -140px
             left: -180px
 
