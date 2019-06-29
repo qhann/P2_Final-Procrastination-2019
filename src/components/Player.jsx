@@ -37,7 +37,7 @@ import coffeeGirl from "./Player/coffeeGirl.svg";
 import coffeeGirl_tired from "./Player/coffeeGirl-tired.svg";
 import coffeeGirl_tiredest from "./Player/coffeeGirl-tiredest.svg";
 import coffeeGirl_2 from "./Player/coffeeGirl-2.svg";
-import coffeeGirl_2_tired from "./Player/coffeeGirl-tired.svg";
+import coffeeGirl_2_tired from "./Player/coffeeGirl-2-tired.svg";
 import coffeeGirl_2_tiredest from "./Player/coffeeGirl-tiredest.svg";
 import coffeeBoy from "./Player/coffeeBoy.svg";
 import coffeeBoy_tired from "./Player/coffeeBoy-tired.svg";
