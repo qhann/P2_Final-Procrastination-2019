@@ -30,8 +30,8 @@ export default function artworkSketch(s) {
 
   let showPendulum = true;
   let showPendulumPath = true;
-  let width = window.innerHeight * 0.3;
-  let height = window.innerHeight * 0.3;
+  let width = 400 //window.innerHeight * 0.3;
+  let height = 400 //window.innerHeight * 0.3;
 
   pendulumPath = [];
 
@@ -105,7 +105,7 @@ export default function artworkSketch(s) {
         if (i % 2 == 1) a = -a;
         var nextPos = p5.Vector.fromAngle(s.radians(a));
         nextPos.setMag(
-          ((joints - i) / joints) * lineLength * (deviation + 1 * deviation + 1)
+          ((joints - i) / joints) * lineLength * (deviation + 1 * deviation + 1) * 0.5
         );
         nextPos.add(pos);
 

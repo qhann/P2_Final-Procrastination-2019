@@ -16,13 +16,16 @@ import Window from "./Window";
 
 class Main extends React.Component {
   state = {
-    time: 359,
+    time: 609,
     tiredness: "rested",
     vitalStats: {
       health: 100,
       exhaustion: 0
     },
     mentorText: "Hefte raus, Klassenarbeit!",
+    room: {
+      hasPlayer: false
+    },
     cat: {
       hasPlayer: false,
       position: {
@@ -169,12 +172,16 @@ class Main extends React.Component {
   }
 
   playerTo(place) {
+    let atRoom = false;
     let atDesk = false;
     let atBed = false;
     let atCat = false;
     let atCoffee = false;
     let atGameStation = false;
     switch (place) {
+      case "room":
+        atRoom = true;
+        break;
       case "desk":
         atDesk = true;
         break;
@@ -194,6 +201,9 @@ class Main extends React.Component {
 
     this.setState(prevState =>
       update(prevState, {
+        room: {
+          hasPlayer: { $set: atRoom }
+        },
         desk: {
           hasPlayer: { $set: atDesk }
         },
@@ -284,6 +294,10 @@ class Main extends React.Component {
         fullscreen: !this.state.gamingStation.fullscreen
       }
     });
+  }
+
+  handleRoomClick() {
+    this.playerTo("room")
   }
 
   render() {

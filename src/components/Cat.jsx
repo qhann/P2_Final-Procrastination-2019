@@ -50,6 +50,7 @@ class Cat extends Component {
     setTimeout(() => {
       this.state.shriek.play()
       this.setState({
+        hallucinate: true,
         catTransform:
         {
           animationName: "halluciCat",
@@ -58,7 +59,7 @@ class Cat extends Component {
         }
       })
     }, 800);
-    setTimeout(() => this.setState({ catTransform: {} }), 2000);
+    setTimeout(() => this.setState({ catTransform: {}, hallucinate: false }), 2000);
   }
 
   getPlayerStyles(playerAction) {
@@ -150,7 +151,6 @@ class Cat extends Component {
       // walk: catWalk
     }
     let useImage, useStyle, useScale, frameDuration, isSprite, timerHasChanged, bgSizeX
-
     if (player.action != "none") {
       useImage = cat[player.action]
       frameDuration = 6
@@ -167,7 +167,7 @@ class Cat extends Component {
       }
     } else {
       useImage = catWalkSitStand
-      bgSizeX = 600
+      bgSizeX = 750
       if (this.props.moving) {
         isSprite = true
         frameDuration = 1
@@ -195,6 +195,10 @@ class Cat extends Component {
       }
     }
 
+    if (this.state.hallucinate) {
+      useStyle.backgroundPositionX = "-590px"
+      // useImage = catWalkSitStand
+    }
     return { image: useImage, style: useStyle, scale: useScale || 1 }
   }
 
@@ -218,13 +222,13 @@ class Cat extends Component {
     // player.action = this.state.playerAction
     let dropDownOptions = this.getDropDownOptions();
 
-    
+
     let catImage = this.getCatImage(player, time)
-    
+
     let directionStyle = {
       transform: `scale(${direction == "left" ? catImage.scale : -catImage.scale}, ${catImage.scale})`
     }
-    
+
     let styles = {
       transform: `translate(${position.x}px, ${position.y}px)`,
       transition: transitionSpeed
@@ -236,17 +240,19 @@ class Cat extends Component {
           <Player time={time} gender={player.gender} action={player.action} tiredness={player.tiredness} />
         ) : null}
         <DropDown options={dropDownOptions} isVisible={menuOpen} />
-        <div
-          // src={this.state.img}
-          className={"cat-image"}
-          onClick={() => onClick()}
-          style={{
-            ...directionStyle,
-            ...this.state.catTransform,
-            ...catImage.style,
-            backgroundImage: `url(${catImage.image})`
-          }}
-        />
+        <div>
+          <div
+            // src={this.state.img}
+            className={"cat-image"}
+            onClick={() => onClick()}
+            style={{
+              ...directionStyle,
+              ...this.state.catTransform,
+              ...catImage.style,
+              backgroundImage: `url(${catImage.image})`
+            }}
+          />
+        </div>
       </div>
     );
   }

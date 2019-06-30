@@ -15,7 +15,7 @@ class Desk extends Component {
                     <Player time={time} frameDuration={4} gender={player.gender} action={player.action} tiredness={player.tiredness} />
                 ) : null}
                 <DeskSvg onClick={onClick} />
-                <img className={lamplight} src={lamplight}/>
+                <img className={"lamplight"} src={lamplight}/>
                 <Artwork
                     onClick={onClick}
                     working={hasPlayer}
