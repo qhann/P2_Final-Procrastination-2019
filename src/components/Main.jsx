@@ -31,7 +31,8 @@ class Main extends React.Component {
       },
       moving: false,
       menuOpen: false,
-      interaction: "none"
+      interaction: "none",
+      direction: "left"
     },
     desk: {
       hasPlayer: false,
@@ -82,7 +83,7 @@ class Main extends React.Component {
         prevState.vitalStats.exhaustion
       );
       let newCat =
-        this.state.time.toFixed(1) % 24 == 0
+        this.state.time.toFixed(1) % 10 == 0
           ? this.moveCat(prevState.cat)
           : prevState.cat;
 
@@ -102,7 +103,7 @@ class Main extends React.Component {
   }
 
   moveCat(prevCat) {
-    let newCat, newPosition, dx, dy, distance;
+    let newCat, newPosition, dx, dy, distance, direction;
     if (this.state.cat.menuOpen || this.state.cat.hasPlayer) return prevCat;
 
     newPosition = {
@@ -113,17 +114,19 @@ class Main extends React.Component {
     dx = prevCat.position.x - newPosition.x;
     dy = prevCat.position.y - newPosition.y;
     distance = Math.sqrt(dx * dx + dy * dy);
+    direction = dx > 0 ? "left" : "right"
 
     newCat = update(prevCat, {
       position: {
         x: { $set: newPosition.x },
         y: { $set: newPosition.y }
       },
-      transition: { $set: `transform ${distance / 400}s linear` },
-      moving: { $set: true }
+      transition: { $set: `transform ${distance / 300}s linear` },
+      moving: { $set: true },
+      direction: { $set: direction }
     });
 
-    console.log(~~(distance / 400 * 1000));
+    // console.log(~~(distance / 400 * 1000));
 
     setTimeout(() => this.setState(prevState => (
       update(prevState, {
@@ -132,7 +135,7 @@ class Main extends React.Component {
         }
       })
     )),
-      ~~(distance / 400 * 1000) 
+      ~~(distance / 300 * 1000)
     )
 
     return newCat;
@@ -260,7 +263,8 @@ class Main extends React.Component {
         cat: {
           menuOpen: { $set: false },
           // moving: { $set: true },
-          interaction: { $set: type }
+          interaction: { $set: type },
+          direction: { $set: "left" }
         },
         mentorText: { $set: mentorText }
       })
@@ -299,17 +303,18 @@ class Main extends React.Component {
 
     return (
       <div className="main">
-        <Room time={time}/>
+        <Room time={time} />
         <Cat
           hasPlayer={cat.hasPlayer}
           player={player}
           onClick={() => this.handleCatClick()}
           catInteraction={action => this.handleCatInteraction(action)}
           position={cat.position}
-          transition={cat.transition}
+          transitionSpeed={cat.transition}
           menuOpen={cat.menuOpen}
           time={time}
           moving={cat.moving}
+          direction={cat.direction}
         />
         <GamingStation
           hasPlayer={gamingStation.hasPlayer}

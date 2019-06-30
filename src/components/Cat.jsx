@@ -19,7 +19,7 @@ import catStand from "./Cat/catStand.svg"
 
 class Cat extends Component {
   state = {
-    img: catSit,
+    img: catWalkSitStand,
     menuOpen: false,
     playerAction: "none",
     catTransform: {},
@@ -35,11 +35,11 @@ class Cat extends Component {
 
   hallucinate() {
     this.setState({
-      img: catScarySprites,
+      // img: catScarySprites,
       catTransform: {
         // transform: "scale(150)",
         // opacity: "0",
-        backgroundSize: "150px 150px",
+        // backgroundSize: "150px 150px",
         transition: "transform 0.4s, opacity 1.5s",
         backgroundPositionX: "-150px",
         animationName: "halluciCat",
@@ -54,7 +54,7 @@ class Cat extends Component {
         {
           animationName: "halluciCat",
           transformOrigin: "50px 140px",
-          backgroundPositionX: "0px",
+          backgroundPositionX: "-450px",
         }
       })
     }, 800);
@@ -72,7 +72,7 @@ class Cat extends Component {
         // playerImage = petgirl;
         playerPostion = {
           top: "-185px",
-          left: "-120px"
+          left: "-248px"
         };
         // height = "285px"
         width = "168px";
@@ -147,27 +147,40 @@ class Cat extends Component {
       play: catPlay,
       stand: catStand,
       sit: catSit,
-      walk: catWalk
+      // walk: catWalk
     }
-    let useImage, useStyle, frameDuration, isSprite, timerHasChanged, bgSize
+    let useImage, useStyle, useScale, frameDuration, isSprite, timerHasChanged, bgSizeX
 
     if (player.action != "none") {
       useImage = cat[player.action]
       frameDuration = 6
       isSprite = true
+      bgSizeX = 300
+      switch (player.action) {
+        case "play":
+          useScale = 1.3
+          break;
+        case "pet":
+          break;
+        case "feed":
+          break;
+      }
     } else {
       useImage = catWalkSitStand
+      bgSizeX = 600
       if (this.props.moving) {
-        frameDuration = 1
         isSprite = true
-        bgSize = 600
+        frameDuration = 1
       } else {
-        useImage = cat.sit
+        useStyle = {
+          backgroundSize: `${bgSizeX}px 150px`,
+          backgroundPositionX: "-290px"
+        }
       }
     }
     let timer = (time.toFixed(1) % (frameDuration || 1) >= (frameDuration / 2 || 0.5))
     // console.log(timer, this.state.timer);
-    
+
     if (isSprite && timer != this.state.timer) {
       this.setState({ timer })
       timerHasChanged = true
@@ -175,16 +188,14 @@ class Cat extends Component {
       timerHasChanged = false
     }
 
-    if (isSprite && timerHasChanged) {
+    if (isSprite) {
       useStyle = {
-        catTransform: {
-          backgroundSizeX: bgSize +"px",
-          backgroundPositionX: this.state.timer ?  "0px" : "-150px" 
-        }
+        backgroundSize: `${bgSizeX}px 150px`,
+        backgroundPositionX: this.state.timer ? "0px" : "-150px"
       }
     }
 
-    return {image: useImage, style: useStyle}
+    return { image: useImage, style: useStyle, scale: useScale || 1 }
   }
 
   render() {
@@ -196,7 +207,8 @@ class Cat extends Component {
       transitionSpeed,
       gender,
       player,
-      time } = this.props;
+      time,
+      direction } = this.props;
 
     if (!hasPlayer && this.state.playerAction != "none") {
       this.setState({ playerAction: "none" });
@@ -206,12 +218,17 @@ class Cat extends Component {
     // player.action = this.state.playerAction
     let dropDownOptions = this.getDropDownOptions();
 
+    
+    let catImage = this.getCatImage(player, time)
+    
+    let directionStyle = {
+      transform: `scale(${direction == "left" ? catImage.scale : -catImage.scale}, ${catImage.scale})`
+    }
+    
     let styles = {
       transform: `translate(${position.x}px, ${position.y}px)`,
       transition: transitionSpeed
     };
-
-    let catImage = this.getCatImage(player, time)
 
     return (
       <div className={"cat"} style={styles}>
@@ -224,6 +241,7 @@ class Cat extends Component {
           className={"cat-image"}
           onClick={() => onClick()}
           style={{
+            ...directionStyle,
             ...this.state.catTransform,
             ...catImage.style,
             backgroundImage: `url(${catImage.image})`

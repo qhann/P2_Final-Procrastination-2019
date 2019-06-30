@@ -116,11 +116,11 @@ export default function artworkSketch(s) {
           //s.ellipse(pos.x, pos.y, 4, 4);
 
           opacity = (255 * frameSkip) / 5;
-          color = angle; //Math.abs(180 - ((angle * (speedRelation+1)) % 360))
+          color = angle || 1; //Math.abs(180 - ((angle * (speedRelation+1)) % 360))
           s.noFill();
           s.strokeWeight(2);
           s.colorMode(s.HSB, 360, 100, health, 255);
-          s.stroke(color, 100 - exhaustion, health * 500, opacity);
+          s.stroke(color || 1 || 1, 100 - exhaustion, health * 500, opacity);
           s.line(
             pos.x + (100 * deviation) / i,
             pos.y + (100 * deviation) / i,
@@ -147,7 +147,7 @@ export default function artworkSketch(s) {
         s.beginShape();
         s.colorMode(s.HSB, 100, 100, 100, 255);
         var hue = ((360 / joints) * i) / 3;
-        s.stroke(color, 100, 100, 1);
+        s.stroke(color || 1, 100, 100, 1);
         s.strokeWeight(1 * Math.pow(Math.abs(deviation), 16));
         for (var j = 0; j < path.length; j++) {
           if (pos) s.vertex(pos.x, pos.y);
