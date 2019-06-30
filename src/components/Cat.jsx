@@ -1,31 +1,64 @@
 import React, { Component } from "react";
-import catSit from "./Cat/catSit.svg";
 import DropDown from "./DropDown";
 import Player from "./Player";
 import catScary from "./Cat/catScary.svg"
+import catScarySprites from "./Cat/catScarySprites.svg"
+import shriek from "./sounds/shriek.wav"
+
+import catWalk from "./Cat/catWalk.svg"
+import catWalk_2 from "./Cat/catWalk-2.svg"
+import catWalkSprite from "./Cat/catWalkSprite.svg"
+import catPet from "./Cat/catPet.svg"
+import catPet_2 from "./Cat/catPet-2.svg"
+import catPlay from "./Cat/catPlay.svg"
+import catPlay_2 from "./Cat/catPlay-2.svg"
+import catEat from "./Cat/catEat.svg"
+import catEat_2 from "./Cat/catEat-2.svg"
+import catSit from "./Cat/catSit.svg"
+import catStand from "./Cat/catStand.svg"
 
 class Cat extends Component {
   state = {
     img: catSit,
     menuOpen: false,
-    playerAction: "none", 
-    catTransform: {}
+    playerAction: "none",
+    catTransform: {},
+    shriek: new Audio(shriek),
   };
 
   showDropDown() {
     this.setState({ menuOpen: true });
   }
 
+  componentDidMount() {
+  }
+
   hallucinate() {
     this.setState({
+      img: catScarySprites,
       catTransform: {
-        transform: "scale(150)",
-        opacity: "0",
-        transition: "transform 0.7s ease-in, opacity 1.5s"
+        // transform: "scale(150)",
+        // opacity: "0",
+        backgroundSize: "150px 150px",
+        transition: "transform 0.4s, opacity 1.5s",
+        backgroundPositionX: "-150px",
+        animationName: "halluciCat",
+        transformOrigin: "75px 140px",
+        pointerEvents: "none"
       },
-      img: catScary
     });
-    setTimeout(() => this.setState({ catTransform: {}, img: catSit }), 200);
+    setTimeout(() => {
+      this.state.shriek.play()
+      this.setState({
+        catTransform:
+        {
+          animationName: "halluciCat",
+          transformOrigin: "50px 140px",
+          backgroundPositionX: "0px",
+        }
+      })
+    }, 800);
+    setTimeout(() => this.setState({ catTransform: {} }), 2000);
   }
 
   getPlayerStyles(playerAction) {
@@ -107,6 +140,52 @@ class Cat extends Component {
     ];
   }
 
+  getCatImage(player, time) {
+    let cat = {
+      feed: [catEat, catEat_2],
+      pet: [catPet, catPet_2],
+      play: [catPlay, catPlay_2],
+      stand: catStand,
+      sit: catSit,
+      walk: catWalkSprite
+    }
+    let useImage, frameDuration, isSprite, timerHasChanged
+
+    if (player.action != "none") {
+      useImage = cat[player.action]
+      frameDuration = 6
+    } else {
+      if (this.props.moving) {
+        useImage = cat.walk
+        frameDuration = 1
+        isSprite = true
+      } else {
+        useImage = cat.sit
+      }
+    }
+    let timer = (time.toFixed(1) % (frameDuration || 1) >= (frameDuration / 2 || 0.5))
+    // console.log(timer, this.state.timer);
+    
+    if (isSprite && timer != this.state.timer) {
+      this.setState({ timer })
+      timerHasChanged = true
+    } else {
+      timerHasChanged = false
+    }
+
+    if (Array.isArray(useImage)) {
+      useImage = timer ? useImage[0] : useImage[1]
+    } else if (isSprite && timerHasChanged) {
+      this.setState({
+        catTransform: {
+          backgroundPositionX: this.state.timer ?  "0px" : "-150px" 
+        }
+      })
+    }
+
+    return useImage
+  }
+
   render() {
     const {
       position,
@@ -141,7 +220,10 @@ class Cat extends Component {
           // src={this.state.img}
           className={"cat-image"}
           onClick={() => onClick()}
-          style={{...this.state.catTransform, backgroundImage: `url(${this.state.img})`}}
+          style={{
+            // ...this.state.catTransform,
+            backgroundImage: `url(${catWalkSprite})`
+          }}
         />
       </div>
     );
