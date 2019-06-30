@@ -5,15 +5,15 @@ import catScary from "./Cat/catScary.svg"
 import catScarySprites from "./Cat/catScarySprites.svg"
 import shriek from "./sounds/shriek.wav"
 
-import catWalk from "./Cat/catWalk.svg"
-import catWalk_2 from "./Cat/catWalk-2.svg"
-import catWalkSprite from "./Cat/catWalkSprite.svg"
+import catWalkSitStand from "./Cat/catWalk.svg"
+// import catWalk_2 from "./Cat/catWalk-2.svg"
+// import catWalkSprite from "./Cat/catWalkSprites.svg"
 import catPet from "./Cat/catPet.svg"
-import catPet_2 from "./Cat/catPet-2.svg"
+// import catPet_2 from "./Cat/catPet-2.svg"
 import catPlay from "./Cat/catPlay.svg"
-import catPlay_2 from "./Cat/catPlay-2.svg"
+// import catPlay_2 from "./Cat/catPlay-2.svg"
 import catEat from "./Cat/catEat.svg"
-import catEat_2 from "./Cat/catEat-2.svg"
+// import catEat_2 from "./Cat/catEat-2.svg"
 import catSit from "./Cat/catSit.svg"
 import catStand from "./Cat/catStand.svg"
 
@@ -142,23 +142,25 @@ class Cat extends Component {
 
   getCatImage(player, time) {
     let cat = {
-      feed: [catEat, catEat_2],
-      pet: [catPet, catPet_2],
-      play: [catPlay, catPlay_2],
+      feed: catEat,
+      pet: catPet,
+      play: catPlay,
       stand: catStand,
       sit: catSit,
-      walk: catWalkSprite
+      walk: catWalk
     }
-    let useImage, frameDuration, isSprite, timerHasChanged
+    let useImage, useStyle, frameDuration, isSprite, timerHasChanged, bgSize
 
     if (player.action != "none") {
       useImage = cat[player.action]
       frameDuration = 6
+      isSprite = true
     } else {
+      useImage = catWalkSitStand
       if (this.props.moving) {
-        useImage = cat.walk
         frameDuration = 1
         isSprite = true
+        bgSize = 600
       } else {
         useImage = cat.sit
       }
@@ -173,17 +175,16 @@ class Cat extends Component {
       timerHasChanged = false
     }
 
-    if (Array.isArray(useImage)) {
-      useImage = timer ? useImage[0] : useImage[1]
-    } else if (isSprite && timerHasChanged) {
-      this.setState({
+    if (isSprite && timerHasChanged) {
+      useStyle = {
         catTransform: {
+          backgroundSizeX: bgSize +"px",
           backgroundPositionX: this.state.timer ?  "0px" : "-150px" 
         }
-      })
+      }
     }
 
-    return useImage
+    return {image: useImage, style: useStyle}
   }
 
   render() {
@@ -210,6 +211,8 @@ class Cat extends Component {
       transition: transitionSpeed
     };
 
+    let catImage = this.getCatImage(player, time)
+
     return (
       <div className={"cat"} style={styles}>
         {hasPlayer ? (
@@ -221,8 +224,9 @@ class Cat extends Component {
           className={"cat-image"}
           onClick={() => onClick()}
           style={{
-            // ...this.state.catTransform,
-            backgroundImage: `url(${catWalkSprite})`
+            ...this.state.catTransform,
+            ...catImage.style,
+            backgroundImage: `url(${catImage.image})`
           }}
         />
       </div>
