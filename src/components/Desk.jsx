@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import DeskSvg from "./SVGs/DeskSvg.jsx";
 import Artwork from "./Artwork";
-import Player from "./Player"
+import Player from "./Player";
+import lamplight from "./SVGs/lamplight.svg"
 
 class Desk extends Component {
     render() {
@@ -14,6 +15,7 @@ class Desk extends Component {
                     <Player time={time} frameDuration={4} gender={player.gender} action={player.action} tiredness={player.tiredness} />
                 ) : null}
                 <DeskSvg onClick={onClick} />
+                <img className={lamplight} src={lamplight}/>
                 <Artwork
                     onClick={onClick}
                     working={hasPlayer}
