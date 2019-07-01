@@ -5,6 +5,7 @@ import artworkSketch from "./artwork-sketch.js";
 class Artwork extends Component {
 
     render() {
+        
         const {working, onClick, vitalStats} = this.props        
         return (
             <div className={"artwork"} onClick={onClick}>

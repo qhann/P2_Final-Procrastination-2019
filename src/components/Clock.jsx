@@ -1,7 +1,11 @@
 import React, { Component } from "react";
+import owlFile from "./sounds/owl.wav"
 
 class Clock extends Component {
 
+  state = {
+    owl: new Audio(owlFile)
+  }
 
   render() {
     const { time } = this.props
@@ -10,6 +14,13 @@ class Clock extends Component {
     let minutes = Math.floor(time % 60)
     minutes = minutes < 10 ? "0" + minutes : minutes
     hours = hours < 10 ? "0" + hours : hours
+
+    let owlWasPlayed = false
+    if (hours == 0 && minutes == 0 && !owlWasPlayed) {
+      console.log("owl");
+      
+      this.state.owl.play()
+    } 
 
     return (
       <div className={"clock"}>

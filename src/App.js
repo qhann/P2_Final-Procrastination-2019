@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import update from "immutability-helper";
 
-import Room from "./components/Room";
+import Main from "./components/Main";
 import Intro from "./components/Intro";
 import Start from "./components/Start";
 import CharacterSelection from "./components/CharacterSelection";
@@ -59,7 +59,7 @@ class App extends React.Component {
           />
         ) : null}
         {this.state.currentScreen == "room" ? (
-          <Room playerName={this.state.playerName} gender={this.state.gender} />
+          <Main playerName={this.state.playerName} gender={this.state.gender} />
         ) : null}
       </div>
     );

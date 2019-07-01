@@ -15,23 +15,23 @@ export default function artworkSketch(s) {
   let speed;
   let speedFactor = 1;
   let deltaSpeed = 0;
-  let deltaSpeedDeriv = 0
+  let deltaSpeedDeriv = 0;
   let deviation;
-  let lessCorrect = 4
-  let opacity 
-  let color
+  let lessCorrect = 4;
+  let opacity;
+  let color;
   // let hue = new Array(joints).fill(() => s.random(0, 360));
   let level = 1;
   let speedDistortion = 0;
   let frame = 0;
   let frameSkip = 1;
-  let exhaustion = 0
-  let health = 100
+  let exhaustion = 0;
+  let health = 100;
 
   let showPendulum = true;
   let showPendulumPath = true;
-  let width = window.innerHeight * 0.3;
-  let height = window.innerHeight * 0.3;
+  let width = 400 //window.innerHeight * 0.3;
+  let height = 400 //window.innerHeight * 0.3;
 
   pendulumPath = [];
 
@@ -42,16 +42,16 @@ export default function artworkSketch(s) {
 
   s.myCustomRedrawAccordingToNewPropsHandler = function(props) {
     playing = props.playing ? 1 : 0;
-    exhaustion = props.vitalStats.exhaustion
-    health = props.vitalStats.health
-    speedDistortion = exhaustion*exhaustion / 30000
-    frameSkip = ~~(exhaustion / 10) + 1 * (~~((100-health)/10))+1
-    speedFactor = 6/exhaustion * frameSkip
-    console.log(frameSkip)
+    exhaustion = props.vitalStats.exhaustion;
+    health = props.vitalStats.health;
+    speedDistortion = (exhaustion * exhaustion) / 30000;
+    frameSkip = ~~(exhaustion / 10) + 1; //* (~~((100-health)/10))+1
+    speedFactor = (6 / exhaustion) * frameSkip;
+    // console.log(frameSkip)
   };
 
   s.setup = () => {
-    s.frameRate(60)
+    s.frameRate(60);
     s.createCanvas(width, height);
     s.colorMode(s.HSB, 360, 100, 100, 100);
     s.noFill();
@@ -76,7 +76,7 @@ export default function artworkSketch(s) {
     frame = (frame + 1) % frameSkip;
     // s.background(240, 240, 240);
     // console.log(speedRelation, ~~s.random(2, 8));
-    let k = 100-speedDistortion
+    let k = 100 - speedDistortion;
     deltaSpeed += (s.random() - 0.5) * speedDistortion; // deltaSpeed // (1 - speedDistortion / 2) +
     // deltaSpeed += deltaSpeedDeriv
     deltaSpeed -= deltaSpeed / 4;
@@ -86,7 +86,7 @@ export default function artworkSketch(s) {
 
     angle += speed * speedFactor * playing; //* (1-(4/2) + 4 * Math.random());
 
-    deviation = Math.abs((speedRelation / speedRelationInit) -1) ;
+    deviation = Math.abs(speedRelation / speedRelationInit - 1);
 
     // each frame, create new positions for each joint
     if (angle <= maxAngle + speed) {
@@ -105,7 +105,7 @@ export default function artworkSketch(s) {
         if (i % 2 == 1) a = -a;
         var nextPos = p5.Vector.fromAngle(s.radians(a));
         nextPos.setMag(
-          ((joints - i) / joints) * lineLength * (deviation+1 * deviation+1 )
+          ((joints - i) / joints) * lineLength * (deviation + 1 * deviation + 1) * 0.5
         );
         nextPos.add(pos);
 
@@ -115,13 +115,18 @@ export default function artworkSketch(s) {
           s.fill(255, 10);
           //s.ellipse(pos.x, pos.y, 4, 4);
 
-          opacity = 255 * (frameSkip)/5
-          color = angle //Math.abs(180 - ((angle * (speedRelation+1)) % 360))
+          opacity = (255 * frameSkip) / 5;
+          color = angle || 1; //Math.abs(180 - ((angle * (speedRelation+1)) % 360))
           s.noFill();
-          s.strokeWeight(frameSkip);
+          s.strokeWeight(2);
           s.colorMode(s.HSB, 360, 100, health, 255);
-          s.stroke(color  , 100 - exhaustion, health * 500, opacity);
-          s.line(pos.x + 100*deviation/i, pos.y+ 100*deviation/i, nextPos.x- 200*deviation/i, nextPos.y- 200*deviation/i);
+          s.stroke(color || 1 || 1, 100 - exhaustion, health * 500, opacity);
+          s.line(
+            pos.x + (100 * deviation) / i,
+            pos.y + (100 * deviation) / i,
+            nextPos.x - (200 * deviation) / i,
+            nextPos.y - (200 * deviation) / i
+          );
         }
 
         if (i == level) pendulumPath[i].push(nextPos);
@@ -133,25 +138,25 @@ export default function artworkSketch(s) {
       console.log("next level");
     }
     // draw the path for each joint
-    if (showPendulumPath && frame % (frameSkip / 2) == 0) {
+    if (showPendulumPath) {
       s.strokeWeight(1);
-      for (var i = pendulumPath.length - 3; i < pendulumPath.length; i++) {
+      for (var i = 0; i < pendulumPath.length; i++) {
         if (i < 0) i = 0;
         var path = pendulumPath[i];
 
         s.beginShape();
         s.colorMode(s.HSB, 100, 100, 100, 255);
         var hue = ((360 / joints) * i) / 3;
-        s.stroke(color, 100, 100, 255-opacity);
+        s.stroke(color || 1, 100, 100, 1);
         s.strokeWeight(1 * Math.pow(Math.abs(deviation), 16));
         for (var j = 0; j < path.length; j++) {
-          // s.vertex(pos.x, pos.y);
+          if (pos) s.vertex(pos.x, pos.y);
         }
         s.endShape();
       }
     }
   };
-  
+
   s.keyPressed = () => {
     // console.log(s.key);
     // console.log(speedDistortion, frameSkip);
