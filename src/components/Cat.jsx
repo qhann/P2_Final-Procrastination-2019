@@ -150,31 +150,36 @@ class Cat extends Component {
       sit: catSit,
       // walk: catWalk
     }
-    let useImage, useStyle, useScale, frameDuration, isSprite, timerHasChanged, bgSizeX
+    let useImage, useStyle, useScale, frameDuration, isSprite, timerHasChanged, spriteCount, spriteWidth
     if (player.action != "none") {
       useImage = cat[player.action]
       frameDuration = 6
       isSprite = true
-      bgSizeX = 300
+      spriteCount = 2
       switch (player.action) {
         case "play":
-          useScale = 1.3
+          // useScale = 1.3
+          spriteWidth = 200
           break;
-        case "pet":
+          case "pet":
+            useScale = 1.2
+            spriteWidth = 100
           break;
         case "feed":
+          spriteWidth = 154
           break;
       }
     } else {
       useImage = catWalkSitStand
-      bgSizeX = 750
+      spriteCount = 5
+      spriteWidth = 150
       if (this.props.moving) {
         isSprite = true
         frameDuration = 1
       } else {
         useStyle = {
-          backgroundSize: `${bgSizeX}px 150px`,
-          backgroundPositionX: "-290px"
+          backgroundSize: `${spriteCount * spriteWidth}px 150px`,
+          backgroundPositionX: "-290px",
         }
       }
     }
@@ -190,8 +195,9 @@ class Cat extends Component {
 
     if (isSprite) {
       useStyle = {
-        backgroundSize: `${bgSizeX}px 150px`,
-        backgroundPositionX: this.state.timer ? "0px" : "-150px"
+        backgroundSize: `${spriteCount * spriteWidth}px ${150}px`,
+        backgroundPositionX: this.state.timer ? "0px" : `-${spriteWidth}px`,
+        width: `${spriteWidth}px`
       }
     }
 
