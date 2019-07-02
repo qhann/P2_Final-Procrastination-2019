@@ -1,8 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Patrick+Hand+SC|Stylish|Varela+Round|Walter+Turncoat|DM+Sans|Nanum+Gothic|Arimo&display=swap");
+@font-face {
+  font-family: Barmeno Medium;
+  src: url("./components/fonts/Barmeno-medium.otf") format("opentype");
+}
+
 * {
   padding: 0;
   margin: 0;
-  font-family: 'Stylish', cursive;
+  font-family: 'Barmeno Medium', cursive;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -107,13 +112,15 @@ html, body, .root, .App {
   top: -119%;
 }
 
-.mentor-tip p {
+.mentor-tip .mentor-text {
   position: absolute;
   left: 5%;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
+  color: black;
   overflow: hidden;
+  font-size: 1.5em;
 }
 
 .clock {
@@ -686,7 +693,7 @@ html, body, .root, .App {
 .character-select-input {
   position: absolute;
   width: 100%;
-  bottom: 180px;
+  bottom: 250px;
 }
 
 .input-character-name {

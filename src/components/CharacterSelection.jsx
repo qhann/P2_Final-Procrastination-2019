@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import Boy from "./Player/boy.svg";
 import Girl from "./Player/girl.svg";
+import MentorTip from "./MentorTip";
 
 class CharacterSelection extends Component {
   state = {
     name: "",
-    gender: ""
+    gender: "",
+    mentorText: null
   };
 
   setGender(gender) {
@@ -14,6 +16,27 @@ class CharacterSelection extends Component {
 
   setName(name) {
     this.setState({ name: name });
+  }
+
+  getMentorText() {
+    let mentorText
+    if (this.state.name == "") {
+      mentorText = "Bitte gib deinen Namen ein."
+    }
+    if (this.state.gender == "") {
+      mentorText = "Bitte wähle einen Character."
+    }
+    if (this.state.gender == "" && this.state.name == "") {
+      mentorText = "Bitte wähle einen Character und gib deinen Namen ein."
+    }
+    this.setState({mentorText})
+  }
+
+  checkCompletion() {
+    this.getMentorText()
+    if (this.state.gender != "" && this.state.name != "") {
+      this.props.nextScreen(this.state.gender, this.state.name)
+    }
   }
 
   render() {
@@ -46,11 +69,15 @@ class CharacterSelection extends Component {
           />
           <button
             className={"button-character-start"}
-            onClick={() => nextScreen(this.state.gender, this.state.name)}
+            onClick={() => this.checkCompletion()}
           >
             Bestätigen
         </button>
         </div>
+        {
+          this.state.mentorText ? <MentorTip text={this.state.mentorText} /> : null
+        }
+        
       </div>
     );
   }
