@@ -20,34 +20,37 @@ class CharacterSelection extends Component {
     const { nextScreen } = this.props;
 
     let genderHighlight = {
-      filter: "drop-shadow(5px 5px 10px red)"
+      filter: "drop-shadow(0px 0px 10px #FF8311)"
     };
     return (
       <div className={"character-selection"}>
         <p>Charakterauswahl:</p>
         <img
           src={Boy}
-          className={"button-character-select button-playboy"}
-          onClick={() => this.setGender("male")}
+          className={"button-character-select button-boy"}
+          onClick={() => this.setGender("boy")}
           style={this.state.gender == "boy" ? genderHighlight : {}}
         />
         <img
           src={Girl}
-          className={"button-character-select button-playgirl"}
-          onClick={() => this.setGender("female")}
+          className={"button-character-select button-girl"}
+          onClick={() => this.setGender("girl")}
           style={this.state.gender == "girl" ? genderHighlight : {}}
         />
-        <input
-          maxLength={25}
-          className={"input-character-name"}
-          onInput={e => this.setName(e.target.value)}
-        />
-        <button
-          className={"button-character-start"}
-          onClick={() => nextScreen(this.state.gender, this.state.name)}
-        >
-          Intro
+        <div className={"character-select-input"} >
+          <input
+            placeholder={"dein Name"}
+            maxLength={25}
+            className={"input-character-name"}
+            onInput={e => this.setName(e.target.value)}
+          />
+          <button
+            className={"button-character-start"}
+            onClick={() => nextScreen(this.state.gender, this.state.name)}
+          >
+            Bestätigen
         </button>
+        </div>
       </div>
     );
   }

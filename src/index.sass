@@ -582,12 +582,19 @@ html, body, .root, .App
     height: 500px
     width: 300px
     top: 20%
-
-.button-playboy
+    &:hover
+        filter: drop-shadow(-10px 10px 4px #FF8311)
+  
+.button-boy
     left: 30%
 
-.button-playgirl
+.button-girl
     right: 30%
+
+.character-select-input
+    position: absolute
+    width: 100%
+    bottom: 180px
 
 .input-character-name
     position: absolute
@@ -596,12 +603,13 @@ html, body, .root, .App
     width: 450px
     height: 50px
     font-size: 2em
+    padding-left: 15px
 
 .button-character-start
     position: absolute
     top: 72%
     left: 60%
-    width: 100px
+    width: 180px
     height: 50px
     font-size: 2em
     background: white
