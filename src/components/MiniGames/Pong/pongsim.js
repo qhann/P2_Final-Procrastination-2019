@@ -29,7 +29,7 @@ export default function pongSketch(s) {
   var score1 = 0;
   var score2 = 0;
 
-  var z = 1;
+  var z = 0;
 
   var countdown = 60;
   var countdown1 = 60;
@@ -44,6 +44,8 @@ export default function pongSketch(s) {
   //Ball Geschwindigkeit
   var ges = 10;
 
+  let botSpeed = 1
+
   function resetball() {
     ball.x = 300;
     ball.y = 250;
@@ -54,16 +56,18 @@ export default function pongSketch(s) {
     changewinkel();
   }
 
-  function changewinkel() {
-    rx = s.ceil(s.random(2, ges));
-    ry = s.sqrt(s.sq(ges) - s.sq(rx));
+  function changewinkel(yPosPaddleRatio) {
+    console.log(yPosPaddleRatio );
+    
+    ry = (yPosPaddleRatio || 0.5) * 6 + 2;
+    rx = s.sqrt(s.sq(ges) - s.sq(ry));
   }
 
   var scr1 = s.loadImage(dschungel2);
   var scr2 = s.loadImage(dschungel3);
 
   s.draw = () => {
-    console.log(z);
+    // console.log(z);
     //Zustand 0 = Startseite
     if (z === 0) {
       s.clear();
@@ -86,7 +90,7 @@ export default function pongSketch(s) {
       s.text("Pong", 300, 150);
 
       //Button
-      s.nofill();
+      s.noFill();
       s.stroke(0, 255, 0);
       s.rect(193, 310, 210, 80);
       s.fill(0, 255, 0);
@@ -176,7 +180,7 @@ export default function pongSketch(s) {
 
       //Ball
       s.fill(0, 150, 255);
-      // s.ellipse(ball.x, ball.y, 30);
+      s.ellipse(ball.x, ball.y, 30);
       s.textSize(30);
       s.text("🐵", ball.x, ball.y);
 
@@ -217,7 +221,8 @@ export default function pongSketch(s) {
         ball.x = ball.x - rx;
         if (ball.x <= 18) {
           resetball();
-          score2 = score2 + 1;
+          score2 += 1;
+          botSpeed += 1
           direction.x = 1;
         }
       }
@@ -233,18 +238,19 @@ export default function pongSketch(s) {
           direction.y = 1;
         }
       }
-      console.log(paddle.Ly);
-      console.log(ball.y);
+      // console.log(paddle.Ly);
+      // console.log(ball.y);
       //Paddles bewegen
+
       if (paddle.Ly > ball.y && ball.x < 400) {
-        paddle.Ly = paddle.Ly - 10;
+        paddle.Ly = paddle.Ly - botSpeed;
       }
       if (paddle.Ly >= 440) {
         paddle.Ly = 440;
       }
 
       if (paddle.Ly < ball.y && ball.x < 400) {
-        paddle.Ly = paddle.Ly + 10;
+        paddle.Ly = paddle.Ly + botSpeed;
       }
       if (paddle.Ly <= 24) {
         paddle.Ly = 24;
@@ -284,7 +290,7 @@ export default function pongSketch(s) {
         direction.x > 0
       ) {
         direction.x = direction.x * -1;
-        changewinkel();
+        changewinkel((ball.y - paddle.Ry)/110);
         ball.x = ball.x + direction.x;
       }
 

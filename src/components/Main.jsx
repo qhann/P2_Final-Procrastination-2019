@@ -111,7 +111,7 @@ class Main extends React.Component {
 
     newPosition = {
       x: ~~(150 + 1520 * Math.random()),
-      y: ~~(800 + 150 * Math.random())
+      y: ~~(800 + 120 * Math.random())
     };
 
     dx = prevCat.position.x - newPosition.x;

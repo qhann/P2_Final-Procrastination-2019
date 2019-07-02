@@ -8,7 +8,7 @@ class DropDown extends Component {
     let styles = isVisible ? {} : hidden;
 
     let buttons = options.map(option => {
-      return <button onClick={option.action}>{option.caption}</button>;
+      return <button onClick={option.action} className={"button-drop-down"} key={option.action}>{option.caption}</button>;
     });
 
     return (

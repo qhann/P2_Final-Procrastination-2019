@@ -174,7 +174,15 @@ html, body, .root, .App
 .drop-down
     position: absolute
     top: -40px
+    left: 90px
     z-index: 10
+
+.button-drop-down
+    width: 100%
+    border-radius: 5px
+    margin: 2px
+    &:hover
+        filter: drop-shadow(0 0 5px black)
 
 .artwork
     top: 0
@@ -305,23 +313,23 @@ html, body, .root, .App
     height: 100%
     mix-blend-mode: 
 
-.lunar-lander
+// .lunar-lander
+//     position: relative
+//     width: 50%
+//     height: 50%
+//     left: 50%
+//     top: 40%
+    // transform: translate(-50%, -50%) scale(0.1, 0.1)
+    // transition: transform 0.7s
+
+.pong, .lunar-lander, .snake
     position: relative
     width: 50%
     height: 50%
     left: 50%
-    top: 40%
-    transform: translate(-50%, -50%) scale(0.1, 0.1)
-    transition: transform 0.7s
-
-.pong 
-    position: relative
-    width: 50%
-    height: 50%
-    left: 70%
     top: 35%
-    transform: translate(-50%, -50%) scale(0.1, 0.1)
-    transition: transform 0.7s
+    transform: translate(-50%, -50%) 
+    // transition: transform 0.7s
 
 // .button-lunar
 //     width: 40%
@@ -367,6 +375,7 @@ html, body, .root, .App
         border: 4px solid rgba(2550,0,0,0.5)
         box-shadow: 0 0 10px red
     .game-select
+        display: flex
         position: absolute
         height: 100%
         width: 100%
@@ -374,13 +383,15 @@ html, body, .root, .App
     .button-game-select
         // display: flex
         // flex-direction: 
+        flex-grow: 1 
         position: relative
         object-fit: cover
-        width: 40%
-        // height: 80%
+        width: 20%
+        height: 42%
         // top: 20%
-        left: 0%
+        left: 0% 
         margin: 5%
+        top: 20%
     .game-select-text
         // margin-top: 10% 
         width: 100%
@@ -405,16 +416,26 @@ html, body, .root, .App
         &:hover
             border: none
             box-shadow: none
-        .lunar-lander, .pong
+        .lunar-lander, .pong,
             position: absolute
             transform: translate(-50%, -50%) scale(1,1)
-        // &::after
-        //     content: ""
-        //     position: absolute
-        //     top: 0
-        //     right: -50%
-        //     bottom: -50%
-        //     left: -50%
+        &::after
+            content: ""
+            position: absolute
+            top: 0
+            right: -50%
+            bottom: -50%
+            left: -50%
+            z-index: -1
+
+.button-game-back
+    position: absolute
+    height: 50px
+    left: 50px
+    top: 50px
+    &:hover
+        transform: scale(1.2)
+
 
 .desk
     position: absolute
@@ -437,6 +458,7 @@ html, body, .root, .App
     top: 5px
     left: 147px
     width: 268px
+    opacity: 0.3 
 
 .coffee-maker 
     position: absolute
