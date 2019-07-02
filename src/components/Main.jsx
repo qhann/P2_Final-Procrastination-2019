@@ -28,8 +28,8 @@ class Main extends React.Component {
     cat: {
       hasPlayer: false,
       position: {
-        x: 0,
-        y: 0
+        x: 400,
+        y: 800
       },
       moving: false,
       menuOpen: false,

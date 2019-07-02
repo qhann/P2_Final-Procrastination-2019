@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Patrick+Hand+SC|Stylish|Varela+Round|Walter+Turncoat|DM+Sans|Nanum+Gothic|Arimo&display=swap')
 
+@font-face 
+    font-family: Barmeno Medium
+    src: url("./components/fonts/Barmeno-medium.otf") format("opentype")
+
+
 *
     padding: 0
     margin: 0
-    font-family: 'Stylish', cursive
+    font-family: 'Barmeno Medium', cursive
     user-select: none
 
 html 
@@ -88,12 +93,14 @@ html, body, .root, .App
         left: -85px
         top: -119%
 
-    p
+    .mentor-text
         position: absolute
         left: 5%
         top: 50%
         transform: translateY(-50%)
+        color: black
         overflow: hidden
+        font-size: 1.5em
 
 .clock
     position: absolute
@@ -594,7 +601,7 @@ html, body, .root, .App
 .character-select-input
     position: absolute
     width: 100%
-    bottom: 180px
+    bottom: 250px
 
 .input-character-name
     position: absolute
