@@ -5,7 +5,7 @@ import jet1 from "./assets/jet.png";
 import jet2 from "./assets/jet2.png";
 
 export default function artworkSketch(s) {
-  let width = 1920 * 0.5;
+  let width = 840 //1920 * 0.5;
   let height = 1080 * 0.5;
   // console.log(height);
 

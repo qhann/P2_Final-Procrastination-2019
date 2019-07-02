@@ -8,6 +8,7 @@ import pongPreview from "./MiniGames/Pong/monkeyface.png"
 import snakePreview from "./MiniGames/snake/preview.png"
 import Moonlight from "./Moonlight";
 import Player from "./Player"
+import backImage from "./MiniGames/back.png"
 
 
 class GamingStation extends Component {
@@ -64,6 +65,9 @@ class GamingStation extends Component {
                 onClick={e => this.handleGameChange(e, 3)}
               />
             </div>
+          ) : null}
+          {this.state.gameNumber != 0 ? (
+            <img src={backImage} className={"button-game-back"} onClick={e => this.handleGameChange(e, 0)} />
           ) : null}
           {this.state.gameNumber == 1 ? (
             <LunarLander onClick={e => this.handleGameClick(e)} />

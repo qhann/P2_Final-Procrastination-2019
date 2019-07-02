@@ -62,56 +62,6 @@ class Cat extends Component {
     setTimeout(() => this.setState({ catTransform: {}, hallucinate: false }), 2000);
   }
 
-  getPlayerStyles(playerAction) {
-    let playerImage,
-      playerPostion = {},
-      width,
-      height;
-
-    switch (playerAction) {
-      case "pet":
-        // playerImage = petgirl;
-        playerPostion = {
-          top: "-185px",
-          left: "-248px"
-        };
-        // height = "285px"
-        width = "168px";
-        break;
-      case "feed":
-        // playerImage = feedgirl;
-        playerPostion = {
-          top: "-85px",
-          left: "-131px"
-        };
-        width = "168px";
-        break;
-      case "play":
-        // playerImage = playgirl;
-        playerPostion = {
-          top: "-105px",
-          left: "-131px"
-        };
-        width = "168px";
-        break;
-      case "none":
-        // playerImage = girl;
-        playerPostion = {
-          top: "-278px",
-          left: "-124px"
-        };
-        break;
-    }
-
-    return {
-      backgroundImage: this.props.hasPlayer ? `url(${playerImage})` : "none",
-      top: playerPostion.top,
-      left: playerPostion.left,
-      width: width,
-      height: height
-    };
-  }
-
   getDropDownOptions() {
     return [
       {
@@ -224,8 +174,6 @@ class Cat extends Component {
       this.setState({ playerAction: "none" });
     }
 
-    // let playerStyles = this.getPlayerStyles(this.state.playerAction);
-    // player.action = this.state.playerAction
     let dropDownOptions = this.getDropDownOptions();
 
 

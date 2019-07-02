@@ -13,7 +13,6 @@ import StatusBar from "./StatusBar";
 import MentorTip from "./MentorTip";
 import Window from "./Window";
 
-
 class Main extends React.Component {
   state = {
     time: 609,
@@ -22,7 +21,7 @@ class Main extends React.Component {
       health: 100,
       exhaustion: 0
     },
-    mentorText: "Hefte raus, Klassenarbeit!",
+    mentorText: "Es ist schon ziemlich spät...",
     room: {
       hasPlayer: false
     },
@@ -52,7 +51,7 @@ class Main extends React.Component {
       fullscreen: false
     },
     frameRate: 6,
-    globalInterval: {},
+    globalInterval: {}
   };
 
   componentDidMount() {
@@ -111,13 +110,13 @@ class Main extends React.Component {
 
     newPosition = {
       x: ~~(150 + 1520 * Math.random()),
-      y: ~~(800 + 150 * Math.random())
+      y: ~~(800 + 120 * Math.random())
     };
 
     dx = prevCat.position.x - newPosition.x;
     dy = prevCat.position.y - newPosition.y;
     distance = Math.sqrt(dx * dx + dy * dy);
-    direction = dx > 0 ? "left" : "right"
+    direction = dx > 0 ? "left" : "right";
 
     newCat = update(prevCat, {
       position: {
@@ -131,31 +130,36 @@ class Main extends React.Component {
 
     // console.log(~~(distance / 400 * 1000));
 
-    setTimeout(() => this.setState(prevState => (
-      update(prevState, {
-        cat: {
-          moving: { $set: false }
-        }
-      })
-    )),
-      ~~(distance / 300 * 1000)
-    )
+    setTimeout(
+      () =>
+        this.setState(prevState =>
+          update(prevState, {
+            cat: {
+              moving: { $set: false }
+            }
+          })
+        ),
+      ~~((distance / 300) * 1000)
+    );
 
     return newCat;
   }
 
   updateVital(attribute, prevStat) {
-
-    if (prevStat.exhaustion > 50 && prevStat.exhaustion < 75 && this.state.tiredness != "tired") {
-      this.setState({ tiredness: "tired" })
+    if (
+      prevStat.exhaustion > 50 &&
+      prevStat.exhaustion < 75 &&
+      this.state.tiredness != "tired"
+    ) {
+      this.setState({ tiredness: "tired" });
     }
     if (prevStat.exhaustion > 75 && this.state.tiredness != "tiredest") {
-      this.setState({ tiredness: "tiredest" })
+      this.setState({ tiredness: "tiredest" });
     }
 
     //console.log(attribute, prevStat);
     let frameDuration = 1000 / this.state.frameRate;
-    let dHealth = (prevStat.exhaustion - 50) / 12
+    let dHealth = (prevStat.exhaustion - 50) / 12;
     let step, newStat;
     switch (attribute) {
       case "health":
@@ -239,7 +243,7 @@ class Main extends React.Component {
     this.setState(prevState =>
       update(prevState, {
         cat: {
-          menuOpen: { $set: !cat.menuOpen },
+          menuOpen: { $set: !cat.menuOpen }
           // moving: { $set: cat.menuOpen }
         }
       })
@@ -297,7 +301,7 @@ class Main extends React.Component {
   }
 
   handleRoomClick() {
-    this.playerTo("room")
+    this.playerTo("room");
   }
 
   render() {
@@ -313,7 +317,7 @@ class Main extends React.Component {
       gender: this.props.gender,
       tiredness: this.state.tiredness,
       action: this.state.cat.interaction
-    }
+    };
 
     return (
       <div className="main">
