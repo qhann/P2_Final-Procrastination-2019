@@ -10,7 +10,7 @@ import EndScreen from "./components/EndScreen";
 
 class App extends React.Component {
   state = {
-    currentScreen: "main",
+    currentScreen: "start",
     playerName: "",
     gender: "girl"
   };
@@ -26,8 +26,8 @@ class App extends React.Component {
         break;
       case "intro":
         if (props.name && props.gender) {
-          newScreen = "intro"
-          newProps = {playerName: props.name, gender: props.gender}
+          newScreen = "intro";
+          newProps = { playerName: props.name, gender: props.gender };
         }
         break;
       case "main":
@@ -49,7 +49,9 @@ class App extends React.Component {
         ) : null}
         {this.state.currentScreen == "characterSelection" ? (
           <CharacterSelection
-            nextScreen={(gender, name) => this.switchScreen("intro", {gender, name})}
+            nextScreen={(gender, name) =>
+              this.switchScreen("intro", { gender, name })
+            }
           />
         ) : null}
         {this.state.currentScreen == "intro" ? (
