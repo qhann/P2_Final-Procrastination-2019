@@ -12,7 +12,9 @@ class App extends React.Component {
   state = {
     currentScreen: "main",
     playerName: "",
-    gender: "girl"
+    gender: "girl",
+    player: {},
+    artWork: {}
   };
 
   switchScreen(destination, props) {
@@ -26,14 +28,18 @@ class App extends React.Component {
         break;
       case "intro":
         if (props.name && props.gender) {
-          newScreen = "intro"
-          newProps = {playerName: props.name, gender: props.gender}
+          newScreen = "intro";
+          newProps = { playerName: props.name, gender: props.gender };
         }
         break;
       case "main":
         newScreen = "main";
         break;
       case "end":
+        console.log(props.artWork);
+        
+        newProps = { artWork: props.artWork };
+        newScreen = "end";
         break;
     }
     if (newScreen) {
@@ -49,7 +55,9 @@ class App extends React.Component {
         ) : null}
         {this.state.currentScreen == "characterSelection" ? (
           <CharacterSelection
-            nextScreen={(gender, name) => this.switchScreen("intro", {gender, name})}
+            nextScreen={(gender, name) =>
+              this.switchScreen("intro", { gender, name })
+            }
           />
         ) : null}
         {this.state.currentScreen == "intro" ? (
@@ -59,7 +67,18 @@ class App extends React.Component {
           />
         ) : null}
         {this.state.currentScreen == "main" ? (
-          <Main playerName={this.state.playerName} gender={this.state.gender} />
+          <Main
+            playerName={this.state.playerName}
+            gender={this.state.gender}
+            nextScreen={artWork => this.switchScreen("end", artWork)}
+          />
+        ) : null}
+        {this.state.currentScreen == "end" ? (
+          <EndScreen
+            playerName={this.state.playerName}
+            gender={this.state.gender}
+            artWork={this.state.artWork}
+          />
         ) : null}
       </div>
     );

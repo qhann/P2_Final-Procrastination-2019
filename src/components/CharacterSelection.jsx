@@ -24,10 +24,10 @@ class CharacterSelection extends Component {
       mentorText = "Bitte gib deinen Namen ein."
     }
     if (this.state.gender == "") {
-      mentorText = "Bitte wähle einen Character."
+      mentorText = "Bitte wähle einen Charakter."
     }
     if (this.state.gender == "" && this.state.name == "") {
-      mentorText = "Bitte wähle einen Character und gib deinen Namen ein."
+      mentorText = "Bitte wähle einen Charakter und gib deinen Namen ein."
     }
     this.setState({mentorText})
   }

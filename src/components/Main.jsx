@@ -321,6 +321,7 @@ class Main extends React.Component {
 
     return (
       <div className="main">
+        <button onClick={() => this.props.nextScreen({artWork: document.getElementById("defaultCanvas0").toDataURL("image/png")}) }>ENDSCREEN </button>/>
         <Room time={time} />
         <Cat
           hasPlayer={cat.hasPlayer}

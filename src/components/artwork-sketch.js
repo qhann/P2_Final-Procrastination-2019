@@ -2,11 +2,13 @@ import p5 from "p5";
 
 export default function artworkSketch(s) {
   let playing = 1;
+  let width = 400 //window.innerHeight * 0.3;
+  let height = 400 //window.innerHeight * 0.3;
 
   let shape;
-  let joints = 6;
-  let lineLength = window.innerHeight * 0.05;
-  let speedRelation = ~~s.random(2, 8);
+  let joints = 4;
+  let lineLength = height * 0.3;
+  let speedRelation = 6 //~~s.random(2, 8);
   let speedRelationInit = speedRelation;
   let center;
   let pendulumPath;
@@ -30,8 +32,6 @@ export default function artworkSketch(s) {
 
   let showPendulum = true;
   let showPendulumPath = true;
-  let width = 400 //window.innerHeight * 0.3;
-  let height = 400 //window.innerHeight * 0.3;
 
   pendulumPath = [];
 
@@ -42,11 +42,12 @@ export default function artworkSketch(s) {
 
   s.myCustomRedrawAccordingToNewPropsHandler = function(props) {
     playing = props.playing ? 1 : 0;
-    exhaustion = props.vitalStats.exhaustion;
+    exhaustion = props.vitalStats.exhaustion - 50;
+    exhaustion = exhaustion < 1 ? 1 : exhaustion
     health = props.vitalStats.health;
     speedDistortion = (exhaustion * exhaustion) / 30000;
     frameSkip = ~~(exhaustion / 10) + 1; //* (~~((100-health)/10))+1
-    speedFactor = (6 / exhaustion) * frameSkip;
+    speedFactor = 2 //(6 / exhaustion) * frameSkip;
     // console.log(frameSkip)
   };
 
@@ -133,6 +134,7 @@ export default function artworkSketch(s) {
         pos = nextPos;
       }
     } else {
+      speedFactor = speedFactor * level / (level*2 + 1)
       level += 1;
       angle = 0;
       console.log("next level");

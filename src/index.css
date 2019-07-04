@@ -95,6 +95,11 @@ html, body, .root, .App {
   z-index: 10;
 }
 
+.end-art {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+
 .mentor-tip {
   position: absolute;
   height: 4%;
@@ -765,5 +770,13 @@ html, body, .root, .App {
   height: 400px;
   top: 10%;
   right: -41%;
+}
+
+.endboy {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  top: 500px;
+  left: 40%;
 }
 /*# sourceMappingURL=index.css.map */
