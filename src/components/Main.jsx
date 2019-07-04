@@ -15,8 +15,9 @@ import Window from "./Window";
 
 class Main extends React.Component {
   state = {
-    time: 609,
+    time: 0,
     tiredness: "rested",
+    workingExhaustionValues: [],
     vitalStats: {
       health: 100,
       exhaustion: 0
@@ -84,11 +85,16 @@ class Main extends React.Component {
         "exhaustion",
         prevState.vitalStats.exhaustion
       );
+
       let newCat =
         this.state.time.toFixed(1) % 10 == 0
           ? this.moveCat(prevState.cat)
           : prevState.cat;
 
+      let newWorkingExhaustionValues = prevState.desk.hasPlayer
+        ? prevState.workingExhaustionValues.concat([prevState.vitalStats.exhaustion])
+        : prevState.workingExhaustionValues
+        
       return update(prevState, {
         time: { $set: prevState.time + (1 / this.state.frameRate) * 2 },
         vitalStats: {
@@ -99,7 +105,8 @@ class Main extends React.Component {
             $set: newExhaustion
           }
         },
-        cat: { $set: newCat }
+        cat: { $set: newCat },
+        workingExhaustionValues: { $set: newWorkingExhaustionValues }
       });
     });
   }
@@ -321,7 +328,10 @@ class Main extends React.Component {
 
     return (
       <div className="main">
-        <button onClick={() => this.props.nextScreen({artWork: document.getElementById("defaultCanvas0").toDataURL("image/png")}) }>ENDSCREEN </button>/>
+        <button onClick={() => this.props.nextScreen({
+          artWork: document.getElementById("defaultCanvas0").toDataURL("image/png"),
+          workingExhaustionValues: this.state.workingExhaustionValues
+        })}>ENDSCREEN </button>/>
         <Room time={time} />
         <Cat
           hasPlayer={cat.hasPlayer}

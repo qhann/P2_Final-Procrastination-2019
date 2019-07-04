@@ -132,6 +132,7 @@ export default function artworkSketch(s) {
 
         if (i == level) pendulumPath[i].push(nextPos);
         pos = nextPos;
+        
       }
     } else {
       speedFactor = speedFactor * level / (level*2 + 1)

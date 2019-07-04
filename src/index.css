@@ -95,19 +95,11 @@ html, body, .root, .App {
   z-index: 10;
 }
 
-.end-art {
-  -webkit-transform: rotate(-90deg);
-          transform: rotate(-90deg);
-}
-
 .mentor-tip {
   position: absolute;
-  height: 4%;
   width: 37%;
   bottom: 4%;
   left: 33%;
-  background: white;
-  border-radius: 5px;
 }
 
 .mentor-tip img {
@@ -118,9 +110,10 @@ html, body, .root, .App {
 }
 
 .mentor-tip .mentor-text {
-  position: absolute;
+  position: relative;
+  background: white;
+  border-radius: 5px;
   left: 5%;
-  top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   color: black;
@@ -544,6 +537,7 @@ html, body, .root, .App {
   left: 147px;
   width: 268px;
   opacity: 0.3;
+  pointer-events: none;
 }
 
 .coffee-maker {
@@ -772,11 +766,33 @@ html, body, .root, .App {
   right: -41%;
 }
 
-.endboy {
+.end-screen {
+  background: #00132e;
+  width: 100%;
+  height: 100%;
+}
+
+.end-player {
   position: absolute;
   width: 400px;
   height: 400px;
   top: 500px;
   left: 40%;
+}
+
+.end-art {
+  position: relative;
+  left: -500px;
+  top: 200px;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+
+.trophy {
+  position: relative;
+  top: 200px;
+  left: -500px;
+  width: 200px;
+  height: 200px;
 }
 /*# sourceMappingURL=index.css.map */

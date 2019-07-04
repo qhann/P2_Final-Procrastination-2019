@@ -79,17 +79,12 @@ html, body, .root, .App
     left: 5%
     z-index: 10
 
-.end-art
-    transform: rotate(-90deg)
-
 .mentor-tip
     position: absolute
-    height: 4%
+    // height: 4%
     width: 37%
     bottom: 4%
     left: 33%
-    background: white
-    border-radius: 5px
     img
         position: absolute
         height: 100px
@@ -97,9 +92,11 @@ html, body, .root, .App
         top: -119%
 
     .mentor-text
-        position: absolute
+        position: relative
+        background: white
+        border-radius: 5px
         left: 5%
-        top: 50%
+        // top: 50%
         transform: translateY(-50%)
         color: black
         overflow: hidden
@@ -469,6 +466,7 @@ html, body, .root, .App
     left: 147px
     width: 268px
     opacity: 0.3 
+    pointer-events: none
 
 .coffee-maker 
     position: absolute
@@ -670,9 +668,28 @@ html, body, .root, .App
     top: 10%
     right: -41%
 
-.endboy
+.end-screen
+    background: #00132e
+    width: 100%
+    height: 100%
+
+.end-player
     position: absolute
     width: 400px
     height: 400px
     top: 500px
     left: 40%
+
+
+.end-art
+    position: relative
+    left: -500px
+    top: 200px
+    transform: rotate(-90deg)
+
+.trophy 
+    position: relative
+    top: 200px
+    left: -500px
+    width: 200px
+    height: 200px
