@@ -17,7 +17,7 @@ class Intro extends Component {
           entstanden und hat sich als einfaches Hobby zu deinem Traum
           entwickelt. Du möchtest anderen Menschen helfen, den Weg zur Kunst zu
           finden und sie genauso begeistern wie es Kunstwerke bei dir schaffen.
-          <br />
+          <br /> <br />
           Momentan arbeitest du tagsüber in einem Büro und fühlst dich dort
           nicht ausreichend kreativ ausgelastet. Nun möchtest du mit deiner
           ersten Skulptur beginnen, die du daraufhin veröffentlichen kannst. Du
