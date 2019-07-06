@@ -22,6 +22,27 @@ html, body, .root, .App
 
 .App
     overflow: hidden
+    
+.night
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+    background: black
+    z-index: 99
+    opacity: 0
+    pointer-events: none
+    &.night-fall
+        animation-name: nightFall
+        animation-duration: 3s
+
+@keyframes nightFall 
+    0%
+        opacity: 0
+    100%
+        opacity: 1
 
 .root, .app
     width: 100%
@@ -97,7 +118,8 @@ html, body, .root, .App
         border-radius: 5px
         left: 5%
         // top: 50%
-        transform: translateY(-50%)
+        padding: 5px
+        // transform: translateY(-50%)
         color: black
         overflow: hidden
         font-size: 1.5em
@@ -187,6 +209,7 @@ html, body, .root, .App
 .button-drop-down
     width: 100%
     border-radius: 5px
+    padding: 3px
     margin: 2px
     &:hover
         filter: drop-shadow(0 0 5px black)
@@ -247,7 +270,12 @@ html, body, .root, .App
         // width: 237px
         // height: 140px
         // transform-origin: 0 -204px
-    
+    &.pattern-game
+        mask-size: 479px
+        mask-position: 0 0 
+    .moonlight-game
+        transform-origin: 300px -100px 
+
 
 
 .bed-path
@@ -318,7 +346,6 @@ html, body, .root, .App
     position: absolute
     width: 100%
     height: 100%
-    mix-blend-mode: 
 
 // .lunar-lander
 //     position: relative
@@ -363,7 +390,7 @@ html, body, .root, .App
     .moonlight
         top: 150px
         left: 508px
-        transform-origin: 0 0 
+        // transform-origin: 0 0 
 
 .screen
     position: absolute
@@ -567,6 +594,15 @@ html, body, .root, .App
             height: 300px
             top: -140px
             left: -180px
+    &.room
+        top: 480px !important
+        left: -400px !important
+    &.end
+        position: absolute
+        width: 400px
+        height: 400px
+        top: 500px !important
+        left: 40% !important
 
 
 .start, .character-selection
@@ -673,23 +709,48 @@ html, body, .root, .App
     width: 100%
     height: 100%
 
-.end-player
-    position: absolute
-    width: 400px
-    height: 400px
-    top: 500px
-    left: 40%
-
-
 .end-art
     position: relative
     left: -500px
     top: 200px
     transform: rotate(-90deg)
 
+.trophy-wrapper
+    position: absolute
+    top: 500px
+    left: 200px
+
 .trophy 
     position: relative
-    top: 200px
-    left: -500px
     width: 200px
     height: 200px
+    transform: translate(0, -1000px)
+    animation: trophySlideIn 0.7s ease-in-out forwards
+
+.trophy-min
+    animation-delay: 0
+.trophy-med
+    animation-delay: 0.6s
+.trophy-max
+    animation-delay: 1.2s
+
+.end-screen
+    .cat
+        opacity: 0
+        animation: catFadeIn 1s forwards
+        animation-delay: 1.5s
+
+
+@keyframes trophySlideIn 
+    0%
+        transform: translate(0, -1000px)
+    100%
+        transform:  translate(0,0)
+
+@keyframes catFadeIn
+    0%
+        opacity: 1
+        transform: translate(1200px, 700px) scale(0)
+    100%
+        opacity: 1
+        transform: translate(1200px, 700px) scale(1)

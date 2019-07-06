@@ -15,16 +15,17 @@ import Window from "./Window";
 
 class Main extends React.Component {
   state = {
-    time: 0,
+    time: 460,
+    sleepTime: 0,
     tiredness: "rested",
     workingExhaustionValues: [],
     vitalStats: {
       health: 100,
       exhaustion: 0
     },
-    mentorText: "Es ist schon ziemlich spät...",
+    mentorText: "Es ist schon ziemlich spät, " + (this.props.playerName || "lol") + ".",
     room: {
-      hasPlayer: false
+      hasPlayer: true
     },
     cat: {
       hasPlayer: false,
@@ -42,6 +43,7 @@ class Main extends React.Component {
       completion: 0
     },
     bed: {
+      menuOpen: false,
       hasPlayer: false
     },
     coffee: {
@@ -51,15 +53,20 @@ class Main extends React.Component {
       hasPlayer: false,
       fullscreen: false
     },
-    frameRate: 6,
+    frameRate: 1,
     globalInterval: {}
   };
 
-  componentDidMount() {
+  getGlobalInterval() {
     let globalInterval = setInterval(
       () => this.updateTimed(),
-      1000 / this.state.frameRate
+      50
     );
+    return globalInterval
+  }
+
+  componentDidMount() {
+    let globalInterval = this.getGlobalInterval()
 
     this.setState(prevState =>
       update(prevState, {
@@ -79,6 +86,16 @@ class Main extends React.Component {
   }
 
   updateTimed() {
+    let time = this.state.time
+    let hours = (~~(time / 60) % 12)
+    let minutes = ~~(time % 60)
+    // console.log(hours);
+    
+    if (hours == 11 && minutes == 59 ) {
+      this.sleepTillMorning()
+      return
+    }
+
     this.setState(prevState => {
       let newHealth = this.updateVital("health", prevState.vitalStats.health);
       let newExhaustion = this.updateVital(
@@ -87,16 +104,17 @@ class Main extends React.Component {
       );
 
       let newCat =
-        this.state.time.toFixed(1) % 10 == 0
+        time.toFixed(1) % 10 == 0
           ? this.moveCat(prevState.cat)
           : prevState.cat;
 
       let newWorkingExhaustionValues = prevState.desk.hasPlayer
         ? prevState.workingExhaustionValues.concat([prevState.vitalStats.exhaustion])
         : prevState.workingExhaustionValues
-        
+
       return update(prevState, {
-        time: { $set: prevState.time + (1 / this.state.frameRate) * 2 },
+        time: { $set: prevState.time + 1 },
+        sleepTime: { $set: this.state.bed.hasPlayer ? prevState.sleepTime + 1 : prevState.sleepTime },
         vitalStats: {
           health: {
             $set: newHealth
@@ -153,27 +171,37 @@ class Main extends React.Component {
   }
 
   updateVital(attribute, prevStat) {
-    if (
-      prevStat.exhaustion > 50 &&
-      prevStat.exhaustion < 75 &&
-      this.state.tiredness != "tired"
-    ) {
-      this.setState({ tiredness: "tired" });
+    if (attribute == "exhaustion") {
+      if (
+        prevStat > 50 &&
+        prevStat < 75 &&
+        this.state.tiredness != "tired"
+      ) {
+        this.setState({ tiredness: "tired" });
+      }
+      if (prevStat > 75 && this.state.tiredness != "tiredest") {
+        this.setState({ tiredness: "tiredest" });
+      }
     }
-    if (prevStat.exhaustion > 75 && this.state.tiredness != "tiredest") {
-      this.setState({ tiredness: "tiredest" });
-    }
+
 
     //console.log(attribute, prevStat);
     let frameDuration = 1000 / this.state.frameRate;
-    let dHealth = (prevStat.exhaustion - 50) / 12;
+    let overExhaustion = this.state.vitalStats.exhaustion - 50
+    overExhaustion = overExhaustion < 0 ? 0 : overExhaustion
+    let dHealth = -overExhaustion / 96 / 2;
     let step, newStat;
     switch (attribute) {
       case "health":
         step = (dHealth / this.state.frameRate) * 2;
         break;
       case "exhaustion":
-        step = (6.25 / 60 / this.state.frameRate) * 2;
+        let hours = (Math.floor(this.state.time / 60) % 12 + 18) % 24
+        if (hours >= 18 && hours < 22) {
+          step = (6.25 / 60 / this.state.frameRate);
+        } else {
+          step = (12.5 / 60 / this.state.frameRate);
+        }
         break;
     }
 
@@ -219,7 +247,8 @@ class Main extends React.Component {
           hasPlayer: { $set: atDesk }
         },
         bed: {
-          hasPlayer: { $set: atBed }
+          hasPlayer: { $set: atBed },
+          menuOpen: { $set: !atBed ? false : prevState.bed.menuOpen },
         },
         cat: {
           hasPlayer: { $set: atCat },
@@ -236,16 +265,71 @@ class Main extends React.Component {
     );
   }
 
-  handleBedClick() {
-    this.setState({ vitalStats: { health: 100, exhaustion: 0 } });
+  handleBedClick(e) {
+    e.stopPropagation()
+    let bed = this.state.bed;
+    this.setState(prevState => update(prevState, { bed: { menuOpen: { $set: !bed.menuOpen } } }));
     this.playerTo("bed");
   }
 
-  handleDeskClick() {
+  handleDeskClick(e) {
+    e.stopPropagation()
     this.playerTo("desk");
   }
 
-  handleCatClick() {
+  sleepTillMorning() {
+    this.nightFall(() => {
+      let prevExhaustion = this.state.vitalStats.exhaustion
+      let days = 1 + Math.floor(this.state.time / (60 * 12))
+      let sleepingHours = 12 - (Math.floor(this.state.time / 60) % 12) % 24
+      console.log(sleepingHours);
+
+      if (days == 3) {
+        this.endGame()
+        return
+      }
+
+      let newExhaustion = prevExhaustion - sleepingHours * 12.5
+      newExhaustion = newExhaustion < 0 ? 0 : newExhaustion
+      let newTime = days * 12 * 60
+
+      this.setState(prevState => update(prevState, {
+        time: { $set: newTime },
+        vitalStats: {
+          exhaustion: { $set: newExhaustion }
+        }
+      }))
+      this.playerTo("room")
+    })
+  }
+
+  nightFall(callBack) {
+    this.setState({
+      nightFall: true,
+    })
+
+    clearInterval(this.state.globalInterval)
+
+    setTimeout(() => {
+      this.setState({
+        nightFall: false,
+        globalInterval: this.getGlobalInterval()
+      })
+      callBack()
+    }, 3000)
+  }
+
+  nap() {
+    this.setState(prevState => update(prevState, {
+      bed: {
+        hasPlayer: { $set: true },
+        menuOpen: { $set: false }
+      }
+    }))
+  }
+
+  handleCatClick(e) {
+    e.stopPropagation()
     let cat = this.state.cat;
     this.setState(prevState =>
       update(prevState, {
@@ -292,13 +376,13 @@ class Main extends React.Component {
     );
   }
 
-  handleCoffeeMakerClick() {
-    console.log("coffee");
-
+  handleCoffeeMakerClick(e) {
+    e.stopPropagation()
     this.playerTo("coffee");
   }
 
-  handleGameStationClick() {
+  handleGameStationClick(e) {
+    e.stopPropagation()
     this.setState({
       gamingStation: {
         hasPlayer: true,
@@ -311,6 +395,16 @@ class Main extends React.Component {
     this.playerTo("room");
   }
 
+  endGame() {
+    let artWorkCanvas = document.getElementById("defaultCanvas0")
+    let artWork = artWorkCanvas ? artWorkCanvas.toDataURL("image/png") : null
+    this.props.nextScreen({
+      artWork: artWork,
+      workingExhaustionValues: this.state.workingExhaustionValues,
+      sleepTime: this.state.sleepTime
+    })
+  }
+
   render() {
     let vitalStats = this.state.vitalStats;
     // console.log(this.state.playerAction);
@@ -319,6 +413,7 @@ class Main extends React.Component {
     let desk = this.state.desk;
     let coffee = this.state.coffee;
     let gamingStation = this.state.gamingStation;
+    let room = this.state.room;
     let time = ~~(this.state.time * 100) / 100;
     let player = {
       gender: this.props.gender,
@@ -327,20 +422,20 @@ class Main extends React.Component {
     };
 
     return (
-      <div className="main">
-        <button onClick={() => this.props.nextScreen({
-          artWork: document.getElementById("defaultCanvas0").toDataURL("image/png"),
-          workingExhaustionValues: this.state.workingExhaustionValues
-        })}>ENDSCREEN </button>/>
-        <Room time={time} />
+      <div className="main" onClick={() => this.handleRoomClick()}>
+        <div className={"night" + (this.state.nightFall ? " night-fall" : "")} />
+        <div style={{ position: "absolute" }} >
+          <button onClick={() => this.endGame()}>ENDSCREEN </button>
+        </div>
+        <Room time={time} hasPlayer={room.hasPlayer} player={player} />
         <Cat
           hasPlayer={cat.hasPlayer}
+          menuOpen={cat.menuOpen}
           player={player}
-          onClick={() => this.handleCatClick()}
+          onClick={(e) => this.handleCatClick(e)}
           catInteraction={action => this.handleCatInteraction(action)}
           position={cat.position}
           transitionSpeed={cat.transition}
-          menuOpen={cat.menuOpen}
           time={time}
           moving={cat.moving}
           direction={cat.direction}
@@ -348,27 +443,30 @@ class Main extends React.Component {
         <GamingStation
           hasPlayer={gamingStation.hasPlayer}
           player={{ ...player, action: "none" }}
-          onClick={() => this.handleGameStationClick()}
+          onClick={(e) => this.handleGameStationClick(e)}
           fullscreen={gamingStation.fullscreen}
           time={time}
         />
         <Bed
           hasPlayer={bed.hasPlayer}
+          menuOpen={bed.menuOpen}
           player={{ ...player, action: "sleep" }}
-          onClick={() => this.handleBedClick()}
+          onClick={(e) => this.handleBedClick(e)}
           time={time}
+          sleep={() => this.sleepTillMorning()}
+          nap={() => this.nap()}
         />
         <Desk
           hasPlayer={desk.hasPlayer}
           player={{ ...player, action: "build" }}
-          onClick={() => this.handleDeskClick()}
+          onClick={(e) => this.handleDeskClick(e)}
           time={time}
           vitalStats={vitalStats}
         />
         <CoffeeMaker
           hasPlayer={coffee.hasPlayer}
           player={{ ...player, action: "coffee" }}
-          onClick={() => this.handleCoffeeMakerClick()}
+          onClick={(e) => this.handleCoffeeMakerClick(e)}
           time={time}
         />
         <Window time={~~this.state.time} />

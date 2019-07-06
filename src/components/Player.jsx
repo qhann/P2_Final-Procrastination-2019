@@ -2,22 +2,28 @@ import React, { Component } from "react";
 
 import boy from "./Player/boy.svg";
 import boy_tired from "./Player/boy-tired.svg";
+import boy_tiredest from "./Player/boy-tired.svg";
 // import boy_tiredest from "./Player/boy-tiredest.svg";
 import girl from "./Player/girl.svg";
 import girl_tired from "./Player/girl-tired.svg";
+import girl_tiredest from "./Player/girl-tired.svg";
 // import girl_tiredest from "./Player/girl-tiredest.svg";
 
 import sleepGirl from "./Player/sleepGirl.svg";
 import sleepGirl_tired from "./Player/sleepGirl-tired.svg";
+import sleepGirl_tiredest from "./Player/sleepGirl-tired.svg";
 // import sleepGirl_tiredest from "./Player/sleepGirl-tiredest.svg";
 import sleepGirl_2 from "./Player/sleepGirl-2.svg";
 import sleepGirl_2_tired from "./Player/sleepGirl-2-tired.svg";
+import sleepGirl_2_tiredest from "./Player/sleepGirl-2-tired.svg";
 // import sleepGirl_2_tiredest from "./Player/sleepGirl-2-tiredest.svg";
 import sleepBoy from "./Player/sleepBoy.svg";
 import sleepBoy_tired from "./Player/sleepBoy-tired.svg";
+import sleepBoy_tiredest from "./Player/sleepBoy-tired.svg";
 // import sleepBoy_tiredest from "./Player/sleepBoy-tiredest.svg";
 import sleepBoy_2 from "./Player/sleepBoy-2.svg";
 import sleepBoy_2_tired from "./Player/sleepBoy-2-tired.svg";
+import sleepBoy_2_tiredest from "./Player/sleepBoy-2-tired.svg";
 // import sleepBoy_2_tiredest from "./Player/sleepBoy-2-tiredest.svg";
 
 import buildGirl from "./Player/buildGirl.svg";
@@ -38,13 +44,13 @@ import coffeeGirl_tired from "./Player/coffeeGirl-tired.svg";
 import coffeeGirl_tiredest from "./Player/coffeeGirl-tiredest.svg";
 import coffeeGirl_2 from "./Player/coffeeGirl-2.svg";
 import coffeeGirl_2_tired from "./Player/coffeeGirl-2-tired.svg";
-import coffeeGirl_2_tiredest from "./Player/coffeeGirl-tiredest.svg";
+import coffeeGirl_2_tiredest from "./Player/coffeeGirl-2-tiredest.svg";
 import coffeeBoy from "./Player/coffeeBoy.svg";
 import coffeeBoy_tired from "./Player/coffeeBoy-tired.svg";
 import coffeeBoy_tiredest from "./Player/coffeeBoy-tiredest.svg";
 import coffeeBoy_2 from "./Player/coffeeBoy-2.svg";
-import coffeeBoy_2_tired from "./Player/coffeeBoy-tired.svg";
-import coffeeBoy_2_tiredest from "./Player/coffeeBoy-tiredest.svg";
+import coffeeBoy_2_tired from "./Player/coffeeBoy-2-tired.svg";
+import coffeeBoy_2_tiredest from "./Player/coffeeBoy-2-tiredest.svg";
 
 import feedGirl from "./Player/feedGirl.svg";
 import feedGirl_tired from "./Player/feedGirl-tired.svg";
@@ -67,20 +73,25 @@ import playBoy from "./Player/playBoy.svg";
 import playBoy_tired from "./Player/playBoy-tired.svg";
 import playBoy_tiredest from "./Player/playBoy-tiredest.svg";
 
+import endBoy_sickest from "./Player/end-boy-sickest.svg";
+import endGirl_sickest from "./Player/end-girl-sickest.svg";
+
 class Player extends Component {
   render() {
     const { action, gender, tiredness, frameDuration, time } = this.props;
+
     let playerImage = {
         girl: {
             none: {
                 rested: girl,
                 tired: girl_tired,
-                // tiredest: girl_tiredest
+                tiredest: girl_tiredest,
+                sickest: endGirl_sickest
             },
             sleep: {
                 rested: [sleepGirl, sleepGirl_2],
                 tired: [sleepGirl_tired, sleepGirl_2_tired],
-                // tiredest: [sleepGirl_tiredest, sleepGirl_2_tiredest]
+                tiredest: [sleepGirl_tiredest, sleepGirl_2_tiredest]
             },
             build: {
                 rested: [buildGirl, buildGirl_2],
@@ -112,12 +123,13 @@ class Player extends Component {
             none: {
                 rested: boy,
                 tired: boy_tired,
-                // tiredest: boy_tiredest
+                tiredest: boy_tiredest,
+                sickest: endBoy_sickest
             },
             sleep: {
                 rested: [sleepBoy, sleepBoy_2],
                 tired: [sleepBoy_tired, sleepBoy_2_tired],
-                // tiredest: [sleepBoy_tiredest, sleepBoy_2_tiredest]
+                tiredest: [sleepBoy_tiredest, sleepBoy_2_tiredest]
             },
             build: {
                 rested: [buildBoy, buildBoy_2],
@@ -159,9 +171,17 @@ class Player extends Component {
     }
 
     return (
-      <img className={`player ${gender} ${action}`} src={useImage} alt=""/>
+      <img className={`player ${gender} ${action} ${this.props.location ? this.props.location : ""}`} src={useImage} alt=""/>
     );
   }
+}
+
+Player.defaultProps = {
+    action: "none",
+    gender: "girl",
+    tiredness: "rested",
+    frameDuration: 6,
+    time: 0
 }
 
 export default Player;

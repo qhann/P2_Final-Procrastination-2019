@@ -29,6 +29,44 @@ html, body, .root, .App {
   overflow: hidden;
 }
 
+.night {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: black;
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.night.night-fall {
+  -webkit-animation-name: nightFall;
+          animation-name: nightFall;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+}
+
+@-webkit-keyframes nightFall {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes nightFall {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .root, .app {
   width: 100%;
   height: 100%;
@@ -114,8 +152,7 @@ html, body, .root, .App {
   background: white;
   border-radius: 5px;
   left: 5%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  padding: 5px;
   color: black;
   overflow: hidden;
   font-size: 1.5em;
@@ -247,6 +284,7 @@ html, body, .root, .App {
 .button-drop-down {
   width: 100%;
   border-radius: 5px;
+  padding: 3px;
   margin: 2px;
 }
 
@@ -329,6 +367,18 @@ html, body, .root, .App {
           mask-position: 0 0;
 }
 
+.pattern.pattern-game {
+  -webkit-mask-size: 479px;
+          mask-size: 479px;
+  -webkit-mask-position: 0 0;
+          mask-position: 0 0;
+}
+
+.pattern .moonlight-game {
+  -webkit-transform-origin: 300px -100px;
+          transform-origin: 300px -100px;
+}
+
 .bed-path:hover {
   -webkit-filter: drop-shadow(-30px 10px 4px #FF8311);
           filter: drop-shadow(-30px 10px 4px #FF8311);
@@ -407,8 +457,6 @@ html, body, .root, .App {
 .gaming-station .moonlight {
   top: 150px;
   left: 508px;
-  -webkit-transform-origin: 0 0;
-          transform-origin: 0 0;
 }
 
 .screen {
@@ -653,6 +701,19 @@ html, body, .root, .App {
   left: -180px;
 }
 
+.player.room {
+  top: 480px !important;
+  left: -400px !important;
+}
+
+.player.end {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  top: 500px !important;
+  left: 40% !important;
+}
+
 .start p, .character-selection p {
   font-size: 10em;
   color: white;
@@ -772,14 +833,6 @@ html, body, .root, .App {
   height: 100%;
 }
 
-.end-player {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  top: 500px;
-  left: 40%;
-}
-
 .end-art {
   position: relative;
   left: -500px;
@@ -788,11 +841,90 @@ html, body, .root, .App {
           transform: rotate(-90deg);
 }
 
+.trophy-wrapper {
+  position: absolute;
+  top: 500px;
+  left: 200px;
+}
+
 .trophy {
   position: relative;
-  top: 200px;
-  left: -500px;
   width: 200px;
   height: 200px;
+  -webkit-transform: translate(0, -1000px);
+          transform: translate(0, -1000px);
+  -webkit-animation: trophySlideIn 0.7s ease-in-out forwards;
+          animation: trophySlideIn 0.7s ease-in-out forwards;
+}
+
+.trophy-min {
+  -webkit-animation-delay: 0;
+          animation-delay: 0;
+}
+
+.trophy-med {
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+}
+
+.trophy-max {
+  -webkit-animation-delay: 1.2s;
+          animation-delay: 1.2s;
+}
+
+.end-screen .cat {
+  opacity: 0;
+  -webkit-animation: catFadeIn 1s forwards;
+          animation: catFadeIn 1s forwards;
+  -webkit-animation-delay: 1.5s;
+          animation-delay: 1.5s;
+}
+
+@-webkit-keyframes trophySlideIn {
+  0% {
+    -webkit-transform: translate(0, -1000px);
+            transform: translate(0, -1000px);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
+@keyframes trophySlideIn {
+  0% {
+    -webkit-transform: translate(0, -1000px);
+            transform: translate(0, -1000px);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
+@-webkit-keyframes catFadeIn {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate(1200px, 700px) scale(0);
+            transform: translate(1200px, 700px) scale(0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(1200px, 700px) scale(1);
+            transform: translate(1200px, 700px) scale(1);
+  }
+}
+
+@keyframes catFadeIn {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate(1200px, 700px) scale(0);
+            transform: translate(1200px, 700px) scale(0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(1200px, 700px) scale(1);
+            transform: translate(1200px, 700px) scale(1);
+  }
 }
 /*# sourceMappingURL=index.css.map */

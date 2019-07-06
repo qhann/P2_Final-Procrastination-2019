@@ -82,12 +82,12 @@ class Cat extends Component {
           this.props.catInteraction("play");
         }
       },
-      {
-        caption: "hallucinate",
-        action: () => {
-          this.hallucinate();
-        }
-      }
+      // {
+      //   caption: "hallucinate",
+      //   action: () => {
+      //     this.hallucinate();
+      //   }
+      // }
     ];
   }
 
@@ -100,6 +100,7 @@ class Cat extends Component {
       sit: catSit,
       // walk: catWalk
     }
+
     let useImage, useStyle, useScale, frameDuration, isSprite, timerHasChanged, spriteCount, spriteWidth
     if (player.action != "none") {
       useImage = cat[player.action]
@@ -111,9 +112,9 @@ class Cat extends Component {
           // useScale = 1.3
           spriteWidth = 200
           break;
-          case "pet":
-            useScale = 1.2
-            spriteWidth = 100
+        case "pet":
+          useScale = 1.2
+          spriteWidth = 100
           break;
         case "feed":
           spriteWidth = 154
@@ -165,7 +166,6 @@ class Cat extends Component {
       onClick,
       hasPlayer,
       transitionSpeed,
-      gender,
       player,
       time,
       direction } = this.props;
@@ -173,9 +173,6 @@ class Cat extends Component {
     if (!hasPlayer && this.state.playerAction != "none") {
       this.setState({ playerAction: "none" });
     }
-
-    let dropDownOptions = this.getDropDownOptions();
-
 
     let catImage = this.getCatImage(player, time)
 
@@ -193,12 +190,15 @@ class Cat extends Component {
         {hasPlayer ? (
           <Player time={time} gender={player.gender} action={player.action} tiredness={player.tiredness} />
         ) : null}
-        <DropDown options={dropDownOptions} isVisible={menuOpen} />
+        {menuOpen ?
+          <DropDown options={this.getDropDownOptions()} />
+          : null
+        }
         <div>
           <div
             // src={this.state.img}
             className={"cat-image"}
-            onClick={() => onClick()}
+            onClick={(e) => onClick(e)}
             style={{
               ...directionStyle,
               ...this.state.catTransform,
@@ -210,6 +210,10 @@ class Cat extends Component {
       </div>
     );
   }
+}
+
+Cat.defaultProps = {
+  onClick: () => {}
 }
 
 export default Cat;

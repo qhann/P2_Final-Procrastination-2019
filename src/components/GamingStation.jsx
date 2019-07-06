@@ -9,6 +9,7 @@ import snakePreview from "./MiniGames/snake/preview.png"
 import Moonlight from "./Moonlight";
 import Player from "./Player"
 import backImage from "./MiniGames/back.png"
+import gameMask from "./Masks/game-mask.png"
 
 
 class GamingStation extends Component {
@@ -43,9 +44,9 @@ class GamingStation extends Component {
 
     return (
       <div className={"gaming-station "}>
-        <Moonlight time={time} className={"moonlight-bed"} />
+        <Moonlight time={time} mask={gameMask} selector={"game"} />
         <GamingStationSvg />
-        <div className={screenClasses} onClick={onClick}>
+        <div className={screenClasses} onClick={e => onClick(e)}>
           {this.state.gameNumber == 0 ? (
             <div className={"game-select"} >
               {/* <p className={"game-select-text"} >Wähle ein Spiel</p> */}

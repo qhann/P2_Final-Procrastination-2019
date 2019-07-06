@@ -42,7 +42,7 @@ export default function artworkSketch(s) {
 
   s.myCustomRedrawAccordingToNewPropsHandler = function(props) {
     playing = props.playing ? 1 : 0;
-    exhaustion = props.vitalStats.exhaustion - 50;
+    exhaustion = (props.vitalStats.exhaustion - 50)*2;
     exhaustion = exhaustion < 1 ? 1 : exhaustion
     health = props.vitalStats.health;
     speedDistortion = (exhaustion * exhaustion) / 30000;
@@ -121,7 +121,7 @@ export default function artworkSketch(s) {
           s.noFill();
           s.strokeWeight(2);
           s.colorMode(s.HSB, 360, 100, health, 255);
-          s.stroke(color || 1 || 1, 100 - exhaustion, health * 500, opacity);
+          s.stroke(color || 1 , 100 - exhaustion, health * 500, opacity);
           s.line(
             pos.x + (100 * deviation) / i,
             pos.y + (100 * deviation) / i,
@@ -151,7 +151,7 @@ export default function artworkSketch(s) {
         s.colorMode(s.HSB, 100, 100, 100, 255);
         var hue = ((360 / joints) * i) / 3;
         s.stroke(color || 1, 100, 100, 1);
-        s.strokeWeight(1 * Math.pow(Math.abs(deviation), 16));
+        s.strokeWeight((100-exhaustion)/100);
         for (var j = 0; j < path.length; j++) {
           if (pos) s.vertex(pos.x, pos.y);
         }

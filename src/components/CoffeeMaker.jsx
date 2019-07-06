@@ -12,7 +12,7 @@ class CoffeeMaker extends Component {
                 {hasPlayer ? (
                     <Player time={time} frameDuration={10} gender={player.gender} action={player.action} tiredness={player.tiredness} />
                 ) : null}
-                <CoffeeSvg onClick={onClick} />
+                <CoffeeSvg onClick={e => onClick(e)} />
             </div>
         );
     }
