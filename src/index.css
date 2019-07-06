@@ -144,7 +144,9 @@ html, body, .root, .App {
   position: absolute;
   height: 100px;
   left: -85px;
-  top: -119%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 
 .mentor-tip .mentor-text {
@@ -841,20 +843,42 @@ html, body, .root, .App {
           transform: rotate(-90deg);
 }
 
-.trophy-wrapper {
+.award-wrapper {
   position: absolute;
-  top: 500px;
-  left: 200px;
+  top: 408px;
+  left: 100px;
+  width: 507px;
+  -webkit-transform: scale(0.6);
+          transform: scale(0.6);
+}
+
+.trophy-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .trophy {
-  position: relative;
   width: 200px;
   height: 200px;
+  left: -40px;
   -webkit-transform: translate(0, -1000px);
           transform: translate(0, -1000px);
   -webkit-animation: trophySlideIn 0.7s ease-in-out forwards;
           animation: trophySlideIn 0.7s ease-in-out forwards;
+}
+
+.trophy-stand {
+  position: absolute;
+  top: 194px;
+  left: 0;
+  width: 100%;
 }
 
 .trophy-min {
