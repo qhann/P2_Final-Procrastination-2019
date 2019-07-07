@@ -8,7 +8,7 @@ export default function artworkSketch(s) {
   let shape;
   let joints = 4;
   let lineLength = height * 0.3;
-  let speedRelation = ~~s.random(3, 7);
+  let speedRelation = 5 //~~s.random(3, 7);
   let speedRelationInit = speedRelation;
   let center;
   let pendulumPath;
@@ -53,7 +53,7 @@ export default function artworkSketch(s) {
   };
 
   s.setup = () => {
-    s.frameRate(3);
+    s.frameRate(60);
     s.createCanvas(width, height);
     s.colorMode(s.HSB, 360, 100, 100, 100);
     s.noFill();

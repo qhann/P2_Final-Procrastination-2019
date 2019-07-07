@@ -855,14 +855,6 @@ html, body, .root, .App {
   left: -400px !important;
 }
 
-.player.end {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  top: 467px !important;
-  left: 40% !important;
-}
-
 .start p, .character-selection p {
   font-size: 10em;
   color: white;
@@ -993,7 +985,7 @@ html, body, .root, .App {
 .award-wrapper {
   position: absolute;
   top: 408px;
-  left: 100px;
+  left: 280px;
   width: 507px;
   -webkit-transform: scale(0.6);
           transform: scale(0.6);
@@ -1043,12 +1035,33 @@ html, body, .root, .App {
           animation-delay: 1.2s;
 }
 
+.end-screen .player {
+  position: absolute;
+  width: 472px;
+  height: 600px !important;
+  top: 268px !important;
+  left: 38% !important;
+}
+
+.end-screen .player.dead {
+  top: 400px !important;
+}
+
 .end-screen .cat {
+  -webkit-transform: scale(1.2) !important;
+          transform: scale(1.2) !important;
+  top: 690px;
+  left: 1300px;
   opacity: 0;
   -webkit-animation: catFadeIn 1s forwards;
           animation: catFadeIn 1s forwards;
   -webkit-animation-delay: 1.5s;
           animation-delay: 1.5s;
+}
+
+.end-screen .mentor-tip {
+  width: 64%;
+  left: 14%;
 }
 
 @-webkit-keyframes trophySlideIn {
@@ -1076,34 +1089,36 @@ html, body, .root, .App {
 @-webkit-keyframes catFadeIn {
   0% {
     opacity: 1;
-    -webkit-transform: translate(1200px, 700px) scale(0);
-            transform: translate(1200px, 700px) scale(0);
+    -webkit-transform: translate(1200px, 600px) scale(0);
+            transform: translate(1200px, 600px) scale(0);
   }
   100% {
     opacity: 1;
-    -webkit-transform: translate(1200px, 700px) scale(1);
-            transform: translate(1200px, 700px) scale(1);
+    -webkit-transform: translate(1200px, 600px) scale(1);
+            transform: translate(1200px, 600px) scale(1);
   }
 }
 
 @keyframes catFadeIn {
   0% {
     opacity: 1;
-    -webkit-transform: translate(1200px, 700px) scale(0);
-            transform: translate(1200px, 700px) scale(0);
+    -webkit-transform: translate(1200px, 600px) scale(0);
+            transform: translate(1200px, 600px) scale(0);
   }
   100% {
     opacity: 1;
-    -webkit-transform: translate(1200px, 700px) scale(1);
-            transform: translate(1200px, 700px) scale(1);
+    -webkit-transform: translate(1200px, 600px) scale(1);
+            transform: translate(1200px, 600px) scale(1);
   }
 }
 
 .end-highscores {
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
   position: absolute;
-  top: 100px;
-  right: 80px;
-  background: white;
+  top: 300px;
+  right: 350px;
+  background: #aaa;
   width: 320px;
   padding: 10px;
   border-radius: 5px;

@@ -174,7 +174,7 @@ class Player extends Component {
     }
 
     return (
-      <img className={`player ${gender} ${action} ${this.props.location ? this.props.location : ""}`} src={useImage} alt=""/>
+      <img className={`player ${gender} ${action} ${tiredness} ${this.props.location ? this.props.location : ""}`} src={useImage} alt=""/>
     );
   }
 }
