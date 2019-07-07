@@ -44,7 +44,7 @@ class Cat extends Component {
   }
 
   hallucinate() {
-    if (Math.random() < 0.95) return
+    if (Math.random() < 0.975 || this.props.player.action != "none" || this.props.tiredness != "tiredest") return
     this.setState({
       // img: catScarySprites,
       catTransform: {
@@ -131,7 +131,7 @@ class Cat extends Component {
       spriteWidth = 150
       if (this.props.moving) {
         isSprite = true
-        frameDuration = 1
+        frameDuration = 2
       } else {
         useStyle = {
           backgroundSize: `${spriteCount * spriteWidth}px 150px`,
@@ -140,7 +140,7 @@ class Cat extends Component {
       }
     }
     let timer = (time.toFixed(1) % (frameDuration || 1) >= (frameDuration / 2 || 0.5))
-    // console.log(timer, this.state.timer);
+    // console.log(time.toFixed(1), timer, this.state.timer);
 
     if (isSprite && timer != this.state.timer) {
       this.setState({ timer })

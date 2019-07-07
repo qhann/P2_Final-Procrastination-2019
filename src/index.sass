@@ -175,7 +175,6 @@ html, body, .root, .App
         left: -85px
         top: 50%
         transform: translateY(-50%)
-
     .mentor-text
         position: relative
         background: white
@@ -187,6 +186,22 @@ html, body, .root, .App
         color: black
         overflow: hidden
         font-size: 1.5em
+        &:after
+            content: ''
+            position: absolute
+            left: 0
+            top: 50%
+            width: 0
+            height: 0
+            border: 20px solid transparent
+            border-right-color: #ffffff
+            border-left: 0
+            margin-top: -20px
+            margin-left: -20px
+            
+.end-screen
+    .mentor-text
+        padding: 20px
 
 .clock
     position: absolute
@@ -649,12 +664,12 @@ html, body, .root, .App
     &.pet
         &.girl
             height: 300px
-            top: -185px
-            left: -120px
+            top: -177px
+            left: -129px
         &.boy
             height: 300px
-            top: -185px
-            left: -120px
+            top: -177px
+            left: -129px
     &.feed
         &.girl
             height: 300px
@@ -680,7 +695,7 @@ html, body, .root, .App
         position: absolute
         width: 400px
         height: 400px
-        top: 500px !important
+        top: 467px !important
         left: 40% !important
 
 
@@ -790,8 +805,8 @@ html, body, .root, .App
 
 .end-art
     position: absolute
-    left: 155px
-    top: 78px
+    left: 55px
+    top: -500px
     transform: rotate(-90deg)
 
 .award-wrapper
@@ -855,6 +870,8 @@ html, body, .root, .App
     right: 80px
     background: white  
     width: 320px
+    padding: 10px
+    border-radius: 5px 
     .highscores-title
         text-align: left
         font-size: 3em

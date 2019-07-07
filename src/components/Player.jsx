@@ -2,11 +2,11 @@ import React, { Component } from "react";
 
 import boy from "./Player/boy.svg";
 import boy_tired from "./Player/boy-tired.svg";
-import boy_tiredest from "./Player/boy-tired.svg";
+import boy_tiredest from "./Player/boy-tiredest.svg";
 // import boy_tiredest from "./Player/boy-tiredest.svg";
 import girl from "./Player/girl.svg";
 import girl_tired from "./Player/girl-tired.svg";
-import girl_tiredest from "./Player/girl-tired.svg";
+import girl_tiredest from "./Player/girl-tiredest.svg";
 // import girl_tiredest from "./Player/girl-tiredest.svg";
 
 import sleepGirl from "./Player/sleepGirl.svg";

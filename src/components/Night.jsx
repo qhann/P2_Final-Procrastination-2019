@@ -35,9 +35,12 @@ class Night extends Component {
         const { nightFall, time } = this.props
         let firstNightOver = this.state.firstNightOver
         let days
+
         if (time % (12*60) - 12*60 == -1) {
+            // if sleep because falling asleep
             days = 1 + ~~((time+1) / (60 * 12))
         } else {
+            //if going to sleep
             days = ~~((time-10) / (12*60)) + 2
             days = firstNightOver ? days : days - 1
         }

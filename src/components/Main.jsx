@@ -22,7 +22,7 @@ class Main extends React.Component {
     workingExhaustionValues: [],
     vitalStats: {
       health: 100,
-      exhaustion: 100,
+      exhaustion: 0,
       coffee: 0
     },
     mentorText: "Es ist schon ziemlich spät, " + (this.props.playerName || "lol") + ".",
@@ -64,16 +64,16 @@ class Main extends React.Component {
     globalInterval: {}
   };
 
-  getGlobalInterval() {
+  getGlobalInterval(time) {
     let globalInterval = setInterval(
       () => this.updateTimed(),
-      500
+      time
     );
     return globalInterval
   }
 
   componentDidMount() {
-    let globalInterval = this.getGlobalInterval()
+    let globalInterval = this.getGlobalInterval(500)
 
     this.setState(prevState =>
       update(prevState, {
@@ -123,7 +123,6 @@ class Main extends React.Component {
       newCoffee = newCoffee < 0 ? 0 : newCoffee
       newCoffee = newCoffee > this.state.vitalStats.exhaustion ? this.state.vitalStats.exhaustion : newCoffee
 
-      console.log(this.state.vitalStats.coffee);
 
       return update(prevState, {
         time: { $set: prevState.time + 1 },
@@ -151,7 +150,7 @@ class Main extends React.Component {
 
     newPosition = {
       x: ~~(150 + 1520 * Math.random()),
-      y: ~~(800 + 120 * Math.random())
+      y: ~~(700 + 120 * Math.random())
     };
 
     dx = prevCat.position.x - newPosition.x;
@@ -334,7 +333,7 @@ class Main extends React.Component {
     setTimeout(() => {
       this.setState({
         nightFall: false,
-        globalInterval: this.getGlobalInterval()
+        globalInterval: this.getGlobalInterval(500)
       })
       if (typeof callBack === "function") callBack()
     }, 3000)

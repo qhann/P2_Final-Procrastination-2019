@@ -270,6 +270,24 @@ html, body, .root, .App {
   font-size: 1.5em;
 }
 
+.mentor-tip .mentor-text:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-right-color: #ffffff;
+  border-left: 0;
+  margin-top: -20px;
+  margin-left: -20px;
+}
+
+.end-screen .mentor-text {
+  padding: 20px;
+}
+
 .clock {
   position: absolute;
   top: 2%;
@@ -798,14 +816,14 @@ html, body, .root, .App {
 
 .player.pet.girl {
   height: 300px;
-  top: -185px;
-  left: -120px;
+  top: -177px;
+  left: -129px;
 }
 
 .player.pet.boy {
   height: 300px;
-  top: -185px;
-  left: -120px;
+  top: -177px;
+  left: -129px;
 }
 
 .player.feed.girl {
@@ -841,7 +859,7 @@ html, body, .root, .App {
   position: absolute;
   width: 400px;
   height: 400px;
-  top: 500px !important;
+  top: 467px !important;
   left: 40% !important;
 }
 
@@ -966,8 +984,8 @@ html, body, .root, .App {
 
 .end-art {
   position: absolute;
-  left: 155px;
-  top: 78px;
+  left: 55px;
+  top: -500px;
   -webkit-transform: rotate(-90deg);
           transform: rotate(-90deg);
 }
@@ -1087,6 +1105,8 @@ html, body, .root, .App {
   right: 80px;
   background: white;
   width: 320px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .end-highscores .highscores-title {
