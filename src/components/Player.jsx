@@ -75,6 +75,7 @@ import playBoy_tiredest from "./Player/playBoy-tiredest.svg";
 
 import endBoy_sickest from "./Player/end-boy-sickest.svg";
 import endGirl_sickest from "./Player/end-girl-sickest.svg";
+import end_dead from "./Player/end-dead.svg";
 
 class Player extends Component {
   render() {
@@ -86,7 +87,8 @@ class Player extends Component {
                 rested: girl,
                 tired: girl_tired,
                 tiredest: girl_tiredest,
-                sickest: endGirl_sickest
+                sickest: endGirl_sickest,
+                dead: end_dead
             },
             sleep: {
                 rested: [sleepGirl, sleepGirl_2],
@@ -124,7 +126,8 @@ class Player extends Component {
                 rested: boy,
                 tired: boy_tired,
                 tiredest: boy_tiredest,
-                sickest: endBoy_sickest
+                sickest: endBoy_sickest,
+                end_dead
             },
             sleep: {
                 rested: [sleepBoy, sleepBoy_2],

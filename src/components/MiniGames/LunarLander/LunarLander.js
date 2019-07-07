@@ -5,15 +5,22 @@ import jet1 from "./assets/jet.png";
 import jet2 from "./assets/jet2.png";
 
 export default function artworkSketch(s) {
-  let width = 840 //1920 * 0.5;
+  let width = 840; //1920 * 0.5;
   let height = 1080 * 0.5;
   // console.log(height);
-
+  
   s.setup = () => {
     s.createCanvas(width, height);
     s.frameRate(40);
   };
 
+  var sendScore
+  s.myCustomRedrawAccordingToNewPropsHandler = function(newProps) {
+    if (newProps.getScore) {
+      sendScore = newProps.getScore;
+    }
+  };
+  
   var mapImage = s.loadImage(mapImageFile);
   var rocketSprite = s.loadImage(rocketImageFile);
   var jetSprite = s.loadImage(jet1);
@@ -52,13 +59,13 @@ export default function artworkSketch(s) {
   ];
 
   class Rocket {
-    constructor() {
+    constructor(level) {
       this.x = 500;
       this.y = 100;
-      this.vx = Math.floor(Math.random() * 2) + 2;
+      this.vx = (level / 2) + 0.5;
       this.vy = 0;
       this.angle = 0;
-      this.va = Math.random() * 0.015 + 0.01;
+      this.va = (level / 5 ) * 0.015 + 0.01;
       this.height = 150;
       this.width = 150;
       this.fuel = 100;
@@ -69,8 +76,6 @@ export default function artworkSketch(s) {
       return this;
     }
   }
-
-  let rocket = new Rocket();
 
   var world = {
     height: 1500,
@@ -91,22 +96,16 @@ export default function artworkSketch(s) {
   var gameRunning = false;
   var timeElapsed = 0;
   var timer;
-  var maxLandingSpeed = 2;
+  var maxLandingSpeed = 4;
   var level = 0;
   var totalScore = 0;
-  var highScore = [
-    100000,
-    80000,
-    60000,
-    50000,
-    40000,
-    30000,
-    20000,
-    15000,
-    10000,
-    5000
-  ];
+  var highScore = [0];
+  var highestScore = 0;
   var score, scoreFuel, scoreTime, scoreVelocity;
+  var showLevelNumber = false
+
+  let rocket = new Rocket(level);
+
 
   function startButton(x, y) {
     var width = 50;
@@ -124,11 +123,14 @@ export default function artworkSketch(s) {
     if (mouseOverStart && s.mouseIsPressed) {
       startNewGame();
     }
+
+    s.fill(255,255,255)
+    s.text("level: " + level, x, y+60)
   }
 
   function startNewGame() {
     gameRunning = true;
-    rocket = new Rocket();
+    rocket = new Rocket(level);
     message = "";
     clearInterval(timer);
     timeElapsed = 0;
@@ -141,7 +143,7 @@ export default function artworkSketch(s) {
 
   function miniMap() {
     var x = view.width + 7;
-    var y = 75;
+    var y = 110;
     var width = 100;
     var height = 100;
     s.push();
@@ -191,7 +193,7 @@ export default function artworkSketch(s) {
 
   function displayShipData() {
     var x = view.width + 7;
-    var y = 195;
+    var y = 230;
     var width = 100;
     var height = 100;
     s.fill(255, 255, 255);
@@ -208,7 +210,7 @@ export default function artworkSketch(s) {
 
   function showHighscore() {
     var x = view.width + 7;
-    var y = 300;
+    var y = 335;
     var width = 100;
     var height = 200;
     s.push();
@@ -440,17 +442,21 @@ export default function artworkSketch(s) {
     rocket.blasting = false;
     clearInterval(timer);
 
-    startButton(view.width + 7, 25);
+    startButton(view.width + 7, 10);
     if (playerWins) {
       scoreVelocity = (1 / rocket.speed()) * 50;
-      scoreFuel = 1000 / (100.1 - rocket.fuel) -10;
-      scoreTime = (1 / (timeElapsed )) * 120;
+      scoreFuel = 1000 / (100.1 - rocket.fuel) - 10;
+      scoreTime = (1 / timeElapsed) * 120;
       score = Math.floor(500 * (scoreVelocity + scoreFuel + scoreTime));
       console.log(
         " v: " + scoreVelocity + " t: " + scoreTime + " f: " + scoreFuel
       );
       totalScore += score;
+      level += 1;
+      maxLandingSpeed *= 0.9
     } else {
+      level = 0
+      sendScore(totalScore);
       pushHighScore(totalScore);
       score = 0;
       totalScore = 0;
@@ -459,20 +465,23 @@ export default function artworkSketch(s) {
   }
 
   function pushHighScore(score) {
-    for (let i = 0; i < highScore.length; i++) {
-      if (score > highScore[i]) {
-        highScore.splice(i, 0, score);
-        break;
-      }
+    if (score > highestScore) {
+      highestScore = score;
     }
-    if (highScore.length > 10) {
-      highScore.pop();
-    }
+    // for (let i = 0; i < highScore.length; i++) {
+    //   if (score > highScore[i]) {
+    //     highScore.splice(i, 0, score);
+    //     break;
+    //   }
+    // }
+    // if (highScore.length > 10) {
+    //   highScore.pop();
+    // }
   }
 
   function messageBox() {
     var width = 200;
-    var height = 120;
+    var height = 150;
     var x = view.width / 2 - width / 2;
     var y = view.height / 2 - height / 2;
     var time = timeElapsed;
@@ -498,7 +507,7 @@ export default function artworkSketch(s) {
     );
     s.textSize(17);
     s.text("Score: " + score, x + 20, y + 110);
-    // s.text("Total Score: " + score, x + 20, y + 110);
+    s.text("Total Score: " + totalScore, x + 20, y + 130);
     s.pop();
   }
 
@@ -511,7 +520,7 @@ export default function artworkSketch(s) {
       rocket = rocketMovement(rocket);
       checkCollision();
     } else {
-      startButton(view.width + 7 + 25, 25);
+      startButton(view.width + 7 + 25, 10);
     }
     if (message) {
       messageBox();

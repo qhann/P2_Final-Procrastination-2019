@@ -8,7 +8,7 @@ export default function artworkSketch(s) {
   let shape;
   let joints = 4;
   let lineLength = height * 0.3;
-  let speedRelation = 6 //~~s.random(2, 8);
+  let speedRelation = ~~s.random(3, 7);
   let speedRelationInit = speedRelation;
   let center;
   let pendulumPath;
@@ -42,7 +42,8 @@ export default function artworkSketch(s) {
 
   s.myCustomRedrawAccordingToNewPropsHandler = function(props) {
     playing = props.playing ? 1 : 0;
-    exhaustion = (props.vitalStats.exhaustion - 50)*2;
+    
+    exhaustion = (props.vitalStats.exhaustion - 50)*2 * ((100-props.vitalStats.coffee)/100);
     exhaustion = exhaustion < 1 ? 1 : exhaustion
     health = props.vitalStats.health;
     speedDistortion = (exhaustion * exhaustion) / 30000;
@@ -52,7 +53,7 @@ export default function artworkSketch(s) {
   };
 
   s.setup = () => {
-    s.frameRate(60);
+    s.frameRate(3);
     s.createCanvas(width, height);
     s.colorMode(s.HSB, 360, 100, 100, 100);
     s.noFill();

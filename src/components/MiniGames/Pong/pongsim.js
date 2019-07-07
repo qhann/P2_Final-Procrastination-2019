@@ -9,6 +9,13 @@ export default function pongSketch(s) {
     s.frameRate(40);
   };
 
+  var sendScore
+  s.myCustomRedrawAccordingToNewPropsHandler = function(newProps) {
+    if (newProps.getScore) {
+      sendScore = newProps.getScore;
+    }
+  };
+
   var ball = {
     x: 300,
     y: 250
@@ -209,6 +216,8 @@ export default function pongSketch(s) {
         ges = 14;
       }
 
+      ges = score2/2 + 10
+
       //Rahmen, Ball Richtung Winkel, Score erhöhen
       if (ball.x < 590 && direction.x > 0) {
         ball.x = ball.x + rx;
@@ -310,13 +319,14 @@ export default function pongSketch(s) {
         s.text("Level 3", 315, 280);
       }
 
-      if (score1 === 30) {
+      if (score1 === 10) {
         z = 2;
+        sendScore(score2)
       }
 
-      if (score2 === 30) {
-        z = 3;
-      }
+      // if (score2 === 30) {
+      //   z = 3;
+      // }
     }
 
     //Zustand 2 = Player 1 gewinnt

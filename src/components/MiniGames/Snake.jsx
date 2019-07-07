@@ -5,10 +5,10 @@ import snakeSketch from "./snake/snake.js";
 class Snake extends Component {
 
     render() {
-        const {onClick} = this.props        
+        const {onClick, getScore} = this.props        
         return (
             <div className={"snake"} onClick={onClick}>
-                <P5Wrapper sketch={snakeSketch} />
+                <P5Wrapper sketch={snakeSketch} getScore={getScore} />
             </div>
         );
     }

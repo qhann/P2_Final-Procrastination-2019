@@ -40,6 +40,48 @@ html, body, .root, .App {
   z-index: 99;
   opacity: 0;
   pointer-events: none;
+  color: white;
+  font-size: 8em;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
+}
+
+.night.hidden {
+  display: none;
+}
+
+.night .new-day-wrapper {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.night .new-day-wrapper span {
+  position: relative;
+  top: 50%;
+  left: 55%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.night .new-day-label {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.night .new-day-count {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .night.night-fall {
@@ -47,6 +89,24 @@ html, body, .root, .App {
           animation-name: nightFall;
   -webkit-animation-duration: 3s;
           animation-duration: 3s;
+}
+
+.night.night-end {
+  -webkit-animation-name: nightEnd;
+          animation-name: nightEnd;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.night.night-first {
+  -webkit-animation-name: nightFirst;
+          animation-name: nightFirst;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 
 @-webkit-keyframes nightFall {
@@ -64,6 +124,48 @@ html, body, .root, .App {
   }
   100% {
     opacity: 1;
+  }
+}
+
+@-webkit-keyframes nightEnd {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes nightEnd {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes nightFirst {
+  0% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes nightFirst {
+  0% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
@@ -112,8 +214,16 @@ html, body, .root, .App {
   position: absolute;
   height: 100%;
   width: 100%;
-  background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#000)) no-repeat;
-  background: linear-gradient(#000, #000) no-repeat;
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+}
+
+.status-bar-greyed {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: grey;
+  z-index: -1;
 }
 
 .status-label {
@@ -142,7 +252,7 @@ html, body, .root, .App {
 
 .mentor-tip img {
   position: absolute;
-  height: 100px;
+  height: 70px;
   left: -85px;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -492,6 +602,7 @@ html, body, .root, .App {
 }
 
 .screen .button-game-select {
+  display: table-cell;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -502,7 +613,25 @@ html, body, .root, .App {
   height: 42%;
   left: 0%;
   margin: 5%;
-  top: 20%;
+  top: 10%;
+  background-size: 88%;
+  background-position-x: 75%;
+  background-repeat: no-repeat;
+  color: white;
+  vertical-align: bottom;
+}
+
+.screen .button-game-select.fullscreen {
+  background-size: 100%;
+}
+
+.screen .button-game-select p {
+  position: absolute;
+  bottom: -190px;
+  left: 50%;
+  font-size: 4em;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 .screen .game-select-text {
@@ -836,9 +965,9 @@ html, body, .root, .App {
 }
 
 .end-art {
-  position: relative;
-  left: -500px;
-  top: 200px;
+  position: absolute;
+  left: 155px;
+  top: 78px;
   -webkit-transform: rotate(-90deg);
           transform: rotate(-90deg);
 }
@@ -950,5 +1079,32 @@ html, body, .root, .App {
     -webkit-transform: translate(1200px, 700px) scale(1);
             transform: translate(1200px, 700px) scale(1);
   }
+}
+
+.end-highscores {
+  position: absolute;
+  top: 100px;
+  right: 80px;
+  background: white;
+  width: 320px;
+}
+
+.end-highscores .highscores-title {
+  text-align: left;
+  font-size: 3em;
+}
+
+.end-highscores .highscores-table {
+  font-size: 1.8em;
+}
+
+.end-highscores .highscore-gametitle {
+  text-align: left;
+  width: 170px;
+}
+
+.end-highscores .highscore-gamescore {
+  text-align: right;
+  width: 134px;
 }
 /*# sourceMappingURL=index.css.map */

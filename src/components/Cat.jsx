@@ -26,14 +26,25 @@ class Cat extends Component {
     shriek: new Audio(shriek),
   };
 
+  componentDidMount() {
+    let hallucinationInterval = setInterval(
+      () => this.hallucinate(),
+      5000
+    ); 
+
+    this.setState({hallucinationInterval})
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.hallucinationInterval);
+  }
+
   showDropDown() {
     this.setState({ menuOpen: true });
   }
 
-  componentDidMount() {
-  }
-
   hallucinate() {
+    if (Math.random() < 0.95) return
     this.setState({
       // img: catScarySprites,
       catTransform: {
@@ -82,12 +93,6 @@ class Cat extends Component {
           this.props.catInteraction("play");
         }
       },
-      // {
-      //   caption: "hallucinate",
-      //   action: () => {
-      //     this.hallucinate();
-      //   }
-      // }
     ];
   }
 

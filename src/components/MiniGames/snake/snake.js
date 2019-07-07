@@ -14,18 +14,24 @@ import startHoverFile from "./start2.png";
 
 export default function snake(s) {
   let width = 1920 * 0.5;
-  let height = 800//1080 * 0.5;
+  let height = 800; //1080 * 0.5;
   // console.log(height);
 
   s.setup = () => {
     s.createCanvas(width, height);
-    s.frameRate(40);
+    s.frameRate(60);
+  };
+
+  let sendScore;
+  s.myCustomRedrawAccordingToNewPropsHandler = function(newProps) {
+    if (newProps.getScore) {
+      sendScore = newProps.getScore;
+    }
   };
 
   //variables
-  var sc = 0;
+  var sc = "start";
   var snakeBody = [];
-  var raupiBody = [];
 
   //img
   var scoreImg = s.loadImage(scoreImgFile);
@@ -42,7 +48,14 @@ export default function snake(s) {
   var start = s.loadImage(startFile);
   var startHover = s.loadImage(startHoverFile);
 
-  var box = 20;
+  var arena = {
+    x: 50,
+    y: 150,
+    width: 700,
+    height: 550 
+  }
+
+  var box = 40;
   var bx = 60;
   var snekL = 1;
   var robL = 1;
@@ -50,6 +63,9 @@ export default function snake(s) {
   var lifeX = 0;
   var lifeY = 0;
   var score = 0;
+  var frameSkip = 4
+  var frameSkipped = 0
+  var frameIncrease = 1
 
   var dir; //default snake immobile
 
@@ -81,29 +97,31 @@ export default function snake(s) {
     }
   }
   function keyReleased() {
-    console.log("key - " + s.keyCode);
+    // console.log("key - " + s.keyCode);
   }
 
   //setting keyboard controls, stop snakerino from reversing
 
   var food = {
-    a: 400,
-    b: 300,
+    x: 400,
+    y: 300,
 
-    canv: function() {
+    render: function() {
       s.fill(250, 20, 20);
-      s.ellipse(this.a, this.b, box, box);
+      s.ellipse(this.x, this.y, box, box);
     },
     eat: function() {
-      this.a = Math.floor(Math.random() * 17 + 7) * box;
-      this.b = Math.floor(Math.random() * 15 + 11) * box;
+      frameIncrease += 0.1
+      this.x = box + arena.x + ~~(Math.random() * ((arena.width / box )-1)) * box // Math.floor(Math.random() * 17 + 7) * box;
+      this.y = box+ arena.y + ~~(Math.random() * ((arena.height / box )-1)) * box //Math.floor(Math.random() * 15 + 11) * box;
     }
   };
+  food.eat()  
 
   var snake = {
-    x: 80,
-    y: 180,
-    canv: function() {
+    x: 200 + arena.x,
+    y: 200 + arena.y,
+    render: function() {
       s.fill(200, 200, 200);
       //s.ellipse(this.x, this.y, box, box);
       for (var i = 0; i < snakeBody.length; i++) {
@@ -112,33 +130,79 @@ export default function snake(s) {
     }
   };
 
-  var fruit2 = {
-    m: 400,
-    n: 550,
+  function drawLevelBg() {
+    s.clear();
 
-    canv: function() {
-      s.fill(250, 20, 20);
-      s.image(fruit, this.m, this.n, bx, bx);
-    },
-    eat: function() {
-      this.m = Math.floor(Math.random() * 5 + 1) * bx;
-      this.n = Math.floor(Math.random() * 5 + 3) * bx;
+    //slow down snake
+    // s.frameRate(30);
+
+    s.fill(30);
+    s.stroke(250);
+    s.rect(50, 150, 700, 550, 40);
+
+    s.noStroke();
+    s.rect(345, 100, 100, 100);
+
+    //strokeWeight();
+    s.fill(250);
+    //karoMuster();
+    s.image(careful, 280, 700, 230, 190);
+
+    //headline
+    s.image(headline, 220, 30, 350, 110);
+    //score
+    s.text("00" + score, 360, 170);
+    s.image(scoreImg, 340, 70, 130, 80);
+    s.textSize(40);
+  }
+
+  function moveSnake() {
+    if (dir == "right") {
+      snake.x = snake.x + box;
     }
-  };
-
-  var raupi = {
-    c: 100,
-    d: 190,
-    canv: function() {
-      //s.ellipse(this.x, this.y, box, box);
-      for (var u = 0; u < raupiBody.length; u++) {
-        s.image(raupiIMG, raupiBody[u].c, raupiBody[u].d, bx, bx);
+    if (dir == "left") {
+      snake.x = snake.x - box;
+    }
+    if (dir == "up") {
+      snake.y = snake.y - box;
+    }
+    if (dir == "down") {
+      snake.y = snake.y + box;
+    }
+    
+    
+    for (var i = 0; i < snakeBody.length; i++) {
+      if (
+        snakeBody.length != 1 &&
+        snake.x == snakeBody[i].x &&
+        snake.y == snakeBody[i].y
+        ) {
+          // console.log("ouch - 1 heart");
+          sc = "gameOver";
+          s.fill(250);
+          console.log(snake);
+        }
+        
+        
+        if (
+          snake.x >= 750 ||
+          snake.x <= 50 ||
+          snake.y <= 150 ||
+          snake.y >= 700
+          ) {
+            sc = "gameOver";
+            sendScore(score)
+          }
+        }
+        snakeBody.push({ x: snake.x, y: snake.y });
+        if (snakeBody.length > snekL) {
+          snakeBody.splice(0, 1);
+        }
       }
-    }
-  };
-  s.draw = () => {
-    if (sc == 0) {
-      s.background(0);
+      
+      s.draw = () => {
+        if (sc == "start") {
+          s.background(0);
       s.image(start, 0, 0, 750, 790);
 
       if (
@@ -149,6 +213,7 @@ export default function snake(s) {
       ) {
         s.image(startHover, 0, 0, 750, 790);
       }
+
       if (
         s.mouseY >= 220 &&
         s.mouseY <= 460 &&
@@ -156,177 +221,38 @@ export default function snake(s) {
         s.mouseY <= 610 &&
         s.mouseIsPressed
       ) {
-        sc = 1;
+        sc = "level";
       }
     }
 
-    if (sc == 1) {
-      s.clear();
-
-      //slow down snake
-      s.frameRate(8);
-
-      s.fill(30);
-      s.stroke(250);
-      s.rect(50, 150, 700, 550, 40);
-
-      s.noStroke();
-      s.rect(345, 100, 100, 100);
-
-      //strokeWeight();
-      s.fill(250);
-      //karoMuster();
-      s.image(careful, 280, 700, 230, 190);
-
-      //headline
-      s.image(headline, 220, 30, 350, 110);
-      //score
-      s.text("00" + score, 360, 170);
-      s.image(scoreImg, 340, 70, 130, 80);
-      s.textSize(40);
+    if (sc == "level") {
+      drawLevelBg();
       keydown();
       //s.noStroke(0);
-      food.canv();
-      snake.canv();
 
-      if (snake.x === food.a && snake.y === food.b) {
+      if (snake.x === food.x && snake.y === food.y) {
         snekL++;
         score++;
-        console.log(score);
+        // console.log(score);
         food.eat();
       }
 
-      snakeBody.push({ x: snake.x, y: snake.y });
-      if (snakeBody.length > snekL) {
-        snakeBody.splice(0, 1);
+
+      food.render();
+      snake.render();
+
+      if (frameSkipped < frameSkip) {
+        frameSkipped += frameIncrease
+      } else {
+        moveSnake();
+        frameSkipped = 0
       }
 
-      if (dir == "right") {
-        snake.x = snake.x + box;
-      }
-      if (dir == "left") {
-        snake.x = snake.x - box;
-      }
-      if (dir == "up") {
-        snake.y = snake.y - box;
-      }
-      if (dir == "down") {
-        snake.y = snake.y + box;
-      }
 
-      for (var i = 0; i < snakeBody.length; i++) {
-        if (
-          snakeBody.length != 1 &&
-          snake.x == snakeBody[i].x &&
-          snake.y == snakeBody[i].y
-        ) {
-          console.log("ouch - 1 heart");
-          s.fill(250);
-
-          lives = lives - 1;
-        }
-        if (
-          snake.x >= 750 ||
-          snake.x <= 50 ||
-          snake.y <= 150 ||
-          snake.y >= 700
-        ) {
-          console.log("collision - 1 heart");
-          s.image(careful, 280, 700, 230, 190);
-          lives = lives - 1;
-        }
-        if (lives == 0) {
-          sc = 2;
-        }
-      }
-
-      //live bar
-      for (lifeX = 0; lifeX <= lives; lifeX++) {
-        s.fill(200, 50, 50);
-        // s.rect(lifeX*30+500,lifeY+660,20,20);
-        s.noStroke();
-        s.rect(lifeX * 60 + 567, lifeY + 650, 15, 5);
-        s.rect(lifeX * 60 + 588, lifeY + 650, 15, 5);
-        s.rect(lifeX * 60 + 569, lifeY + 647, 10, 3);
-        s.rect(lifeX * 60 + 590, lifeY + 647, 10, 3);
-        s.rect(lifeX * 60 + 564, lifeY + 655, 42, 7);
-        s.rect(lifeX * 60 + 568, lifeY + 659, 35, 7);
-        s.rect(lifeX * 60 + 573, lifeY + 666, 26, 5);
-        s.rect(lifeX * 60 + 578, lifeY + 670, 17, 5);
-        s.rect(lifeX * 60 + 583, lifeY + 675, 8, 4);
-        s.fill(250);
-      }
-    }
-
-    if (sc == 1 && score == 5) {
-      sc = 3;
-    }
-    ///SCREEN 3
-    if (sc == 3) {
-      score = 5;
-
-      s.frameRate(5);
-      s.background(250);
-      s.image(blatt, 50, 150, 700, 600);
-      s.image(plaume, 50, 740, 360, 50);
-      s.image(nimmersatt, -30, 20, 660, 200);
-      s.stroke(150, 90, 90);
-      s.fill(150, 100, 100);
-      s.textSize(30);
-      //s.text("Score: "+score,640,780);
-      keydown();
-      //s.noStroke(0);
-      fruit2.canv();
-      raupi.canv();
-
-      if (
-        raupi.c <= fruit2.m + 50 &&
-        raupi.c >= fruit2.m - 50 &&
-        raupi.d <= fruit2.n + 50 &&
-        raupi.d >= fruit2.n - 50
-      ) {
-        robL++;
-        score++;
-        console.log(score);
-        fruit2.eat();
-      }
-
-      raupiBody.push({ c: raupi.c, d: raupi.d });
-      if (raupiBody.length > robL) {
-        raupiBody.splice(0, 1);
-      }
-
-      //direction
-      if (dir == "right") {
-        raupi.c = raupi.c + bx;
-      }
-      if (dir == "left") {
-        raupi.c = raupi.c - bx;
-      }
-      if (dir == "up") {
-        raupi.d = raupi.d - bx;
-      }
-      if (dir == "down") {
-        raupi.d = raupi.d + bx;
-      }
-
-      //collision wall
-      for (var u = 0; u < raupiBody.length; u++) {
-        if (
-          raupi.c >= 800 ||
-          raupi.c <= -50 ||
-          raupi.d <= 100 ||
-          raupi.d >= 800
-        ) {
-          console.log("collision - 1 heart");
-          s.image(careful, 280, 700, 230, 190);
-          sc = 4;
-        }
-      }
     }
 
     //first game over screen
-    if (lives == 0 && sc == 2) {
+    if (sc == "gameOver") {
       s.background(0);
       s.image(gameOver1, 0, 0, 750, 790);
 
@@ -345,7 +271,8 @@ export default function snake(s) {
         s.mouseY <= 610 &&
         s.mouseIsPressed
       ) {
-        sc = 1;
+        sc = "level";
+
         snakeBody.length = 1;
         snekL = 1;
         score = 0;
@@ -354,48 +281,11 @@ export default function snake(s) {
         snake = {
           x: 80,
           y: 180,
-          canv: function() {
+          render: function() {
             s.fill(200, 200, 200);
             //s.ellipse(this.x, this.y, box, box);
             for (var i = 0; i < snakeBody.length; i++) {
               s.ellipse(snakeBody[i].x, snakeBody[i].y, box, box);
-            }
-          }
-        };
-      }
-    }
-    if (sc == 4) {
-      s.background(0);
-      s.image(gameOver1, 0, 0, 750, 790);
-
-      if (
-        s.mouseY >= 220 &&
-        s.mouseY <= 460 &&
-        s.mouseX >= 250 &&
-        s.mouseY <= 610
-      ) {
-        s.image(gameOver2, 0, 0, 750, 790);
-      }
-      if (
-        s.mouseY >= 220 &&
-        s.mouseY <= 460 &&
-        s.mouseX >= 250 &&
-        s.mouseY <= 610 &&
-        s.mouseIsPressed
-      ) {
-        sc = 3;
-        raupiBody.length = 1;
-        robL = 1;
-        score = 0;
-        dir = null;
-        raupi = {
-          c: 100,
-          d: 190,
-          canv: function() {
-            s.fill(200, 200, 200);
-            //s.ellipse(this.x, this.y, box, box);
-            for (var u = 0; u < raupiBody.length; u++) {
-              s.image(raupiIMG, raupiBody[u].c, raupiBody[u].d, bx, bx);
             }
           }
         };

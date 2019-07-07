@@ -10,7 +10,7 @@ import EndScreen from "./components/EndScreen";
 
 class App extends React.Component {
   state = {
-    currentScreen: "end",
+    currentScreen: "main",
     playerName: "du Pupskopf",
     gender: "girl",
     player: {},
@@ -40,7 +40,8 @@ class App extends React.Component {
            artWork: props.artWork,
            workingExhaustion: props.workingExhaustionValues.reduce((a, b) => a + b, 0) / props.workingExhaustionValues.length,
            workTime: props.workingExhaustionValues.length,
-           sleepTime: props.sleepTime
+           sleepTime: props.sleepTime,
+           highScores: props.highScores
          };
         newScreen = "end";
         break;
@@ -84,6 +85,7 @@ class App extends React.Component {
             workingExhaustion={this.state.workingExhaustion}
             workTime={this.state.workTime}
             sleepTime={this.state.sleepTime}
+            highScores={this.state.highScores}
           />
         ) : null}
       </div>
