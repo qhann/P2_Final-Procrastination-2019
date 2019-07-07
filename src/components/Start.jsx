@@ -106,6 +106,7 @@ class Start extends Component {
   render() {
     const { nextScreen } = this.props;
     let cat = this.state.cat
+    let time = this.state.time
     let player = {}
     return (
       <>
