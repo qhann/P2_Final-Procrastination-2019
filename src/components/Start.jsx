@@ -7,6 +7,7 @@ import update from "immutability-helper";
 class Start extends Component {
 
   state = {
+    time: 0,
     cat: {
       hasPlayer: false,
       position: {
@@ -56,7 +57,9 @@ class Start extends Component {
         time.toFixed(1) % 10 == 0
           ? this.moveCat(prevState.cat)
           : prevState.cat;
+
       return update(prevState, {
+        time: { $set: prevState.time + 1 },
         cat: { $set: newCat },
       });
     });
@@ -68,7 +71,7 @@ class Start extends Component {
 
     newPosition = {
       x: ~~(150 + 1520 * Math.random()),
-      y: ~~(700 + 120 * Math.random())
+      y: ~~(600 + 220 * Math.random())
     };
 
     dx = prevCat.position.x - newPosition.x;
@@ -107,7 +110,10 @@ class Start extends Component {
     const { nextScreen } = this.props;
     let cat = this.state.cat
     let time = this.state.time
-    let player = {}
+    let player = {
+      action: "none"
+
+    }
     return (
       <>
         <div className={"start"}>
@@ -120,8 +126,8 @@ class Start extends Component {
           hasPlayer={cat.hasPlayer}
           menuOpen={cat.menuOpen}
           player={player}
-          onClick={(e) => this.handleCatClick(e)}
-          catInteraction={action => this.handleCatInteraction(action)}
+          onClick={() => {}}
+          catInteraction={() => {}}
           position={cat.position}
           transitionSpeed={cat.transition}
           time={time}

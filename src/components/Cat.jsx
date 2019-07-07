@@ -218,7 +218,10 @@ class Cat extends Component {
 }
 
 Cat.defaultProps = {
-  onClick: () => {}
+  onClick: () => {},
+  player: {
+    action: "none"
+  }
 }
 
 export default Cat;
