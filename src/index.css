@@ -730,10 +730,10 @@ html, body, .root, .App {
 
 .lamplight {
   position: absolute;
-  top: 5px;
-  left: 147px;
-  width: 268px;
-  opacity: 0.3;
+  top: 14px;
+  left: 131px;
+  width: 293px;
+  opacity: 1;
   pointer-events: none;
 }
 

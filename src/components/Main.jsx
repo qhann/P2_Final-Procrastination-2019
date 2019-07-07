@@ -67,7 +67,7 @@ class Main extends React.Component {
   getGlobalInterval(time) {
     let globalInterval = setInterval(
       () => this.updateTimed(),
-      50
+      500
     );
     return globalInterval
   }
