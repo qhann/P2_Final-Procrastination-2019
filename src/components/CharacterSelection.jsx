@@ -47,7 +47,7 @@ class CharacterSelection extends Component {
     };
     return (
       <div className={"character-selection"}>
-        <p>Charakterauswahl:</p>
+        <p className={"character-title"}>Charakterauswahl:</p>
         <img
           src={Boy}
           className={"button-character-select button-boy"}

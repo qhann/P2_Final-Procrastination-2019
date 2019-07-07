@@ -311,9 +311,11 @@ class Main extends React.Component {
       let newExhaustion = prevExhaustion - sleepingHours * 12.5
       newExhaustion = newExhaustion < 0 ? 0 : newExhaustion
       let newTime = days * 12 * 60
+      let newSleepTime = this.state.sleepTime + sleepingHours * 60
 
       this.setState(prevState => update(prevState, {
         time: { $set: newTime },
+        sleepTime: {$set: newSleepTime},
         vitalStats: {
           exhaustion: { $set: newExhaustion }
         }

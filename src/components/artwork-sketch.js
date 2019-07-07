@@ -53,7 +53,7 @@ export default function artworkSketch(s) {
   };
 
   s.setup = () => {
-    s.frameRate(60);
+    s.frameRate(3);
     s.createCanvas(width, height);
     s.colorMode(s.HSB, 360, 100, 100, 100);
     s.noFill();

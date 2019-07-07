@@ -1,9 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Patrick+Hand+SC|Stylish|Varela+Round|Walter+Turncoat|DM+Sans|Nanum+Gothic|Arimo&display=swap')
-
 @font-face 
     font-family: Barmeno Medium
     src: url("./components/fonts/Barmeno-medium.otf") format("opentype")
-
 
 *
     padding: 0
@@ -47,18 +44,18 @@ html, body, .root, .App
         span
             position: relative
             top: 50%
-            left: 55%
-            transform: translate(-50%, -50%)
+            left: 53%
+            transform: translate(-50%, -20%)
     .new-day-label
         position: relative
         top: 50%
-        left: 50%
-        transform: translate(-50%, -50%)
+        left: 47%
+        transform: translate(-50%, -20%)
     .new-day-count
         position: relative
         top: 50%
-        left: 50%
-        transform: translate(-50%, -50%)
+        left: 47%
+        transform: translate(-50%, -20%)
     &.night-fall
         animation-name: nightFall
         animation-duration: 3s
@@ -68,7 +65,6 @@ html, body, .root, .App
         animation-fill-mode: forwards
  
     &.night-first
-        // opacity: 1 !important
         animation-name: nightFirst
         animation-duration: 3s
         animation-fill-mode: forwards
@@ -78,15 +74,11 @@ html, body, .root, .App
         opacity: 0
     100%
         opacity: 1
-    // 100%
-    //     opacity: 0
 @keyframes nightEnd 
     0%
         opacity: 1
     100%
         opacity: 0
-    // 100%
-    //     opacity: 0
 @keyframes nightFirst
     0%
         opacity: 1
@@ -94,8 +86,6 @@ html, body, .root, .App
         opacity: 1
     100%
         opacity: 0
-    // 100%
-    //     opacity: 0
 
 .root, .app
     width: 100%
@@ -136,7 +126,6 @@ html, body, .root, .App
     width: 100%
     background-repeat: no-repeat
     background-size: 200% 100%
-    // background-image: linear-gradient(to right, #444 0%, #444 30%, #000 30%, #000 100%) no-repeat 
 
 .status-bar-greyed
     position: absolute
@@ -144,7 +133,6 @@ html, body, .root, .App
     width: 100%
     background: grey
     z-index: -1
-
 
 .status-label
     position: absolute
@@ -239,12 +227,10 @@ html, body, .root, .App
     z-index: 10
     transition: transform 1s linear
 
-
 .cat-image
     width: 150px
     height: 150px
     background-size: 150px 150px
-    // background-position-x: -150px
     transform: scale(1)
     opacity: 1
     transition: transform 0s, opacity 1s
@@ -259,18 +245,8 @@ html, body, .root, .App
     29%
         transform: scale(1.5)
         opacity: 1
-
-    // 10%
-    //     transform: scale(1.5)
-    // 20%
-    //     transform: scale(1)
-    // 30%
-    //     transform: scale(2)
     40%
         transform: scale(0.7)
-    // 50%
-    //     transform: scale(1.3)
-        
     95%
         transform: scale(9)
         opacity: 0.9
@@ -343,12 +319,6 @@ html, body, .root, .App
     &.pattern-window
         mask-size: 1920px
         mask-position: 0 0
-    .moonlight-window
-        // top: 726px
-        // left: 1231px
-        // width: 237px
-        // height: 140px
-        // transform-origin: 0 -204px
     &.pattern-game
         mask-size: 479px
         mask-position: 0 0 
@@ -367,11 +337,7 @@ html, body, .root, .App
     top: 0
     left: 0
     width: 100%
-    // top: 48%
-    // width: 37%
-    // right: -6.9%
     z-index: 60
-    // height: 83%
 
 .window
     position: absolute
@@ -388,18 +354,6 @@ html, body, .root, .App
         left: 10px
         bottom: 10px
         right: 10px
-            // width: 100%
-        // height: 100%
-        // top: 33%
-        // left: 64.5%
-    // .wall
-    //     position: absolute
-    //     width: 500px
-    //     height: 118px
-    //     top: 116%
-    //     background: #00132e
-    //     left: -100px
-    //     z-index: 12
     .moonlight
         height: 11px
         top: 95%
@@ -418,22 +372,13 @@ html, body, .root, .App
     mix-blend-mode: difference
     overflow: hidden
     z-index: 10
+    transition: transform 0.5s linear
     &.vertical
-        // width: 1000px
 
 .pattern
     position: absolute
     width: 100%
     height: 100%
-
-// .lunar-lander
-//     position: relative
-//     width: 50%
-//     height: 50%
-//     left: 50%
-//     top: 40%
-    // transform: translate(-50%, -50%) scale(0.1, 0.1)
-    // transition: transform 0.7s
 
 .pong, .lunar-lander, .snake
     position: relative
@@ -442,34 +387,16 @@ html, body, .root, .App
     left: 50%
     top: 35%
     transform: translate(-50%, -50%) 
-    // transition: transform 0.7s
-
-// .button-lunar
-//     width: 40%
-//     height: 40%
-// //     transform: translate(-50%, -50%) scale(0.1, 0.1)
-// //     transition: transform 0.7s
-
-// .button-pong
-//     width: 30%
-//     height: 30%
-//     // transform: translate(-50%, -50%) scale(0.1, 0.1)
-//     // transition: transform 0.7s
-    
 
 .gaming-station
     position: absolute
     width: 25%
     height: 26%
     left: 38%
-    // right: 46.7%
     top: 45.8%
-    // bottom: 46.3%
-    // overflow: hidden
     .moonlight
         top: 150px
         left: 508px
-        // transform-origin: 0 0 
 
 .screen
     position: absolute
@@ -600,15 +527,12 @@ html, body, .root, .App
         // height: 100%
         &:hover
 
-
 .coffee-guy
     position: absolute
     width: 380px 
     height: 380px
     top: 10%
     left: 45%
-
-            
 
 .coffee-path:hover
     filter: drop-shadow(-30px 10px 4px #FF8311)
@@ -693,6 +617,11 @@ html, body, .root, .App
         left: -400px !important
     &.end
 
+.start-title 
+    width: 100%
+    position: absolute
+    left: 0
+
 .start, .character-selection
     p
         font-size: 10em 
@@ -708,6 +637,7 @@ html, body, .root, .App
     right: 43%
     background: white
     border: none
+    border-radius: 5px
 
 .button-character-select 
     position: absolute
@@ -722,6 +652,10 @@ html, body, .root, .App
 
 .button-girl
     right: 30%
+
+.character-title
+    left: 50%
+    transform: translateX(-50%)
 
 .character-select-input
     position: absolute
@@ -773,9 +707,9 @@ html, body, .root, .App
 
 .intro-mentor
     position: absolute
-    width: 310px
+    width: 166px
     height: 310px
-    right: 68%
+    right: 73%
     top: 51%
 
 .bed-girl

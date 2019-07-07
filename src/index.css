@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Patrick+Hand+SC|Stylish|Varela+Round|Walter+Turncoat|DM+Sans|Nanum+Gothic|Arimo&display=swap");
 @font-face {
   font-family: Barmeno Medium;
   src: url("./components/fonts/Barmeno-medium.otf") format("opentype");
@@ -63,25 +62,25 @@ html, body, .root, .App {
 .night .new-day-wrapper span {
   position: relative;
   top: 50%;
-  left: 55%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  left: 53%;
+  -webkit-transform: translate(-50%, -20%);
+          transform: translate(-50%, -20%);
 }
 
 .night .new-day-label {
   position: relative;
   top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  left: 47%;
+  -webkit-transform: translate(-50%, -20%);
+          transform: translate(-50%, -20%);
 }
 
 .night .new-day-count {
   position: relative;
   top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  left: 47%;
+  -webkit-transform: translate(-50%, -20%);
+          transform: translate(-50%, -20%);
 }
 
 .night.night-fall {
@@ -558,6 +557,10 @@ html, body, .root, .App {
   mix-blend-mode: difference;
   overflow: hidden;
   z-index: 10;
+  -webkit-transition: -webkit-transform 0.5s linear;
+  transition: -webkit-transform 0.5s linear;
+  transition: transform 0.5s linear;
+  transition: transform 0.5s linear, -webkit-transform 0.5s linear;
 }
 
 .pattern {
@@ -855,6 +858,12 @@ html, body, .root, .App {
   left: -400px !important;
 }
 
+.start-title {
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+
 .start p, .character-selection p {
   font-size: 10em;
   color: white;
@@ -870,6 +879,7 @@ html, body, .root, .App {
   right: 43%;
   background: white;
   border: none;
+  border-radius: 5px;
 }
 
 .button-character-select {
@@ -890,6 +900,12 @@ html, body, .root, .App {
 
 .button-girl {
   right: 30%;
+}
+
+.character-title {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 .character-select-input {
@@ -947,9 +963,9 @@ html, body, .root, .App {
 
 .intro-mentor {
   position: absolute;
-  width: 310px;
+  width: 166px;
   height: 310px;
-  right: 68%;
+  right: 73%;
   top: 51%;
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Cat from "./Cat";
 import update from "immutability-helper";
+import title from "./SVGs/title.gif"
 
 
 
@@ -117,7 +118,8 @@ class Start extends Component {
     return (
       <>
         <div className={"start"}>
-          <p> FINAL PROCRASTINATION </p>
+          <img className={"start-title"} src={title} alt=""/>
+          {/* <p> FINAL PROCRASTINATION </p> */}
           <button className={"start-button"} onClick={nextScreen}>
             neues Spiel
         </button>

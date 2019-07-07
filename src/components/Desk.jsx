@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import DeskSvg from "./SVGs/DeskSvg.jsx";
 import Artwork from "./Artwork";
 import Player from "./Player";
-import lamplight from "./SVGs/lamplight2.svg"
+import lamplight from "./SVGs/lamplight_finalend.svg"
 
 class Desk extends Component {
     render() {

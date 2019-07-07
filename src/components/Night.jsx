@@ -13,8 +13,9 @@ class Night extends Component {
         // this.setState({ yearsCounter }, callBack)
     }
     
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
         if (this.props.nightFall && !this.state.firstNightOver) this.setState({firstNightOver: true})
+        if (this.props.nightFall != prevProps.nightFall) this.setState({dayCount: ~~((this.props.time-10) / (12*60)) + 2})
 
         // let days = 2 + ~~(this.props.time / (60 * 12))
     
@@ -57,9 +58,9 @@ class Night extends Component {
                         {days <= 3 ? "Tag " : "Jahr "}
                     </p>
                     {time <= 2*12*60+10 ? <p className={"new-day-count"}>
-                        {days}
+                        {this.state.dayCount || days}
                     </p> : null}
-                    {time >= 2*12*60+10 && firstNightOver ? <CountUp delay={0.5} start={2019} end={2044} duration={3} easingFn={easingFn}/> : null}
+                    {this.state.dayCount >= 4 && firstNightOver ? <CountUp delay={0.5} start={2019} end={2044} duration={3} easingFn={easingFn}/> : null}
                 </div>
             </div>
         );
