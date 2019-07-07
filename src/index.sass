@@ -22,6 +22,80 @@ html, body, .root, .App
 
 .App
     overflow: hidden
+    
+.night
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+    background: black
+    z-index: 99
+    opacity: 0
+    pointer-events: none
+    color: white
+    font-size: 8em
+    transition: opacity 1s
+    &.hidden
+        display: none
+    .new-day-wrapper
+        position: relative
+        display: flex
+        top: 50%
+        transform: translateY(-50%)
+        span
+            position: relative
+            top: 50%
+            left: 55%
+            transform: translate(-50%, -50%)
+    .new-day-label
+        position: relative
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+    .new-day-count
+        position: relative
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+    &.night-fall
+        animation-name: nightFall
+        animation-duration: 3s
+    &.night-end
+        animation-name: nightEnd
+        animation-duration: 1s
+        animation-fill-mode: forwards
+ 
+    &.night-first
+        // opacity: 1 !important
+        animation-name: nightFirst
+        animation-duration: 3s
+        animation-fill-mode: forwards
+
+@keyframes nightFall 
+    0%
+        opacity: 0
+    100%
+        opacity: 1
+    // 100%
+    //     opacity: 0
+@keyframes nightEnd 
+    0%
+        opacity: 1
+    100%
+        opacity: 0
+    // 100%
+    //     opacity: 0
+@keyframes nightFirst
+    0%
+        opacity: 1
+    40%
+        opacity: 1
+    100%
+        opacity: 0
+    // 100%
+    //     opacity: 0
 
 .root, .app
     width: 100%
@@ -60,7 +134,17 @@ html, body, .root, .App
     position: absolute
     height: 100%
     width: 100%
-    background: linear-gradient(#000, #000) no-repeat 
+    background-repeat: no-repeat
+    background-size: 200% 100%
+    // background-image: linear-gradient(to right, #444 0%, #444 30%, #000 30%, #000 100%) no-repeat 
+
+.status-bar-greyed
+    position: absolute
+    height: 100%
+    width: 100%
+    background: grey
+    z-index: -1
+
 
 .status-label
     position: absolute
@@ -81,26 +165,43 @@ html, body, .root, .App
 
 .mentor-tip
     position: absolute
-    height: 4%
+    // height: 4%
     width: 37%
     bottom: 4%
     left: 33%
-    background: white
-    border-radius: 5px
     img
         position: absolute
-        height: 100px
+        height: 70px
         left: -85px
-        top: -119%
-
-    .mentor-text
-        position: absolute
-        left: 5%
         top: 50%
         transform: translateY(-50%)
+    .mentor-text
+        position: relative
+        background: white
+        border-radius: 5px
+        left: 5%
+        // top: 50%
+        padding: 5px
+        // transform: translateY(-50%)
         color: black
         overflow: hidden
         font-size: 1.5em
+        &:after
+            content: ''
+            position: absolute
+            left: 0
+            top: 50%
+            width: 0
+            height: 0
+            border: 20px solid transparent
+            border-right-color: #ffffff
+            border-left: 0
+            margin-top: -20px
+            margin-left: -20px
+            
+.end-screen
+    .mentor-text
+        padding: 20px
 
 .clock
     position: absolute
@@ -187,6 +288,7 @@ html, body, .root, .App
 .button-drop-down
     width: 100%
     border-radius: 5px
+    padding: 3px
     margin: 2px
     &:hover
         filter: drop-shadow(0 0 5px black)
@@ -247,7 +349,12 @@ html, body, .root, .App
         // width: 237px
         // height: 140px
         // transform-origin: 0 -204px
-    
+    &.pattern-game
+        mask-size: 479px
+        mask-position: 0 0 
+    .moonlight-game
+        transform-origin: 300px -100px 
+
 
 
 .bed-path
@@ -318,7 +425,6 @@ html, body, .root, .App
     position: absolute
     width: 100%
     height: 100%
-    mix-blend-mode: 
 
 // .lunar-lander
 //     position: relative
@@ -363,7 +469,7 @@ html, body, .root, .App
     .moonlight
         top: 150px
         left: 508px
-        transform-origin: 0 0 
+        // transform-origin: 0 0 
 
 .screen
     position: absolute
@@ -390,6 +496,7 @@ html, body, .root, .App
     .button-game-select
         // display: flex
         // flex-direction: 
+        display: table-cell
         flex-grow: 1 
         position: relative
         object-fit: cover
@@ -398,14 +505,28 @@ html, body, .root, .App
         // top: 20%
         left: 0% 
         margin: 5%
-        top: 20%
+        top: 10%
+        background-size: 88% 
+        background-position-x: 75%
+        background-repeat: no-repeat
+        color: white
+        vertical-align: bottom 
+        &.fullscreen
+            background-size: 100% 
+        p
+            position: absolute
+            bottom: -190px
+            left: 50%
+            font-size: 4em
+            transform: translateX(-50%)
     .game-select-text
-        // margin-top: 10% 
+        // margin-top: 10%  
         width: 100%
         height: 30%
         // height: 90px
         font-size: 100%
         color: white
+        
         
     &.fullscreen
         // top: -30vh
@@ -466,6 +587,7 @@ html, body, .root, .App
     left: 147px
     width: 268px
     opacity: 0.3 
+    pointer-events: none
 
 .coffee-maker 
     position: absolute
@@ -542,12 +664,12 @@ html, body, .root, .App
     &.pet
         &.girl
             height: 300px
-            top: -185px
-            left: -120px
+            top: -177px
+            left: -129px
         &.boy
             height: 300px
-            top: -185px
-            left: -120px
+            top: -177px
+            left: -129px
     &.feed
         &.girl
             height: 300px
@@ -566,6 +688,15 @@ html, body, .root, .App
             height: 300px
             top: -140px
             left: -180px
+    &.room
+        top: 480px !important
+        left: -400px !important
+    &.end
+        position: absolute
+        width: 400px
+        height: 400px
+        top: 467px !important
+        left: 40% !important
 
 
 .start, .character-selection
@@ -666,3 +797,92 @@ html, body, .root, .App
     height: 400px
     top: 10%
     right: -41%
+
+.end-screen
+    background: #00132e
+    width: 100%
+    height: 100%
+
+.end-art
+    position: absolute
+    left: 55px
+    top: -500px
+    transform: rotate(-90deg)
+
+.award-wrapper
+    position: absolute
+    top: 408px
+    left: 100px
+    width: 507px
+    transform: scale(0.6)
+
+.trophy-wrapper
+    display: flex
+    justify-content: center
+    align-items: center
+
+.trophy 
+    // position: relative
+    width: 200px
+    height: 200px
+    left: -40px
+    transform: translate(0, -1000px)
+    animation: trophySlideIn 0.7s ease-in-out forwards
+
+.trophy-stand
+    position: absolute
+    top: 194px
+    left: 0
+    width: 100%
+
+.trophy-min
+    animation-delay: 0
+.trophy-med
+    animation-delay: 0.6s
+.trophy-max
+    animation-delay: 1.2s
+
+
+.end-screen
+    .cat
+        opacity: 0
+        animation: catFadeIn 1s forwards
+        animation-delay: 1.5s
+
+
+@keyframes trophySlideIn 
+    0%
+        transform: translate(0, -1000px)
+    100%
+        transform:  translate(0,0)
+
+@keyframes catFadeIn
+    0%
+        opacity: 1
+        transform: translate(1200px, 700px) scale(0)
+    100%
+        opacity: 1
+        transform: translate(1200px, 700px) scale(1)
+
+.end-highscores
+    position: absolute
+    top: 100px
+    right: 80px
+    background: white  
+    width: 320px
+    padding: 10px
+    border-radius: 5px 
+    .highscores-title
+        text-align: left
+        font-size: 3em
+    .highscores-table
+        font-size: 1.8em
+    .highscore-gametitle
+        text-align: left
+        width: 170px
+    .highscore-gamescore
+        text-align: right
+        width: 134px
+    .highscore-lunar
+    .highscore-pong
+    .highscore-snake

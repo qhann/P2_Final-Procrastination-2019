@@ -84,9 +84,11 @@
 .desk52 {  fill: #d0bd91;}
 .desk53 {  fill: #00132e;}
 .desk-path:hover {  filter: drop-shadow(-30px 10px 4px #ff8311);}
+.desk-path.hover {  filter: drop-shadow(-30px 10px 4px #ff8311);}
 
 
 .bed-path:hover{filter: drop-shadow(-30px 10px 4px #FF8311);}
+.bed-path.hover{filter: drop-shadow(-30px 10px 4px #FF8311);}
 .bed0{display:none;fill:#4D4D4D;}
 .bed1{display:none;fill:#FFFFFF;stroke:#4D4D4D;stroke-width:2;stroke-miterlimit:10;}
 .bed2{display:none;fill:#FFFFFF;stroke:#606060;stroke-width:3;stroke-miterlimit:10;}
@@ -270,5 +272,8 @@
 .coffee80 {fill: #091530;}
 .coffee81 {fill: #524a6f;}
 .coffee-path:hover {
+  filter: drop-shadow(-30px 10px 4px #ff8311);
+}
+.coffee-path.hover {
   filter: drop-shadow(-30px 10px 4px #ff8311);
 }

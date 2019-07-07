@@ -10,9 +10,11 @@ import EndScreen from "./components/EndScreen";
 
 class App extends React.Component {
   state = {
-    currentScreen: "start",
-    playerName: "",
-    gender: "girl"
+    currentScreen: "main",
+    playerName: "du Pupskopf",
+    gender: "girl",
+    player: {},
+    artWork: {}
   };
 
   switchScreen(destination, props) {
@@ -33,7 +35,15 @@ class App extends React.Component {
       case "main":
         newScreen = "main";
         break;
-      case "end":
+      case "end":      
+        newProps = {
+           artWork: props.artWork,
+           workingExhaustion: props.workingExhaustionValues.reduce((a, b) => a + b, 0) / props.workingExhaustionValues.length,
+           workTime: props.workingExhaustionValues.length,
+           sleepTime: props.sleepTime,
+           highScores: props.highScores
+         };
+        newScreen = "end";
         break;
     }
     if (newScreen) {
@@ -61,7 +71,22 @@ class App extends React.Component {
           />
         ) : null}
         {this.state.currentScreen == "main" ? (
-          <Main playerName={this.state.playerName} gender={this.state.gender} />
+          <Main
+            playerName={this.state.playerName}
+            gender={this.state.gender}
+            nextScreen={artWork => this.switchScreen("end", artWork)}
+          />
+        ) : null}
+        {this.state.currentScreen == "end" ? (
+          <EndScreen
+            playerName={this.state.playerName}
+            gender={this.state.gender}
+            artWork={this.state.artWork}
+            workingExhaustion={this.state.workingExhaustion}
+            workTime={this.state.workTime}
+            sleepTime={this.state.sleepTime}
+            highScores={this.state.highScores}
+          />
         ) : null}
       </div>
     );

@@ -4,10 +4,10 @@ import pong from "./Pong/pongsim.js";
 
 class Pong extends Component {
   render() {
-    const { onClick } = this.props;
+    const { onClick, getScore } = this.props;
     return (
       <div className={"pong"} onClick={onClick}>
-        <P5Wrapper sketch={pong} />
+        <P5Wrapper sketch={pong} getScore={getScore}/>
       </div>
     );
   }
