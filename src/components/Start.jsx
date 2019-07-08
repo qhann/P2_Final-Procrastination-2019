@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import Cat from "./Cat";
 import update from "immutability-helper";
-import title from "./SVGs/title.gif"
-
-
+import title from "./SVGs/title.gif";
 
 class Start extends Component {
-
   state = {
     time: 0,
     cat: {
@@ -18,20 +15,17 @@ class Start extends Component {
       moving: false,
       menuOpen: false,
       interaction: "none",
-      direction: "left",
+      direction: "left"
     }
-  }
+  };
 
   getGlobalInterval(time) {
-    let globalInterval = setInterval(
-      () => this.updateTimed(),
-      500
-    );
-    return globalInterval
+    let globalInterval = setInterval(() => this.updateTimed(), 500);
+    return globalInterval;
   }
 
   componentDidMount() {
-    let globalInterval = this.getGlobalInterval(500)
+    let globalInterval = this.getGlobalInterval(500);
 
     this.setState(prevState =>
       update(prevState, {
@@ -51,17 +45,15 @@ class Start extends Component {
   }
 
   updateTimed() {
-    let time = this.state.time
+    let time = this.state.time;
 
     this.setState(prevState => {
       let newCat =
-        time.toFixed(1) % 10 == 0
-          ? this.moveCat(prevState.cat)
-          : prevState.cat;
+        time.toFixed(1) % 10 == 0 ? this.moveCat(prevState.cat) : prevState.cat;
 
       return update(prevState, {
         time: { $set: prevState.time + 1 },
-        cat: { $set: newCat },
+        cat: { $set: newCat }
       });
     });
   }
@@ -109,20 +101,19 @@ class Start extends Component {
 
   render() {
     const { nextScreen } = this.props;
-    let cat = this.state.cat
-    let time = this.state.time
+    let cat = this.state.cat;
+    let time = this.state.time;
     let player = {
       action: "none"
-
-    }
+    };
     return (
       <>
         <div className={"start"}>
-          <img className={"start-title"} src={title} alt=""/>
+          <img className={"start-title"} src={title} alt="" />
           {/* <p> FINAL PROCRASTINATION </p> */}
           <button className={"start-button"} onClick={nextScreen}>
-            neues Spiel
-        </button>
+            Spiel starten
+          </button>
         </div>
         <Cat
           hasPlayer={cat.hasPlayer}
