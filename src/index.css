@@ -833,38 +833,38 @@ body,
 
 .player.pet.girl {
   height: 300px;
-  top: -177px;
-  left: -129px;
+  top: -213px;
+  left: -164px;
 }
 
 .player.pet.boy {
   height: 300px;
-  top: -177px;
-  left: -129px;
+  top: -213px;
+  left: -164px;
 }
 
 .player.feed.girl {
   height: 300px;
-  top: -110px;
+  top: -145px;
   left: -180px;
 }
 
 .player.feed.boy {
   height: 300px;
-  top: -110px;
+  top: -145px;
   left: -180px;
 }
 
 .player.play.girl {
   height: 300px;
-  top: -140px;
-  left: -180px;
+  top: -160px;
+  left: -160px;
 }
 
 .player.play.boy {
   height: 300px;
-  top: -140px;
-  left: -180px;
+  top: -160px;
+  left: -160px;
 }
 
 .player.room {

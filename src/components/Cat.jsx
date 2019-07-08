@@ -44,11 +44,14 @@ class Cat extends Component {
   }
 
   hallucinate() {
-    console.log(Math.random() < 0.5 , this.props.player.action != "none" , this.props.player.tiredness != "tiredest", this.state.hallucinated);
     if (this.props.player.tiredness != "tiredest") {
       this.setState({hallucinated: false})
     }
-    if (Math.random() < 0.5 || this.props.player.action != "none" || this.props.player.tiredness != "tiredest" || this.state.hallucinated) {
+    if (Math.random() < 0.5 
+    || this.props.player.action != "none" 
+    || this.props.player.tiredness != "tiredest" 
+    || this.state.hallucinated
+    || this.props.denyHallucination) {
       return
     }
 
@@ -196,10 +199,13 @@ class Cat extends Component {
       transform: `scale(${direction == "left" ? catImage.scale : -catImage.scale}, ${catImage.scale})`
     }
 
+    let pLoc = this.props.playerLocation
+    let playerFeetY = pLoc == "room" ? 790 : pLoc == "desk" ? 750 : pLoc == "coffee" ? 550 : 0 
+
     let styles = {
       transform: `translate(${position.x}px, ${position.y}px)`,
       transition: transitionSpeed,
-      zIndex: position.y > 790 ? "10" : "9"
+      zIndex: position.y > playerFeetY ? "10" : "9"
     };
 
     return (

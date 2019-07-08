@@ -30,7 +30,7 @@ class EndScreen extends Component {
       mentorText += `8 Stunden pro Nacht sind empfehlenswert. Du hast durchschnittlich ${mediumSleepTime} Stunden geschlafen. Durch den großen Schlafmangel hast du gravierende Krankheiten, wie Depressionen, Fettleibigkeit, Diabetes, ein erhöhtes Alzheimerrisiko und Herzerkrankungen entwickelt, welche deine Lebensqualität immens einschränken. Regelmäßige Krankenhausaufenthalte und Medikamente gehören nun zu deinem Alltag.`;
     } else if (sleepTime < 6 * 60 * 3) {
       tiredness = "tiredest";
-      mentorText += `8 Stunden pro Nacht sind empfehlenswert. Du hast im Schnitt ${mediumSleepTime} Stunden geschlafen, dadurch wirst du ständig von Paranoia und hohem Stressempfinden, mit gelegentlichen Halluzinationen geplagt. Außerdem ist dein Risiko für Herzinfarkte um 100% gestiegen. Du bewältigst deinen Alltag unter starkem Konzentrationsmangel, erhöhter Reizbarkeit und vermindertem Reaktionsvermögen.`;
+      mentorText += `8 Stunden pro Nacht sind empfehlenswert. Du hast im Schnitt ${mediumSleepTime} Stunden geschlafen, dadurch wirst du ständig von Paranoia und hohem Stressempfinden, mit gelegentlichen Halluzinationen geplagt. Außerdem hat sich dein Risiko für Herzinfarkte verdoppelt. Du bewältigst deinen Alltag unter starkem Konzentrationsmangel, erhöhter Reizbarkeit und vermindertem Reaktionsvermögen.`;
     } else if (sleepTime < 8 * 60 * 3) {
       tiredness = "tired";
       mentorText += `8 Stunden pro Nacht sind empfehlenswert. Du hast im Schnitt ${mediumSleepTime} Stunden geschlafen, wodurch sich dein Konzentrations- und Reaktionsvermögen vermindert und deine Reizbarkeit erhöht hat. Du bewältigst deinen Alltag unter leichter, aber konstanter, Einschränkung deiner Lebensqualität.`;

@@ -43,7 +43,7 @@ export default function artworkSketch(s) {
   s.myCustomRedrawAccordingToNewPropsHandler = function(props) {
     playing = props.playing ? 1 : 0;
     
-    exhaustion = (props.vitalStats.exhaustion - 50)*2 * ((100-props.vitalStats.coffee)/100);
+    exhaustion = (props.vitalStats.exhaustion* ((100-props.vitalStats.coffee)/100) - 50)*2 ;
     exhaustion = exhaustion < 1 ? 1 : exhaustion
     health = props.vitalStats.health;
     speedDistortion = (exhaustion * exhaustion) / 30000;

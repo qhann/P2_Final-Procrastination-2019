@@ -25,7 +25,7 @@ class Main extends React.Component {
       exhaustion: 0,
       coffee: 0
     },
-    mentorText: "Es ist schon ziemlich spät, " + (this.props.playerName || "lol") + ".",
+    mentorText: "",
     room: {
       hasPlayer: true
     },
@@ -67,7 +67,7 @@ class Main extends React.Component {
   getGlobalInterval(time) {
     let globalInterval = setInterval(
       () => this.updateTimed(),
-      250
+      25000
     );
     return globalInterval
   }
@@ -315,7 +315,7 @@ class Main extends React.Component {
 
       this.setState(prevState => update(prevState, {
         time: { $set: newTime },
-        sleepTime: {$set: newSleepTime},
+        sleepTime: { $set: newSleepTime },
         vitalStats: {
           exhaustion: { $set: newExhaustion }
         }
@@ -394,7 +394,7 @@ class Main extends React.Component {
           interaction: { $set: type },
           direction: { $set: "left" }
         },
-        mentorText: { $set: mentorText }
+        // mentorText: { $set: mentorText }
       })
     );
   }
@@ -455,19 +455,20 @@ class Main extends React.Component {
       tiredness: this.state.tiredness,
       action: this.state.cat.interaction
     };
+    let playerLocation = desk.hasPlayer ? "desk" : coffee.hasPlayer ? "coffee" : room.hasPlayer ? "room" : ""
 
     return (
       <div className="main" onClick={() => this.handleRoomClick()}>
 
-        <div style={{ position: "absolute" }} >
+        {/* <div style={{ position: "absolute" }} >
           <button onClick={() => this.endGame()}>ENDSCREEN </button>
-        </div>
+        </div> */}
         <Night time={time} nightFall={this.state.nightFall} />
         <Room time={time} hasPlayer={room.hasPlayer} player={player} />
         <Cat
           hasPlayer={cat.hasPlayer}
           menuOpen={cat.menuOpen}
-          player={player}
+          player={{...player, playerLocation}}
           onClick={(e) => this.handleCatClick(e)}
           catInteraction={action => this.handleCatInteraction(action)}
           position={cat.position}
@@ -475,6 +476,7 @@ class Main extends React.Component {
           time={time}
           moving={cat.moving}
           direction={cat.direction}
+          denyHallucination={bed.hasPlayer || gamingStation.hasPlayer}
         />
         <GamingStation
           hasPlayer={gamingStation.hasPlayer}
@@ -521,7 +523,7 @@ class Main extends React.Component {
         />
 
         <Clock time={this.state.time} />
-        <MentorTip text={this.state.mentorText} />
+        <MentorTip time={this.state.time} text={this.state.mentorText} />
       </div>
     );
   }
