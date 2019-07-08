@@ -67,7 +67,7 @@ class Main extends React.Component {
   getGlobalInterval(time) {
     let globalInterval = setInterval(
       () => this.updateTimed(),
-      500
+      250
     );
     return globalInterval
   }
@@ -459,9 +459,9 @@ class Main extends React.Component {
     return (
       <div className="main" onClick={() => this.handleRoomClick()}>
 
-        {/* <div style={{ position: "absolute" }} >
+        <div style={{ position: "absolute" }} >
           <button onClick={() => this.endGame()}>ENDSCREEN </button>
-        </div> */}
+        </div>
         <Night time={time} nightFall={this.state.nightFall} />
         <Room time={time} hasPlayer={room.hasPlayer} player={player} />
         <Cat

@@ -10,7 +10,7 @@ import EndScreen from "./components/EndScreen";
 
 class App extends React.Component {
   state = {
-    currentScreen: "start",
+    currentScreen: "main",
     playerName: "du Pupskopf",
     gender: "girl",
     player: {},

@@ -44,7 +44,7 @@ class Cat extends Component {
   }
 
   hallucinate() {
-    if (Math.random() < 0.975 || this.props.player.action != "none" || this.props.tiredness != "tiredest") return
+    if (Math.random() < 0.9 || this.props.player.action != "none" || this.props.tiredness != "tiredest") return
     this.setState({
       // img: catScarySprites,
       catTransform: {

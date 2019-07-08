@@ -54,7 +54,7 @@ class EndScreen extends Component {
     } else if (workScore > 80) {
       awardsCount = 3
     }
-
+    
 
 
     return (

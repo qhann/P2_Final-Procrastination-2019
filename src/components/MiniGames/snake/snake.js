@@ -19,7 +19,7 @@ export default function snake(s) {
 
   s.setup = () => {
     s.createCanvas(width, height);
-    s.frameRate(60);
+    s.frameRate(30);
   };
 
   let sendScore;
