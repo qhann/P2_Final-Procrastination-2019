@@ -35,14 +35,16 @@ class App extends React.Component {
       case "main":
         newScreen = "main";
         break;
-      case "end":      
+      case "end":
         newProps = {
-           artWork: props.artWork,
-           workingExhaustion: props.workingExhaustionValues.reduce((a, b) => a + b, 0) / props.workingExhaustionValues.length,
-           workTime: props.workingExhaustionValues.length,
-           sleepTime: props.sleepTime,
-           highScores: props.highScores
-         };
+          artWork: props.artWork,
+          workingExhaustion:
+            props.workingExhaustionValues.reduce((a, b) => a + b, 0) /
+            props.workingExhaustionValues.length,
+          workTime: props.workingExhaustionValues.length,
+          sleepTime: props.sleepTime,
+          highScores: props.highScores
+        };
         newScreen = "end";
         break;
     }
