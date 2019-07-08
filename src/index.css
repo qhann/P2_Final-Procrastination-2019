@@ -426,6 +426,8 @@ body,
 }
 
 .button-drop-down:hover {
+  background: #d28768;
+  color:#e6e6e6;
   -webkit-filter: drop-shadow(0 0 5px black);
   filter: drop-shadow(0 0 5px black);
 }
@@ -880,7 +882,6 @@ body,
 .start p,
 .character-selection p {
   font-size: 8em;
-  color: white;
   position: absolute;
 }
 
@@ -891,16 +892,21 @@ body,
   font-size: 2.5em;
   top: 65%;
   right: 44%;
-  background: white;
+  background:#e6e6e6;
   border: none;
   border-radius: 5px;
+}
+.start-button:hover{
+background: #d28768;
+color:#e6e6e6;
+filter: drop-shadow(-10px 10px 4px black);
 }
 
 .button-character-select {
   position: absolute;
   height: 500px;
   width: 300px;
-  top: 23%;
+  top: 27%;
 }
 
 .button-character-select:hover {
@@ -921,7 +927,9 @@ body,
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   top: 5%;
+  color: #d28768;
 }
+
 
 .character-select-input {
   position: absolute;
@@ -946,11 +954,16 @@ body,
   width: 180px;
   height: 50px;
   font-size: 2em;
-  background: white;
+  background:#e6e6e6;
   border: none;
   border-radius: 5px;
   padding: 3px;
   margin: 2px;
+}
+.button-character-start:hover{
+  background: #d28768;
+  color:#e6e6e6;
+  filter: drop-shadow(-10px 10px 4px black);
 }
 
 .button-intro {
@@ -965,6 +978,12 @@ body,
   border-radius: 5px;
   padding: 3px;
   margin: 2px;
+}
+
+.button-intro:hover{
+background: #d28768;
+color:#e6e6e6;
+filter: drop-shadow(-10px 10px 4px black);
 }
 
 .intro-text {
