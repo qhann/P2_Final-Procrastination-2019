@@ -63,8 +63,8 @@ class Start extends Component {
     if (this.state.cat.menuOpen || this.state.cat.hasPlayer) return prevCat;
 
     newPosition = {
-      x: ~~(150 + 1520 * Math.random()),
-      y: ~~(600 + 220 * Math.random())
+      x: ~~(150 + 1420 * Math.random()),
+      y: ~~(750 + 200 * Math.random())
     };
 
     dx = prevCat.position.x - newPosition.x;

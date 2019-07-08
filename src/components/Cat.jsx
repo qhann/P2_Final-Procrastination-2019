@@ -44,8 +44,19 @@ class Cat extends Component {
   }
 
   hallucinate() {
-    if (Math.random() < 0.9 || this.props.player.action != "none" || this.props.tiredness != "tiredest") return
+    console.log(Math.random() < 0.5 , this.props.player.action != "none" , this.props.player.tiredness != "tiredest", this.state.hallucinated);
+    if (this.props.player.tiredness != "tiredest") {
+      this.setState({hallucinated: false})
+    }
+    if (Math.random() < 0.5 || this.props.player.action != "none" || this.props.player.tiredness != "tiredest" || this.state.hallucinated) {
+      return
+    }
+
+    console.log("hallu");
+    
+    
     this.setState({
+      hallucinated: true,
       // img: catScarySprites,
       catTransform: {
         // transform: "scale(150)",
@@ -187,7 +198,8 @@ class Cat extends Component {
 
     let styles = {
       transform: `translate(${position.x}px, ${position.y}px)`,
-      transition: transitionSpeed
+      transition: transitionSpeed,
+      zIndex: position.y > 790 ? "10" : "9"
     };
 
     return (

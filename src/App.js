@@ -11,8 +11,8 @@ import EndScreen from "./components/EndScreen";
 class App extends React.Component {
   state = {
     currentScreen: "main",
-    playerName: "du Pupskopf",
-    gender: "girl",
+    playerName: "[playerName]",
+    gender: "boy",
     player: {},
     artWork: {}
   };

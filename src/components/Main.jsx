@@ -111,7 +111,7 @@ class Main extends React.Component {
       );
 
       let newCat =
-        time.toFixed(1) % 10 == 0
+        time.toFixed(1) % 20 == 0
           ? this.moveCat(prevState.cat)
           : prevState.cat;
 
@@ -149,7 +149,7 @@ class Main extends React.Component {
     if (this.state.cat.menuOpen || this.state.cat.hasPlayer) return prevCat;
 
     newPosition = {
-      x: ~~(150 + 1520 * Math.random()),
+      x: ~~(250 + 1320 * Math.random()),
       y: ~~(700 + 120 * Math.random())
     };
 
