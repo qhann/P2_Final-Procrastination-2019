@@ -19,6 +19,7 @@ class EndScreen extends Component {
       sleepTime,
       highScores
     } = this.props;
+
     let mentorText = "";
     let tiredness;
     let mediumSleepTime = ~~((sleepTime / 60 / 3) * 10) / 10;
@@ -51,10 +52,14 @@ class EndScreen extends Component {
     workScore = (1 - percentExhaustion) * percentWorkTime * 100;
     workScore = workScore ? ~~workScore : 0;
 
-    awardsCount = 1;
-    if (workScore > 40) {
+    console.log(percentWorkTime, percentExhaustion, workScore);
+    
+
+    if (workScore < 20) {
+      awardsCount = 0;
+    } else if (workScore > 20 && workScore < 50) {
       awardsCount = 1;
-    } else if (workScore > 40 && workScore < 80) {
+    } else if (workScore > 50 && workScore < 80) {
       awardsCount = 2;
     } else if (workScore > 80) {
       awardsCount = 3;
@@ -131,8 +136,17 @@ class EndScreen extends Component {
             ) : null}
           </div>
         </div>
+        <div className={"end-restart-button"} onClick={nextScreen}>Nochmal</div>
       </div>
     );
+  }
+}
+
+EndScreen.defaultProps = {
+  highScores: {
+    lunar: 0,
+    pong: 0,
+    snake: 0
   }
 }
 

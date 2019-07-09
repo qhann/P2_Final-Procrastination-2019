@@ -191,7 +191,6 @@ export default function snake(s) {
           snake.y >= 700
           ) {
             sc = "gameOver";
-            sendScore(score)
           }
         }
         snakeBody.push({ x: snake.x, y: snake.y });
@@ -233,6 +232,7 @@ export default function snake(s) {
       if (snake.x === food.x && snake.y === food.y) {
         snekL++;
         score++;
+        sendScore(score)
         // console.log(score);
         food.eat();
       }

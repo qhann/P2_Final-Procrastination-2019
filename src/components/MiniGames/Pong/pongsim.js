@@ -73,6 +73,8 @@ export default function pongSketch(s) {
   var scr1 = s.loadImage(dschungel2);
   var scr2 = s.loadImage(dschungel3);
 
+  resetball()
+
   s.draw = () => {
     // console.log(z);
     //Zustand 0 = Startseite
@@ -185,9 +187,12 @@ export default function pongSketch(s) {
       s.textAlign(s.CENTER);
       s.text(score1 + " : " + score2, 306, 50);
 
+      
+      ball.y = ball.y ? ball.y : 250
+      console.log(ball.y);
       //Ball
       s.fill(0, 150, 255);
-      s.ellipse(ball.x, ball.y, 30);
+      // s.ellipse(ball.x, ball.y, 30);
       s.textSize(30);
       s.text("🐵", ball.x, ball.y);
 
@@ -231,6 +236,7 @@ export default function pongSketch(s) {
         if (ball.x <= 18) {
           resetball();
           score2 += 1;
+          sendScore(score2)
           botSpeed += 1
           direction.x = 1;
         }
@@ -321,7 +327,6 @@ export default function pongSketch(s) {
 
       if (score1 === 10) {
         z = 2;
-        sendScore(score2)
       }
 
       // if (score2 === 30) {

@@ -99,7 +99,7 @@ export default function artworkSketch(s) {
   var maxLandingSpeed = 4;
   var level = 0;
   var totalScore = 0;
-  var highScore = [0];
+  var highScore = [100000, 90000, 70000, 60000, 50000, 40000, 30000, 20000, 10000, 0];
   var highestScore = 0;
   var score, scoreFuel, scoreTime, scoreVelocity;
   var showLevelNumber = false
@@ -108,24 +108,31 @@ export default function artworkSketch(s) {
 
 
   function startButton(x, y) {
-    var width = 50;
-    var height = 30;
-    s.fill(255, 255, 255);
-    s.rect(x, y, width, height);
-    s.fill(0, 0, 0);
-    s.text("start", x + 10, y + 20);
+    x -= 15
+    // y -= 10
+    var width = 80;
+    var height = 50;
     var mouseOverStart =
       s.mouseX > x &&
       s.mouseX < x + width &&
       s.mouseY > y &&
       s.mouseY < y + height;
+    let GB = 100
+    if (mouseOverStart) GB = 0
+    s.fill(255, GB, GB);
+    s.rect(x, y, width, height);
+    s.fill(0, 0, 0);
+    s.textSize(16)
+    s.text("start", x + 20, y + 30);
+    s.textSize(12)
 
+    
     if (mouseOverStart && s.mouseIsPressed) {
       startNewGame();
     }
 
     s.fill(255,255,255)
-    s.text("level: " + level, x, y+60)
+    s.text("level: " + (level + 1), x, y+60)
   }
 
   function startNewGame() {
@@ -454,10 +461,10 @@ export default function artworkSketch(s) {
       totalScore += score;
       level += 1;
       maxLandingSpeed *= 0.9
+      sendScore(score);
+      pushHighScore(score)
     } else {
       level = 0
-      sendScore(totalScore);
-      pushHighScore(totalScore);
       score = 0;
       totalScore = 0;
     }
@@ -465,18 +472,18 @@ export default function artworkSketch(s) {
   }
 
   function pushHighScore(score) {
-    if (score > highestScore) {
-      highestScore = score;
+    // if (score > highestScore) {
+    //   highestScore = score;
+    // }
+    for (let i = 0; i < highScore.length; i++) {
+      if (score > highScore[i]) {
+        highScore.splice(i, 0, score);
+        break;
+      }
     }
-    // for (let i = 0; i < highScore.length; i++) {
-    //   if (score > highScore[i]) {
-    //     highScore.splice(i, 0, score);
-    //     break;
-    //   }
-    // }
-    // if (highScore.length > 10) {
-    //   highScore.pop();
-    // }
+    if (highScore.length > 10) {
+      highScore.pop();
+    }
   }
 
   function messageBox() {

@@ -199,13 +199,13 @@ class Cat extends Component {
       transform: `scale(${direction == "left" ? catImage.scale : -catImage.scale}, ${catImage.scale})`
     }
 
-    let pLoc = this.props.playerLocation
-    let playerFeetY = pLoc == "room" ? 790 : pLoc == "desk" ? 750 : pLoc == "coffee" ? 550 : 0 
+    let pLoc = this.props.player.playerLocation
+    let playerFeetY = pLoc == "room" ? 790 : (pLoc == "desk" ? 750 : (pLoc == "coffee" ? 550 : 0) ) 
 
     let styles = {
       transform: `translate(${position.x}px, ${position.y}px)`,
       transition: transitionSpeed,
-      zIndex: position.y > playerFeetY ? "10" : "9"
+      zIndex: position.y < playerFeetY ? "9" : "11"
     };
 
     return (

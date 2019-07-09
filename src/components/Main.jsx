@@ -67,13 +67,13 @@ class Main extends React.Component {
   getGlobalInterval(time) {
     let globalInterval = setInterval(
       () => this.updateTimed(),
-      25000
+      time
     );
     return globalInterval
   }
 
   componentDidMount() {
-    let globalInterval = this.getGlobalInterval(500)
+    let globalInterval = this.getGlobalInterval(250)
 
     this.setState(prevState =>
       update(prevState, {
@@ -149,7 +149,7 @@ class Main extends React.Component {
     if (this.state.cat.menuOpen || this.state.cat.hasPlayer) return prevCat;
 
     newPosition = {
-      x: ~~(250 + 1320 * Math.random()),
+      x: ~~(250 + 1220 * Math.random()),
       y: ~~(700 + 120 * Math.random())
     };
 
@@ -187,14 +187,15 @@ class Main extends React.Component {
 
   updateVital(attribute, prevStat) {
     if (attribute == "exhaustion") {
-      if (
+      if (prevStat < 50 && this.state.tiredness != "rested") {
+        this.setState({ tiredness: "rested" });
+      } else if (
         prevStat > 50 &&
         prevStat < 75 &&
         this.state.tiredness != "tired"
       ) {
         this.setState({ tiredness: "tired" });
-      }
-      if (prevStat > 75 && this.state.tiredness != "tiredest") {
+      } else if (prevStat > 75 && this.state.tiredness != "tiredest") {
         this.setState({ tiredness: "tiredest" });
       }
     }
@@ -203,8 +204,9 @@ class Main extends React.Component {
     //console.log(attribute, prevStat);
     let frameDuration = 1000;
     let overExhaustion = this.state.vitalStats.exhaustion - 50
-    overExhaustion = overExhaustion < 0 ? 0 : overExhaustion
+    // overExhaustion = overExhaustion < 0 ? 0 : overExhaustion
     let dHealth = -overExhaustion / 96 / 2;
+    dHealth = dHealth < 0 && this.state.bed.hasPlayer ? 0 : dHealth
     let step, newStat;
     switch (attribute) {
       case "health":
@@ -230,6 +232,7 @@ class Main extends React.Component {
   }
 
   playerTo(place) {
+    let newGlobalInterval
     let atRoom = false;
     let atDesk = false;
     let atBed = false;
@@ -257,8 +260,14 @@ class Main extends React.Component {
         break;
     }
 
+    if (this.state.bed.napping && !atBed) {
+      clearInterval(this.state.globalInterval)
+      newGlobalInterval = this.getGlobalInterval(250)
+    }
+
     this.setState(prevState =>
       update(prevState, {
+        globalInterval: {$set: newGlobalInterval ? newGlobalInterval : prevState.globalInterval },
         room: {
           hasPlayer: { $set: atRoom }
         },
@@ -266,6 +275,7 @@ class Main extends React.Component {
           hasPlayer: { $set: atDesk }
         },
         bed: {
+          napping: {$set: !atBed ? false : prevState.bed.napping},
           hasPlayer: { $set: atBed },
           menuOpen: { $set: !atBed ? false : prevState.bed.menuOpen },
         },
@@ -299,8 +309,9 @@ class Main extends React.Component {
   sleepTillMorning() {
     this.nightFall(() => {
       let prevExhaustion = this.state.vitalStats.exhaustion
+      let prevHealth = this.state.vitalStats.health
       let days = 1 + Math.floor(this.state.time / (60 * 12))
-      let sleepingHours = 12 - (Math.floor(this.state.time / 60) % 12) % 24
+      let sleepingHours = 12 - (Math.floor(this.state.time / 60) % 12) 
       // console.log(sleepingHours);
 
       if (days == 3) {
@@ -310,6 +321,10 @@ class Main extends React.Component {
 
       let newExhaustion = prevExhaustion - sleepingHours * 12.5
       newExhaustion = newExhaustion < 0 ? 0 : newExhaustion
+
+      let newHealth = prevHealth + sleepingHours * 3.125
+      newHealth = newHealth > 100 ? 100 : newHealth
+
       let newTime = days * 12 * 60
       let newSleepTime = this.state.sleepTime + sleepingHours * 60
 
@@ -317,7 +332,8 @@ class Main extends React.Component {
         time: { $set: newTime },
         sleepTime: { $set: newSleepTime },
         vitalStats: {
-          exhaustion: { $set: newExhaustion }
+          exhaustion: { $set: newExhaustion },
+          health: { $set: newHealth },
         }
       }))
       this.playerTo("room")
@@ -335,15 +351,18 @@ class Main extends React.Component {
     setTimeout(() => {
       this.setState({
         nightFall: false,
-        globalInterval: this.getGlobalInterval(500)
+        globalInterval: this.getGlobalInterval(250)
       })
       if (typeof callBack === "function") callBack()
     }, 3000)
   }
 
   nap() {
+    clearInterval(this.state.globalInterval)
     this.setState(prevState => update(prevState, {
+      globalInterval: { $set: this.getGlobalInterval(250 / 3) },
       bed: {
+        napping: { $set: true },
         // hasPlayer: { $set: true },
         menuOpen: { $set: false }
       }
@@ -388,6 +407,9 @@ class Main extends React.Component {
     // setTimeout(() => this.setState(prevState => {update(prevState, {cat: {}})}))
     this.setState(prevState =>
       update(prevState, {
+        vitalStats: {
+          health: { $set: prevState.vitalStats.health + 10 },
+        },
         cat: {
           menuOpen: { $set: false },
           // moving: { $set: true },
@@ -406,7 +428,11 @@ class Main extends React.Component {
 
   handleGameStationClick(e) {
     e.stopPropagation()
-    this.playerTo("gameStation")
+    if (this.state.gamingStation.fullscreen) {
+      this.playerTo("room")
+    } else {
+      this.playerTo("gameStation")
+    }
     this.setState({
       gamingStation: {
         fullscreen: !this.state.gamingStation.fullscreen
@@ -468,7 +494,7 @@ class Main extends React.Component {
         <Cat
           hasPlayer={cat.hasPlayer}
           menuOpen={cat.menuOpen}
-          player={{...player, playerLocation}}
+          player={{ ...player, playerLocation }}
           onClick={(e) => this.handleCatClick(e)}
           catInteraction={action => this.handleCatInteraction(action)}
           position={cat.position}
@@ -476,7 +502,7 @@ class Main extends React.Component {
           time={time}
           moving={cat.moving}
           direction={cat.direction}
-          denyHallucination={bed.hasPlayer || gamingStation.hasPlayer}
+          denyHallucination={bed.hasPlayer || gamingStation.fullscreen}
         />
         <GamingStation
           hasPlayer={gamingStation.hasPlayer}

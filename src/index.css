@@ -1211,3 +1211,23 @@ filter: drop-shadow(-10px 10px 4px black);
 .highscores-title {
   padding: 10px !important;
 }
+
+.end-restart-button {
+  position: absolute;
+  width: 255px;
+  height: 75px;
+  line-height: 75px;
+  font-size: 2.5em;
+  bottom: 50px;
+  right: 50px;
+  background:#e6e6e6;
+  border: none;
+  border-radius: 5px;
+  
+}
+
+.end-restart-button:hover{
+background: #d28768;
+color:#e6e6e6;
+filter: drop-shadow(-10px 10px 4px black);
+}

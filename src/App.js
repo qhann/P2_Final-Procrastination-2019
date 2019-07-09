@@ -10,7 +10,7 @@ import EndScreen from "./components/EndScreen";
 
 class App extends React.Component {
   state = {
-    currentScreen: "main",
+    currentScreen: "start",
     playerName: "[playerName]",
     gender: "boy",
     player: {},
@@ -88,6 +88,7 @@ class App extends React.Component {
             workTime={this.state.workTime}
             sleepTime={this.state.sleepTime}
             highScores={this.state.highScores}
+            nextScreen={() => this.switchScreen("start")}
           />
         ) : null}
       </div>
