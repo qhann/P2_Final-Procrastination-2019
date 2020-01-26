@@ -17,41 +17,43 @@ export default function snake(s) {
   let height = 800; //1080 * 0.5;
   // console.log(height);
 
+  const buttonScale = 1.5
+
   const buttonPos = {
     x: width - 180,
     y: height / 2
   };
   const buttonSize = {
-    width: 30,
-    height: 20
+    width: 40 * buttonScale,
+    height: 30 * buttonScale
   };
 
   const buttonUp = {
-    x0: buttonPos.x + 20,
-    x1: buttonPos.x + 20 + buttonSize.width,
+    x0: buttonPos.x + buttonSize.width,
+    x1: buttonPos.x + buttonSize.width + buttonSize.width,
     y0: buttonPos.y,
     y1: buttonPos.y + buttonSize.height
   };
 
   const buttonDown = {
-    x0: buttonPos.x + 20,
-    x1: buttonPos.x + 20 + buttonSize.width,
-    y0: buttonPos.y + 25,
-    y1: buttonPos.y + 25 + buttonSize.height
+    x0: buttonPos.x + buttonSize.width,
+    x1: buttonPos.x + buttonSize.width + buttonSize.width,
+    y0: buttonPos.y + buttonSize.height,
+    y1: buttonPos.y + buttonSize.height + buttonSize.height
   };
 
   const buttonLeft = {
-    x0: buttonPos.x - 35 + 20,
-    x1: buttonPos.x - 35 + 20 + buttonSize.width,
-    y0: buttonPos.y + 25,
-    y1: buttonPos.y + 25 + buttonSize.height
+    x0: buttonPos.x,
+    x1: buttonPos.x + buttonSize.width,
+    y0: buttonPos.y + buttonSize.height,
+    y1: buttonPos.y + buttonSize.height + buttonSize.height
   };
 
   const buttonRight = {
-    x0: buttonPos.x + 35 + 20,
-    x1: buttonPos.x + 35 + 20 + buttonSize.width,
-    y0: buttonPos.y + 25,
-    y1: buttonPos.y + 25 + buttonSize.height
+    x0: buttonPos.x + buttonSize.width * 2,
+    x1: buttonPos.x + buttonSize.width * 2 + buttonSize.width,
+    y0: buttonPos.y + buttonSize.height,
+    y1: buttonPos.y + buttonSize.height + buttonSize.height
   };
 
   s.setup = () => {
@@ -288,6 +290,8 @@ export default function snake(s) {
     const height = constraints.y1 - constraints.y0
     s.push()
     s.fill(255,255,255)
+    s.strokeWeight(1)
+    s.stroke(0,0,0)
     s.rect(constraints.x0, constraints.y0, width, height)
     s.fill(0,0,0)
     s.textSize(12)

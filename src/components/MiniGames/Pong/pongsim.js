@@ -5,22 +5,28 @@ import dschungel3 from "./img/dschungel3.jpg";
 
 export default function pongSketch(s) {
   s.setup = () => {
-    s.createCanvas(640, 640);
+    s.createCanvas(670, 640);
     s.frameRate(40);
   };
 
+  const buttonScale = 1.5
+  const buttonSize = {
+    width: 40 * buttonScale,
+    height: 30 * buttonScale
+  }
+
   const buttonUp = {
     x0: 615 ,
-    x1: 615  + 20,
+    x1: 615  + buttonSize.width,
     y0: 640 / 2 - 80, 
-    y1: 640 / 2 - 80 + 30, 
+    y1: 640 / 2 - 80 + buttonSize.height, 
   }
   
   const buttonDown = {
     x0: 615 ,
-    x1: 615  + 20,
-    y0: 640 / 2 - 40, 
-    y1: 640 / 2 - 40 + 30, 
+    x1: 615 + buttonSize.width,
+    y0: 640 / 2 - 80 + buttonSize.height, 
+    y1: 640 / 2 - 80 + buttonSize.height * 2, 
   }
 
   var sendScore
@@ -96,8 +102,11 @@ export default function pongSketch(s) {
     const height = constraints.y1 - constraints.y0
     s.push()
     s.fill(255,255,255)
+    s.strokeWeight(1)
+    s.stroke(0,0,0)
     s.rect(constraints.x0, constraints.y0, width, height)
     s.fill(0,0,0)
+    s.textSize(18)
     s.text(direction, constraints.x0 + width / 2 , constraints.y0 + height / 2 + 3 )
     s.pop()
   }

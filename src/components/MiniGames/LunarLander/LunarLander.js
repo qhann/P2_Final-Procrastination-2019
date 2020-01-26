@@ -6,14 +6,25 @@ import jet2 from "./assets/jet2.png";
 
 export default function artworkSketch(s) {
   let width = 840; //1920 * 0.5;
-  let height = 1080 * 0.5 + 200;
+  let height = 1080 * 0.5 + 250;
   // console.log(height);
 
+  const buttonScale = 1.5;
+
+  const buttonPos = {
+    y: height - 90,
+    x: width / 2 - 100
+  }
+  const buttonSize = {
+    width: 40 * buttonScale,
+    height: 30 * buttonScale
+  }
+
   const buttonUp = {
-    x0: width / 2 - 80 ,
-    x1: width / 2 - 80  + 40,
-    y0: height - 80, 
-    y1: height - 80 + 30, 
+    x0: buttonPos.x + buttonSize.width / 2 ,
+    x1: buttonPos.x + buttonSize.width / 2 + buttonSize.width,
+    y0: buttonPos.y, 
+    y1: buttonPos.y + buttonSize.height, 
   }
   
   const buttonDown = {
@@ -24,16 +35,16 @@ export default function artworkSketch(s) {
   }
 
   const buttonLeft = {
-    x0: width / 2 - 100 ,
-    x1: width / 2 - 100  + 40,
-    y0: height - 50, 
-    y1: height - 50 + 30, 
+    x0: buttonPos.x ,
+    x1: buttonPos.x + buttonSize.width,
+    y0: buttonPos.y + buttonSize.height, 
+    y1: buttonPos.y + buttonSize.height + buttonSize.height, 
   }
   const buttonRight = {
-    x0: width / 2 - 60 ,
-    x1: width / 2 - 60  + 40,
-    y0: height - 50, 
-    y1: height - 50 + 30, 
+    x0: buttonPos.x + buttonSize.width ,
+    x1: buttonPos.x + buttonSize.width + buttonSize.width,
+    y0: buttonPos.y + buttonSize.height, 
+    y1: buttonPos.y + buttonSize.height + buttonSize.height, 
   }
   
   
