@@ -1,0 +1,3 @@
+1. öffne ein terminal (command + space => "terminal" -> Enter)
+2. tippe "cd Documents/sleep-sim" -> Enter
+3. tippe "npm start" -> Enter
