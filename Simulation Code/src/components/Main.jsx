@@ -311,7 +311,7 @@ class Main extends React.Component {
       let prevExhaustion = this.state.vitalStats.exhaustion
       let prevHealth = this.state.vitalStats.health
       let days = 1 + Math.floor(this.state.time / (60 * 12))
-      let sleepingHours = 12 - (Math.floor(this.state.time / 60) % 12) 
+      let sleepingHours = 12 - (Math.floor(this.state.time / 60) % 12) % 24
       // console.log(sleepingHours);
 
       if (days == 3) {

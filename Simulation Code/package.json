@@ -9,7 +9,6 @@
     "jquery": "^3.4.1",
     "matter-js": "^0.14.2",
     "p5": "^0.8.0",
-    "people-names": "^1.0.15",
     "react": "^16.8.6",
     "react-countup": "^4.1.3",
     "react-dom": "^16.8.6",

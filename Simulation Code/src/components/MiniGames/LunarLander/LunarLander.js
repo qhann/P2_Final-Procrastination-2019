@@ -6,47 +6,8 @@ import jet2 from "./assets/jet2.png";
 
 export default function artworkSketch(s) {
   let width = 840; //1920 * 0.5;
-  let height = 1080 * 0.5 + 250;
+  let height = 1080 * 0.5;
   // console.log(height);
-
-  const buttonScale = 1.5;
-
-  const buttonPos = {
-    y: height - 90,
-    x: width / 2 - 100
-  }
-  const buttonSize = {
-    width: 40 * buttonScale,
-    height: 30 * buttonScale
-  }
-
-  const buttonUp = {
-    x0: buttonPos.x + buttonSize.width / 2 ,
-    x1: buttonPos.x + buttonSize.width / 2 + buttonSize.width,
-    y0: buttonPos.y, 
-    y1: buttonPos.y + buttonSize.height, 
-  }
-  
-  const buttonDown = {
-    x0: height - 20,
-    x1: height - 20 + 20,
-    y0: width / 2 - 50, 
-    y1: width / 2 - 50 + 30, 
-  }
-
-  const buttonLeft = {
-    x0: buttonPos.x ,
-    x1: buttonPos.x + buttonSize.width,
-    y0: buttonPos.y + buttonSize.height, 
-    y1: buttonPos.y + buttonSize.height + buttonSize.height, 
-  }
-  const buttonRight = {
-    x0: buttonPos.x + buttonSize.width ,
-    x1: buttonPos.x + buttonSize.width + buttonSize.width,
-    y0: buttonPos.y + buttonSize.height, 
-    y1: buttonPos.y + buttonSize.height + buttonSize.height, 
-  }
-  
   
   s.setup = () => {
     s.createCanvas(width, height);
@@ -121,7 +82,7 @@ export default function artworkSketch(s) {
     width: 2000
   };
   var view = {
-    height: height - 100,
+    height: height,
     width: width - 120,
     x: 0,
     y: 0,
@@ -135,7 +96,7 @@ export default function artworkSketch(s) {
   var gameRunning = false;
   var timeElapsed = 0;
   var timer;
-  var maxLandingSpeed = 9;
+  var maxLandingSpeed = 4;
   var level = 0;
   var totalScore = 0;
   var highScore = [100000, 90000, 70000, 60000, 50000, 40000, 30000, 20000, 10000, 0];
@@ -275,14 +236,8 @@ export default function artworkSketch(s) {
       rocket.blasting = false;
       return newRocket;
     }
-
-    let buttonUpPressed = (s.mouseIsPressed && s.mouseX > buttonUp.x0 && s.mouseX < buttonUp.x1 && s.mouseY > buttonUp.y0 && s.mouseY < buttonUp.y1)
-    let buttonDownPressed = (s.mouseIsPressed && s.mouseX > buttonDown.x0 && s.mouseX < buttonDown.x1 && s.mouseY > buttonDown.y0 && s.mouseY < buttonDown.y1)
-    let buttonLeftPressed = (s.mouseIsPressed && s.mouseX > buttonLeft.x0 && s.mouseX < buttonLeft.x1 && s.mouseY > buttonLeft.y0 && s.mouseY < buttonLeft.y1)
-    let buttonRightPressed = (s.mouseIsPressed && s.mouseX > buttonRight.x0 && s.mouseX < buttonRight.x1 && s.mouseY > buttonRight.y0 && s.mouseY < buttonRight.y1)
-
     //Key Up
-    if (s.keyIsDown(38) || buttonUpPressed) {
+    if (s.keyIsDown(38)) {
       newRocket.fuel -= fuelConsumption;
       newRocket.vy =
         newRocket.vy - (enginePower * 1 - Math.abs(newRocket.angle / s.PI));
@@ -293,11 +248,11 @@ export default function artworkSketch(s) {
       newRocket.blasting = false;
     }
     //KEY: Left
-    if (s.keyIsDown(37) || buttonLeftPressed) {
+    if (s.keyIsDown(37)) {
       newRocket.va -= 0.001;
     }
     //KEY: Right
-    if (s.keyIsDown(39) || buttonRightPressed) {
+    if (s.keyIsDown(39)) {
       newRocket.va += 0.001;
     }
     if (Math.abs(rocket.angle) >= s.PI) {
@@ -563,25 +518,6 @@ export default function artworkSketch(s) {
     s.pop();
   }
 
-  function drawArrowButton(constraints, direction ) {
-    // console.log(constraints);
-    
-    const width =  constraints.x1 - constraints.x0
-    const height = constraints.y1 - constraints.y0
-    s.push()
-    s.fill(255,255,255)
-    s.rect(constraints.x0, constraints.y0, width, height)
-    s.fill(0,0,0)
-    s.text(direction, constraints.x0 + width / 2 - 3, constraints.y0 + height / 2 )
-    s.pop()
-  }
-
-  function drawArrowButtons() {
-    drawArrowButton(buttonUp, "↑")
-    drawArrowButton(buttonLeft, "←")
-    drawArrowButton(buttonRight, "→")
-  }
-
   s.draw = () => {
     s.clear();
     renderGame(rocket.x, rocket.y);
@@ -597,7 +533,6 @@ export default function artworkSketch(s) {
       messageBox();
     }
 
-    drawArrowButtons()
     miniMap();
     displayShipData();
     showHighscore();

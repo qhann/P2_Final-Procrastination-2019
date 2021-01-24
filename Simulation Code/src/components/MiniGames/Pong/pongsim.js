@@ -5,29 +5,9 @@ import dschungel3 from "./img/dschungel3.jpg";
 
 export default function pongSketch(s) {
   s.setup = () => {
-    s.createCanvas(670, 640);
+    s.createCanvas(620, 600);
     s.frameRate(40);
   };
-
-  const buttonScale = 1.5
-  const buttonSize = {
-    width: 40 * buttonScale,
-    height: 30 * buttonScale
-  }
-
-  const buttonUp = {
-    x0: 615 ,
-    x1: 615  + buttonSize.width,
-    y0: 640 / 2 - 80, 
-    y1: 640 / 2 - 80 + buttonSize.height, 
-  }
-  
-  const buttonDown = {
-    x0: 615 ,
-    x1: 615 + buttonSize.width,
-    y0: 640 / 2 - 80 + buttonSize.height, 
-    y1: 640 / 2 - 80 + buttonSize.height * 2, 
-  }
 
   var sendScore
   s.myCustomRedrawAccordingToNewPropsHandler = function(newProps) {
@@ -95,30 +75,7 @@ export default function pongSketch(s) {
 
   resetball()
 
-  function drawArrowButton(constraints, direction ) {
-    // console.log(constraints);
-    
-    const width =  constraints.x1 - constraints.x0
-    const height = constraints.y1 - constraints.y0
-    s.push()
-    s.fill(255,255,255)
-    s.strokeWeight(1)
-    s.stroke(0,0,0)
-    s.rect(constraints.x0, constraints.y0, width, height)
-    s.fill(0,0,0)
-    s.textSize(18)
-    s.text(direction, constraints.x0 + width / 2 , constraints.y0 + height / 2 + 3 )
-    s.pop()
-  }
-
-  function drawArrowButtons() {
-    drawArrowButton(buttonUp, "↑")
-    drawArrowButton(buttonDown, "↓")
-    // drawArrowButton(buttonRight, "→")
-  }
-
   s.draw = () => {
-
     // console.log(z);
     //Zustand 0 = Startseite
     if (z === 0) {
@@ -192,7 +149,6 @@ export default function pongSketch(s) {
 
     // Zustand 1 Spiel
     if (z === 1) {
-
       s.clear();
       s.noStroke();
       // background(193, 255, 193);
@@ -315,18 +271,15 @@ export default function pongSketch(s) {
         paddle.Ly = 24;
       }
 
-      let buttonUpPressed = (s.mouseIsPressed && s.mouseX > buttonUp.x0 && s.mouseX < buttonUp.x1 && s.mouseY > buttonUp.y0 && s.mouseY < buttonUp.y1)
-      let buttonDownPressed = (s.mouseIsPressed && s.mouseX > buttonDown.x0 && s.mouseX < buttonDown.x1 && s.mouseY > buttonDown.y0 && s.mouseY < buttonDown.y1)
-
       //Paddle rechts
-      if (s.keyIsDown(38) || buttonUpPressed) {
+      if (s.keyIsDown(38)) {
         paddle.Ry = paddle.Ry - 10;
       }
       if (paddle.Ry >= 440) {
         paddle.Ry = 440;
       }
 
-      if (s.keyIsDown(40) || buttonDownPressed) {
+      if (s.keyIsDown(40)) {
         paddle.Ry = paddle.Ry + 10;
       }
       if (paddle.Ry <= 24) {
@@ -542,7 +495,5 @@ export default function pongSketch(s) {
         // ges = 6;
       }
     }
-    drawArrowButtons()
-
   };
 }

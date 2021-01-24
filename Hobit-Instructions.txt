@@ -1,4 +1,0 @@
-1. öffne ein terminal (command + space => "terminal" -> Enter)
-2. tippe "cd Documents/sleep-sim" -> Enter
-3. tippe "npm start" -> Enter
-4. Im Browser, drücke command + "+" bis das bild den Seiteninhalt füllt.

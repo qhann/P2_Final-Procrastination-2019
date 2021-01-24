@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Boy from "./Player/boy.svg";
 import Girl from "./Player/girl.svg";
 import MentorTip from "./MentorTip";
-import peopleNames, { maleRandomDe, femaleRandomDe } from "people-names"
 
 class CharacterSelection extends Component {
   state = {
@@ -12,8 +11,7 @@ class CharacterSelection extends Component {
   };
 
   setGender(gender) {
-    const name = gender === "boy" ? maleRandomDe() : femaleRandomDe()
-    this.setState({ gender: gender, name });
+    this.setState({ gender: gender });
   }
 
   setName(name) {
@@ -22,21 +20,21 @@ class CharacterSelection extends Component {
 
   getMentorText() {
     let mentorText
-    // if (this.state.name == "") {
-    //   mentorText = "Bitte gib deinen Namen ein."
-    // }
+    if (this.state.name == "") {
+      mentorText = "Bitte gib deinen Namen ein."
+    }
     if (this.state.gender == "") {
       mentorText = "Bitte wähle einen Charakter."
     }
-    // if (this.state.gender == "" && this.state.name == "") {
-    //   mentorText = "Bitte wähle einen Charakter und gib deinen Namen ein."
-    // }
+    if (this.state.gender == "" && this.state.name == "") {
+      mentorText = "Bitte wähle einen Charakter und gib deinen Namen ein."
+    }
     this.setState({mentorText})
   }
 
   checkCompletion() {
     this.getMentorText()
-    if (this.state.gender != "") {
+    if (this.state.gender != "" && this.state.name != "") {
       this.props.nextScreen(this.state.gender, this.state.name)
     }
   }
@@ -64,7 +62,7 @@ class CharacterSelection extends Component {
         />
         <div className={"character-select-input"} >
           <input
-            placeholder={this.state.name}
+            placeholder={"dein Name"}
             maxLength={25}
             className={"input-character-name"}
             onInput={e => this.setName(e.target.value)}
